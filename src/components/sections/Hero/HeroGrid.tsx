@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 // Main project images
 import genesisEngine from '@/assets/works/genesis-engine.jpg';
@@ -28,98 +28,172 @@ import synthCulture3 from '@/assets/works/gallery/synth-culture-3.jpg';
 import voidArchitecture2 from '@/assets/works/gallery/void-architecture-2.jpg';
 import voidArchitecture3 from '@/assets/works/gallery/void-architecture-3.jpg';
 
-interface GridItem {
-  src: string;
-  span: 'tall' | 'wide' | 'small' | 'medium';
-}
-
-const gridItems: GridItem[] = [
-  { src: genesisEngine, span: 'tall' },
-  { src: neonPulse, span: 'wide' },
-  { src: quantumBrand2, span: 'small' },
-  { src: metamorphosis3, span: 'small' },
-  { src: synthCulture, span: 'wide' },
-  { src: neuralInterface, span: 'tall' },
-  { src: prismReality2, span: 'medium' },
-  { src: voidArchitecture2, span: 'small' },
-  { src: genesisEngine2, span: 'medium' },
-  { src: neonPulse3, span: 'small' },
-  { src: metamorphosis, span: 'tall' },
-  { src: prismReality, span: 'wide' },
-  { src: quantumBrand, span: 'small' },
-  { src: synthCulture2, span: 'small' },
-  { src: voidArchitecture, span: 'wide' },
-  { src: neuralInterface2, span: 'tall' },
-  { src: genesisEngine3, span: 'medium' },
-  { src: neonPulse2, span: 'small' },
-  { src: metamorphosis2, span: 'medium' },
-  { src: neuralInterface3, span: 'small' },
-  { src: prismReality3, span: 'tall' },
-  { src: quantumBrand3, span: 'wide' },
-  { src: synthCulture3, span: 'small' },
-  { src: voidArchitecture3, span: 'small' },
+// 5 columns, each scrolling in alternating directions at different speeds
+const columns: { images: string[]; speed: number; direction: 'up' | 'down' }[] = [
+  {
+    images: [genesisEngine, neonPulse2, metamorphosis, prismReality3, synthCulture2],
+    speed: 25,
+    direction: 'up',
+  },
+  {
+    images: [neuralInterface, quantumBrand2, voidArchitecture, genesisEngine3, neonPulse3],
+    speed: 18,
+    direction: 'down',
+  },
+  {
+    images: [prismReality, metamorphosis2, synthCulture, neuralInterface2, quantumBrand],
+    speed: 30,
+    direction: 'up',
+  },
+  {
+    images: [voidArchitecture2, genesisEngine2, neonPulse, metamorphosis3, prismReality2],
+    speed: 22,
+    direction: 'down',
+  },
+  {
+    images: [synthCulture3, neuralInterface3, quantumBrand3, voidArchitecture3, genesisEngine],
+    speed: 27,
+    direction: 'up',
+  },
 ];
 
-const spanClasses: Record<GridItem['span'], string> = {
-  tall: 'col-span-1 row-span-2',
-  wide: 'col-span-2 row-span-1',
-  small: 'col-span-1 row-span-1',
-  medium: 'col-span-1 row-span-1',
-};
+function MarqueeColumn({
+  images,
+  speed,
+  direction,
+  index,
+}: {
+  images: string[];
+  speed: number;
+  direction: 'up' | 'down';
+  index: number;
+}) {
+  const columnRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
 
-const spanClassesMobile: Record<GridItem['span'], string> = {
-  tall: 'col-span-1 row-span-2',
-  wide: 'col-span-2 row-span-1',
-  small: 'col-span-1 row-span-1',
-  medium: 'col-span-1 row-span-1',
-};
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 100 + index * 150);
+    return () => clearTimeout(timer);
+  }, [index]);
 
-function GridBlock({ items, offset = 0 }: { items: GridItem[]; offset?: number }) {
+  // Each column has different image heights for organic feel
+  const heights = index % 2 === 0
+    ? ['h-[220px]', 'h-[300px]', 'h-[180px]', 'h-[260px]', 'h-[240px]']
+    : ['h-[280px]', 'h-[200px]', 'h-[320px]', 'h-[190px]', 'h-[250px]'];
+
+  const mobileHeights = index % 2 === 0
+    ? ['h-[140px]', 'h-[200px]', 'h-[120px]', 'h-[170px]', 'h-[160px]']
+    : ['h-[180px]', 'h-[130px]', 'h-[210px]', 'h-[125px]', 'h-[165px]'];
+
+  const duplicatedImages = [...images, ...images];
+  const duplicatedHeights = [...heights, ...heights];
+  const duplicatedMobileHeights = [...mobileHeights, ...mobileHeights];
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[120px] md:auto-rows-[140px] gap-2 md:gap-3 w-full px-2 md:px-4">
-      {items.map((item, i) => {
-        const floatDelay = ((i + offset) % 8) * 0.8;
-        return (
-          <motion.div
-            key={`${offset}-${i}`}
-            className={`relative overflow-hidden rounded-lg hero-grid-item ${spanClasses[item.span]} max-md:${spanClassesMobile[item.span]}`}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 0.05 * (i % 12),
-              duration: 0.6,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            style={{ animationDelay: `${floatDelay}s` }}
+    <div
+      className="flex-1 min-w-0 overflow-hidden relative"
+      style={{
+        opacity: loaded ? 1 : 0,
+        transform: loaded ? 'translateY(0)' : 'translateY(40px)',
+        transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.15}s, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.15}s`,
+      }}
+    >
+      <div
+        ref={columnRef}
+        className="flex flex-col gap-3"
+        style={{
+          animation: `hero-col-${direction} ${speed}s linear infinite`,
+        }}
+      >
+        {duplicatedImages.map((src, i) => (
+          <div
+            key={i}
+            className={`relative overflow-hidden rounded-xl group ${duplicatedMobileHeights[i % duplicatedMobileHeights.length]} md:${duplicatedHeights[i % duplicatedHeights.length]}`}
+            style={{ minHeight: '120px' }}
           >
             <img
-              src={item.src}
+              src={src}
               alt=""
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover"
+              loading={i < 5 ? 'eager' : 'lazy'}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
             />
-            {/* Dark overlay */}
+            {/* Gradient overlay for depth */}
             <div
-              className="absolute inset-0"
-              style={{ background: 'hsl(var(--abyss) / 0.45)' }}
+              className="absolute inset-0 transition-opacity duration-500"
+              style={{
+                background: `linear-gradient(
+                  ${direction === 'up' ? '180deg' : '0deg'},
+                  hsl(var(--abyss) / 0.2) 0%,
+                  hsl(var(--abyss) / 0.45) 50%,
+                  hsl(var(--abyss) / 0.25) 100%
+                )`,
+              }}
             />
-          </motion.div>
-        );
-      })}
+            {/* Prismatic edge glow on hover */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              style={{
+                boxShadow: 'inset 0 0 30px hsl(var(--coral) / 0.15), inset 0 0 60px hsl(var(--lavender) / 0.08)',
+              }}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default function HeroGrid() {
   return (
-    <div
-      className="absolute inset-0 overflow-hidden"
-      aria-hidden="true"
-    >
-      <div className="hero-grid-scroll flex flex-col gap-2 md:gap-3">
-        <GridBlock items={gridItems} offset={0} />
-        <GridBlock items={gridItems} offset={24} />
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      {/* 3D perspective container — grid rotated for cinematic depth */}
+      <div
+        className="absolute hero-grid-perspective"
+        style={{
+          top: '-15%',
+          left: '-10%',
+          right: '-10%',
+          bottom: '-15%',
+          perspective: '1200px',
+        }}
+      >
+        <div
+          className="w-full h-full flex gap-3 md:gap-4 px-2"
+          style={{
+            transform: 'rotateX(8deg) rotateZ(-3deg) scale(1.15)',
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          {columns.map((col, i) => (
+            <MarqueeColumn
+              key={i}
+              images={col.images}
+              speed={col.speed}
+              direction={col.direction}
+              index={i}
+            />
+          ))}
+        </div>
       </div>
+
+      {/* Deep cinematic vignette layers */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 60% at 50% 50%, transparent 20%, hsl(var(--abyss) / 0.7) 70%, hsl(var(--abyss)) 100%)
+          `,
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            linear-gradient(180deg, hsl(var(--abyss) / 0.6) 0%, transparent 25%, transparent 75%, hsl(var(--abyss) / 0.8) 100%),
+            linear-gradient(90deg, hsl(var(--abyss) / 0.5) 0%, transparent 20%, transparent 80%, hsl(var(--abyss) / 0.5) 100%)
+          `,
+        }}
+      />
     </div>
   );
 }

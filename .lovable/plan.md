@@ -1,77 +1,112 @@
 
 
-# تطوير الأزرار - Premium Button System
+# ترقية نظام الألوان والخطوط - Pearl Luxe System
 
-## المشكلة
-الأزرار الحالية في الموقع بسيطة جداً وتقليدية - مجرد borders رفيعة بدون عمق أو تأثيرات بصرية متقدمة. مش متناسقة مع مستوى التصميم السينمائي في باقي الموقع.
+## الرؤية
+تحويل الموقع من "crystal dark" إلى نظام "Pearl Luxe" - يجمع بين الإضاءة اللؤلؤية (pearlescent iridescence) مع درجات platinum/champagne أكثر دفئاً وتناسقاً. الهدف هو إحساس Cartier/Chanel الرقمي.
+
+## المشاكل الحالية
+- الألوان كتير ومشتتة (coral + sage + lavender + cyan + amber + gold) - بتحسسك إنه مفيش هوية واحدة
+- الفونتات كتير (6 فونتات!) وبعضهم زي Unbounded مش بيدي إحساس luxury
+- الـ section backgrounds كلها درجات navy متقاربة جداً - مفيش تباين كافي
+- مفيش إضاءة لؤلؤية حقيقية - الـ shimmer الحالي بسيط
+- الأرقام والـ labels بتستخدم أكتر من فونت بشكل عشوائي
 
 ## الحل
-إعادة تصميم كامل لكل الأزرار في الموقع بأسلوب premium/luxury مع تأثيرات glass morphism، gradient borders متحركة، وتحولات hover سلسة ومتقدمة.
 
-## الأزرار اللي هتتغير
+### 1. تقليل الألوان لـ 3 أساسية فقط (Refined Triad)
+- **Pearl** (الأساسي): champagne/warm white بدل الـ cream البارد - `40 20% 92%`
+- **Rose Gold** (الـ accent الدافئ): أنعم وأفخم من الـ coral الحالي - `12 45% 68%`  
+- **Platinum Blue** (الـ accent البارد): بدل sage/cyan - `220 25% 72%`
+- **إلغاء** lavender كلون مستقل - هيبقى جزء من الـ pearlescent gradient بس
 
-### 1. Hero Section - "Explore Work" Button
-- **الحالي**: Border رفيع coral مع shimmer بسيط
-- **الجديد**: Gradient border متحرك (coral → lavender → coral) + glass background + glow effect عند hover + scale subtle
+### 2. نظام الفونتات - تقليل لـ 4 فقط
+- **Display**: Playfair Display (يفضل - كلاسيكي وفخم)
+- **Heading/UI**: Manrope (يفضل - نظيف ومودرن)
+- **Body**: DM Sans (يفضل)
+- **Mono**: IBM Plex Mono (يفضل)
+- **إلغاء** Cormorant (Script) - Playfair italic هيعمل نفس الدور بشكل أفضل وأكثر تناسقاً
+- **إلغاء** Unbounded (Display Alt) - ثقيل جداً ومش luxury - هيتبدل بـ Manrope bold أو Playfair bold
 
-### 2. Hero Section - "Showreel" Button
-- **الحالي**: دائرة border رفيعة مع play icon
-- **الجديد**: دائرة glass مع pulse ring animation + gradient fill عند hover
+### 3. إضاءة لؤلؤية حقيقية (Pearlescent System)
+- gradient جديد متعدد الألوان بيتحرك ببطء على الخلفيات
+- تأثير "pearl sheen" على الـ headings - gradient بيلمع زي اللؤلؤ الحقيقي
+- overlay لؤلؤي خفيف جداً على الـ sections
+- تحديث الـ shimmer ليبقى أكثر واقعية (pearl → rose gold → platinum → pearl)
 
-### 3. Works Section - Filter Buttons
-- **الحالي**: مجرد text بدون شكل واضح
-- **الجديد**: Pill-shaped glass buttons مع active state متحرك (sliding indicator) + subtle glow
-
-### 4. Works Section - "View all projects" Button
-- **الحالي**: نص مع خطين على الجانبين
-- **الجديد**: Pill button مع animated border gradient + arrow icon متحرك
-
-### 5. FinalCTA Section - "Send Brief" Submit Button
-- **الحالي**: Border عادي مع hover بسيط
-- **الجديد**: Full-width gradient button (coral) مع shimmer sweep + magnetic hover + scale effect
-
-### 6. Navbar - "Get in touch" Link
-- **الحالي**: نص صغير مع نقطة pulse
-- **الجديد**: Micro pill button مع glass effect + gradient border subtle
-
-## التأثيرات الجديدة
-
-### Animated Gradient Border
-حدود متحركة بتدور حوالين الزر (conic-gradient spinning)
-
-### Glass Morphism
-```text
-background: hsl(var(--coral) / 0.05)
-backdrop-filter: blur(12px)
-border: 1px solid hsl(var(--coral) / 0.15)
-```
-
-### Hover State المتقدم
-- Scale 1.02 مع spring animation
-- Border glow يزيد
-- Background opacity يزيد
-- Arrow icons تتحرك
-- Shimmer sweep يسرّع
-
-### Active/Click State
-- Scale 0.98 سريع
-- Flash glow لحظي
+### 4. خلفيات الأقسام - تباين أفضل
+- تدرج أكثر وضوحاً بين الأقسام مع لمسة لؤلؤية خفيفة
+- بعض الأقسام هتاخد undertone دافئ (rose gold glow) وبعضها بارد (platinum glow)
 
 ## التفاصيل التقنية
 
 ### الملفات اللي هتتعدل
 
-1. **`src/components/ui/NeonBorder.tsx`** - إعادة بناء كامل مع animated conic-gradient border + glass background
-2. **`src/components/ui/MagneticButton.tsx`** - إضافة whileTap scale effect
-3. **`src/components/sections/Hero/index.tsx`** - تحديث Showreel button styling
-4. **`src/components/sections/Works/index.tsx`** - تحديث filter buttons + "View all" button
-5. **`src/components/sections/FinalCTA/index.tsx`** - تحديث Submit button بالكامل
-6. **`src/components/layout/Navbar.tsx`** - تحديث "Get in touch" link
-7. **`src/index.css`** - إضافة keyframes جديدة (spinning gradient, button glow pulse)
+#### `src/index.css` - التغيير الأكبر
+- تحديث كل الـ CSS variables (الألوان، الـ gradients، الـ shadows)
+- تحديث `--gradient-text` للـ pearl effect
+- إضافة `@keyframes pearl-sheen` - إضاءة لؤلؤية تمر على النص
+- تحديث `.shimmer-text` و `.shimmer-stroke` بألوان pearl
+- إضافة `.pearl-glow` utility - هالة لؤلؤية خفيفة
+- تحديث الـ glass effects بألوان pearl بدل coral
+- تحديث الـ scrollbar و selection colors
+- إزالة font-script و font-display-alt من الـ utilities واستبدالهم
 
-### CSS Keyframes الجديدة
-- `@keyframes border-spin` - لدوران الـ gradient border
-- `@keyframes btn-glow-pulse` - لنبض الـ glow عند hover
-- `.glass-btn` - utility class للأزرار الـ glass
-- `.gradient-border-spin` - utility class للـ animated border
+#### `tailwind.config.ts`
+- إزالة `script` و `display-alt` من fontFamily
+- تحديث أسماء الألوان
+
+#### كل ملفات الـ Sections (Hero, Manifesto, Craft, Works, Process, Studio, Clients, Journal, FinalCTA)
+- استبدال `font-script` بـ `font-display italic`
+- استبدال `font-display-alt` بـ `font-heading font-bold` أو `font-display font-bold`
+- تحديث مراجع الألوان (`sage` → `platinum-blue`, `lavender` → يتم حذفها أو دمجها)
+- تحديث الـ accent colors في كل section
+- إضافة pearl glow effects حيث مناسب
+
+#### `src/components/layout/Navbar.tsx`
+- تحديث ألوان الـ nav links والـ CTA button
+
+#### `src/components/layout/Footer.tsx`
+- تحديث الألوان والفونتات
+
+#### `src/components/ui/NeonBorder.tsx` و `MagneticButton.tsx`
+- تحديث الـ gradient ألوان لتتماشى مع الـ pearl system
+
+#### `src/components/ui/WorkModal.tsx`
+- تحديث الألوان والفونتات داخل الـ modal
+
+#### `src/components/ui/LoadingScreen.tsx`
+- تحديث ألوان الـ loading bar والـ counter
+
+#### `src/components/ui/SectionDivider.tsx`
+- تحديث الألوان الافتراضية
+
+### الألوان الجديدة (CSS Variables)
+```text
+--pearl:         40 20% 92%          (warm white/champagne)
+--pearl-dim:     40 20% 92% / 0.06
+--rose-gold:     12 45% 68%          (refined rose gold)
+--rose-gold-dim: 12 45% 68% / 0.08
+--rose-gold-glow:12 45% 68% / 0.15
+--platinum:      220 25% 72%         (cool platinum blue)
+--platinum-dim:  220 25% 72% / 0.08
+
+(coral, sage, lavender يتحولوا لأسماء aliases للتوافق)
+```
+
+### Pearl Sheen Keyframe
+```text
+@keyframes pearl-sheen {
+  0%, 100% { background-position: 200% center; }
+  50%      { background-position: -200% center; }
+}
+```
+
+### التغييرات في الفونتات بالتفصيل
+- كل `font-script italic` → `font-display italic`
+- كل `font-display-alt font-extrabold` → `font-heading font-extrabold` (للعناوين الكبيرة)
+- إزالة الـ Google Fonts import لـ Cormorant و Unbounded (تقليل حجم التحميل)
+
+### ملاحظة مهمة
+التغييرات هتكون تدريجية ومتسقة - كل section هيتحدث بنفس النمط عشان الموقع يبان unified. الـ accent colors هتتقلل من 3 (coral/sage/lavender) لـ 2 (rose-gold/platinum) مع استخدام الـ pearl gradient للتنويع.
 

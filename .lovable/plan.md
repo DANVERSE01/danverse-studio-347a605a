@@ -1,74 +1,77 @@
 
 
-# Hero Section — Animated Mosaic Image Grid
+# تطوير الأزرار - Premium Button System
 
-## Overview
-Replace the current `WebGLFallback` background in the Hero section with a dynamic, animated mosaic/masonry image grid (inspired by the reference images). The grid will use all existing project images (8 main + 16 gallery = 24 images) arranged in an asymmetric, Behance-style layout that continuously animates with smooth, staggered reveal and subtle floating motion.
+## المشكلة
+الأزرار الحالية في الموقع بسيطة جداً وتقليدية - مجرد borders رفيعة بدون عمق أو تأثيرات بصرية متقدمة. مش متناسقة مع مستوى التصميم السينمائي في باقي الموقع.
 
-## Visual Design
-- A full-screen mosaic grid behind the Hero text, using varying cell sizes (large, medium, small) in an asymmetric layout
-- Each cell has a subtle hover scale effect, rounded corners, and a dark overlay so the text remains readable
-- The grid slowly auto-scrolls vertically (infinite marquee style) for a living, breathing feel
-- On load, images stagger in with fade + scale animations
-- A strong gradient vignette overlay ensures the headline text stays crisp and legible on top
+## الحل
+إعادة تصميم كامل لكل الأزرار في الموقع بأسلوب premium/luxury مع تأثيرات glass morphism، gradient borders متحركة، وتحولات hover سلسة ومتقدمة.
 
-## Architecture
+## الأزرار اللي هتتغير
 
-### New Component: `HeroGrid.tsx`
-Location: `src/components/sections/Hero/HeroGrid.tsx`
+### 1. Hero Section - "Explore Work" Button
+- **الحالي**: Border رفيع coral مع shimmer بسيط
+- **الجديد**: Gradient border متحرك (coral → lavender → coral) + glass background + glow effect عند hover + scale subtle
 
-- Imports all 24 project images (8 main + 16 gallery)
-- Defines a grid layout using CSS Grid with `grid-template-columns` and `grid-row` spans for the masonry effect
-- Wraps the grid in a vertical marquee container that duplicates the grid and uses CSS `@keyframes` for infinite upward scroll
-- Each image cell:
-  - Fades in with staggered `framer-motion` animation on mount
-  - Has a subtle `scale(1.02)` float animation via CSS keyframes
-  - Dark overlay at ~40-60% opacity for text readability
-  - Rounded corners (`rounded-lg`)
+### 2. Hero Section - "Showreel" Button
+- **الحالي**: دائرة border رفيعة مع play icon
+- **الجديد**: دائرة glass مع pulse ring animation + gradient fill عند hover
 
-### Modifications to `Hero/index.tsx`
-- Replace `<WebGLFallback />` with `<HeroGrid />`
-- Keep the existing vignette overlay (enhance it slightly for better text contrast over the grid)
+### 3. Works Section - Filter Buttons
+- **الحالي**: مجرد text بدون شكل واضح
+- **الجديد**: Pill-shaped glass buttons مع active state متحرك (sliding indicator) + subtle glow
 
-### CSS Additions to `index.css`
-- Add `@keyframes hero-grid-scroll` for smooth infinite vertical scroll
-- Add `.hero-grid-item` utility for the float/breathe effect on individual cells
+### 4. Works Section - "View all projects" Button
+- **الحالي**: نص مع خطين على الجانبين
+- **الجديد**: Pill button مع animated border gradient + arrow icon متحرك
 
-## Layout Spec (Desktop)
-The grid uses 4 columns with varying row spans to create the asymmetric mosaic:
+### 5. FinalCTA Section - "Send Brief" Submit Button
+- **الحالي**: Border عادي مع hover بسيط
+- **الجديد**: Full-width gradient button (coral) مع shimmer sweep + magnetic hover + scale effect
 
+### 6. Navbar - "Get in touch" Link
+- **الحالي**: نص صغير مع نقطة pulse
+- **الجديد**: Micro pill button مع glass effect + gradient border subtle
+
+## التأثيرات الجديدة
+
+### Animated Gradient Border
+حدود متحركة بتدور حوالين الزر (conic-gradient spinning)
+
+### Glass Morphism
 ```text
-+--------+------------+--------+
-|  tall  |   wide     | small  |
-|  img   |   img      +--------+
-|        |            | small  |
-+--------+-----+------+--------+
-| wide         | tall |  med   |
-| img          | img  |  img   |
-+--------+-----+      +--------+
-| small  | med |      | small  |
-+--------+-----+------+--------+
+background: hsl(var(--coral) / 0.05)
+backdrop-filter: blur(12px)
+border: 1px solid hsl(var(--coral) / 0.15)
 ```
 
-On mobile: simplified 2-column grid with fewer images displayed.
+### Hover State المتقدم
+- Scale 1.02 مع spring animation
+- Border glow يزيد
+- Background opacity يزيد
+- Arrow icons تتحرك
+- Shimmer sweep يسرّع
 
-## Animation Timeline
-1. **0s-0.8s**: Grid images stagger in (fade + scale from 0.85 to 1)
-2. **Continuous**: Entire grid scrolls upward slowly (60s cycle, infinite, pauses on hover)
-3. **Each cell**: Subtle CSS `float` animation with randomized delays for organic movement
+### Active/Click State
+- Scale 0.98 سريع
+- Flash glow لحظي
 
-## Technical Details
+## التفاصيل التقنية
 
-### Files to Create
-- `src/components/sections/Hero/HeroGrid.tsx` — The mosaic grid component
+### الملفات اللي هتتعدل
 
-### Files to Modify
-- `src/components/sections/Hero/index.tsx` — Swap `WebGLFallback` for `HeroGrid`
-- `src/index.css` — Add hero grid keyframes and utilities
+1. **`src/components/ui/NeonBorder.tsx`** - إعادة بناء كامل مع animated conic-gradient border + glass background
+2. **`src/components/ui/MagneticButton.tsx`** - إضافة whileTap scale effect
+3. **`src/components/sections/Hero/index.tsx`** - تحديث Showreel button styling
+4. **`src/components/sections/Works/index.tsx`** - تحديث filter buttons + "View all" button
+5. **`src/components/sections/FinalCTA/index.tsx`** - تحديث Submit button بالكامل
+6. **`src/components/layout/Navbar.tsx`** - تحديث "Get in touch" link
+7. **`src/index.css`** - إضافة keyframes جديدة (spinning gradient, button glow pulse)
 
-### Image Usage
-All 24 existing images will be used:
-- 8 main project images from `src/assets/works/`
-- 16 gallery images from `src/assets/works/gallery/`
+### CSS Keyframes الجديدة
+- `@keyframes border-spin` - لدوران الـ gradient border
+- `@keyframes btn-glow-pulse` - لنبض الـ glow عند hover
+- `.glass-btn` - utility class للأزرار الـ glass
+- `.gradient-border-spin` - utility class للـ animated border
 
-No new images need to be generated — the existing creative portfolio images are perfect for this mosaic effect.

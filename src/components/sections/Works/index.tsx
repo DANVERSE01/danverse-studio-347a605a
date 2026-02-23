@@ -95,15 +95,16 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
               </span>
             </h2>
 
-            <div className="flex flex-wrap gap-1">
+            <div className="flex flex-wrap gap-1.5 p-1 rounded-full" style={{ background: 'hsl(var(--void) / 0.5)', border: '1px solid hsl(var(--white-10))' }}>
               {filters.map((f) => (
                 <button
                   key={f}
                   onClick={() => setActiveFilter(f)}
-                  className="px-4 py-2 text-[10px] font-mono-brand uppercase tracking-[0.15em] transition-all duration-400"
+                  className="relative px-5 py-2 text-[10px] font-mono-brand uppercase tracking-[0.15em] rounded-full transition-all duration-500"
                   style={{
-                    background: activeFilter === f ? 'hsl(var(--coral) / 0.08)' : 'transparent',
+                    background: activeFilter === f ? 'hsl(var(--coral) / 0.1)' : 'transparent',
                     color: activeFilter === f ? 'hsl(var(--coral))' : 'hsl(var(--white-30))',
+                    boxShadow: activeFilter === f ? '0 0 20px hsl(var(--coral) / 0.08), inset 0 0 12px hsl(var(--coral) / 0.04)' : 'none',
                     border: `1px solid ${activeFilter === f ? 'hsl(var(--coral) / 0.2)' : 'transparent'}`,
                   }}
                 >
@@ -240,12 +241,13 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
         viewport={{ once: true }}
       >
         <button
-          className="group flex items-center gap-4 font-mono-brand text-[10px] uppercase tracking-[0.25em] transition-colors duration-300"
+          className="group glass-btn gradient-border-spin btn-shimmer rounded-full px-8 py-4 font-mono-brand text-[10px] uppercase tracking-[0.25em] transition-all duration-500 flex items-center gap-3"
           style={{ color: 'hsl(var(--coral))' }}
         >
-          <span className="w-10 h-px transition-all duration-500 group-hover:w-16" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
           View all projects
-          <span className="w-10 h-px transition-all duration-500 group-hover:w-16" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-500 group-hover:translate-x-1">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+          </svg>
         </button>
       </motion.div>
 

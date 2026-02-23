@@ -144,22 +144,19 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
               />
             </div>
-            <button
+            <motion.button
               type="submit"
-              className="w-full py-5 text-[10px] font-mono-brand uppercase tracking-[0.25em] transition-all duration-500 border group flex items-center justify-center gap-3"
-              style={{
-                borderColor: 'hsl(var(--coral) / 0.2)',
-                color: 'hsl(var(--coral))',
-                background: 'hsl(var(--coral) / 0.02)',
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = 'hsl(var(--coral) / 0.06)'; e.currentTarget.style.borderColor = 'hsl(var(--coral) / 0.4)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = 'hsl(var(--coral) / 0.02)'; e.currentTarget.style.borderColor = 'hsl(var(--coral) / 0.2)'; }}
+              className="w-full py-5 text-[10px] font-mono-brand uppercase tracking-[0.25em] glass-btn gradient-border-spin btn-shimmer group flex items-center justify-center gap-3 rounded-sm"
+              style={{ color: 'hsl(var(--coral))' }}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             >
               Send Brief
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none" className="transition-transform duration-500 group-hover:translate-x-1.5">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
               </svg>
-            </button>
+            </motion.button>
           </form>
         )}
       </motion.div>

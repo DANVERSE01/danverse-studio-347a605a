@@ -55,6 +55,8 @@ export default function MagneticButton({ children, className, onClick }: Magneti
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onClick={handleClick}
+      whileTap={{ scale: 0.97 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
     >
       {children}
     </motion.button>

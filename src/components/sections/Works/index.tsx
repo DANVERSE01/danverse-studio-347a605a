@@ -131,7 +131,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
                 className="group relative border-t cursor-pointer"
-                style={{ borderColor: 'hsl(var(--white-10))' }}
+                style={{
+                  borderColor: isHovered ? 'hsl(var(--white-20))' : 'hsl(var(--white-10))',
+                  transition: 'border-color 0.4s ease',
+                }}
                 onClick={() => { setSelectedWork(work); setSelectedAccent(accent); }}
                 onMouseEnter={() => { setHoveredId(work.id); setCursorVariant('hover'); }}
                 onMouseLeave={() => { setHoveredId(null); setCursorVariant('default'); }}
@@ -140,34 +143,54 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   setMouseY(e.clientY - rect.top);
                 }}
               >
+                {/* Crimson radial glow background */}
                 <motion.div
                   className="absolute inset-0 pointer-events-none"
-                  style={{ background: `hsl(var(--${accent}) / 0.02)` }}
+                  style={{
+                    background: `radial-gradient(ellipse at 50% 50%, hsl(var(--${accent}) / 0.06) 0%, transparent 70%)`,
+                  }}
                   initial={false}
                   animate={{ opacity: isHovered ? 1 : 0 }}
                   transition={{ duration: 0.4 }}
                 />
 
-                {/* Floating image */}
+                {/* Floating image with crimson glow */}
                 <motion.div
                   className="absolute right-[5%] md:right-[15%] pointer-events-none z-10 overflow-hidden hidden md:block"
-                  style={{ width: 280, height: 180, top: mouseY - 90 }}
+                  style={{
+                    width: 280,
+                    height: 180,
+                    top: mouseY - 90,
+                    borderRadius: 4,
+                  }}
                   initial={false}
                   animate={{
                     opacity: isHovered ? 1 : 0,
                     scale: isHovered ? 1 : 0.85,
                     rotate: isHovered ? -2 : 0,
+                    boxShadow: isHovered
+                      ? `0 0 25px hsl(var(--${accent}) / 0.3), 0 0 50px hsl(var(--${accent}) / 0.15), 0 8px 32px hsl(0 0% 0% / 0.5)`
+                      : '0 0 0 transparent',
                   }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <img src={work.image} alt={work.title} className="w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0" style={{ background: `hsl(var(--${accent}) / 0.1)`, mixBlendMode: 'multiply' }} />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `linear-gradient(135deg, hsl(var(--${accent}) / 0.15) 0%, transparent 60%)`,
+                    }}
+                  />
                 </motion.div>
 
                 <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_auto] gap-4 md:gap-12 items-center">
                   <span
                     className="font-display italic text-5xl md:text-7xl transition-all duration-500 tabular-nums"
-                    style={{ color: isHovered ? `hsl(var(--${accent}))` : 'hsl(var(--white-10))', minWidth: '90px' }}
+                    style={{
+                      color: isHovered ? `hsl(var(--${accent}))` : 'hsl(var(--white-10))',
+                      textShadow: isHovered ? `0 0 25px hsl(var(--${accent}) / 0.4)` : 'none',
+                      minWidth: '90px',
+                    }}
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
@@ -178,6 +201,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                       style={{
                         fontSize: 'clamp(1.5rem, 3.5vw, 3.5rem)',
                         color: isHovered ? 'hsl(var(--pearl))' : 'hsl(var(--white-30))',
+                        textShadow: isHovered ? `0 0 20px hsl(var(--${accent}) / 0.15)` : 'none',
                       }}
                       animate={{ x: isHovered ? 8 : 0 }}
                       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -219,9 +243,13 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   </motion.div>
                 </div>
 
+                {/* Glowing accent bottom line */}
                 <motion.div
                   className="absolute bottom-0 left-0 h-px origin-left"
-                  style={{ background: `hsl(var(--${accent}))` }}
+                  style={{
+                    background: `hsl(var(--${accent}))`,
+                    boxShadow: isHovered ? `0 0 12px hsl(var(--${accent}) / 0.5), 0 0 24px hsl(var(--${accent}) / 0.2)` : 'none',
+                  }}
                   initial={false}
                   animate={{ scaleX: isHovered ? 1 : 0 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}

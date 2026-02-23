@@ -2,30 +2,26 @@ import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
 import { useDanverseStore } from '@/store/useDanverseStore';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
 const services = [
-  { num: '01', name: 'Cinematic Advertising', tagline: 'Spots that live in culture.', icon: '◎' },
-  { num: '02', name: 'AI Brand Systems', tagline: 'Identities that learn and scale.', icon: '◇' },
-  { num: '03', name: '3D & Immersive', tagline: "Worlds you inhabit.", icon: '△' },
-  { num: '04', name: 'Digital Product', tagline: 'Interfaces that feel inevitable.', icon: '□' },
-  { num: '05', name: 'Motion Systems', tagline: 'Movement as language.', icon: '○' },
-  { num: '06', name: 'UGC Pipelines', tagline: 'Authentic content at scale.', icon: '⬡' },
-  { num: '07', name: 'AI Content OS', tagline: 'Create once. Deploy everywhere.', icon: '◈' },
+  { num: '01', name: 'Cinematic Ads', fill: 'ADVERTISING', tagline: 'Stories that outlive the scroll.', accent: 'coral' },
+  { num: '02', name: 'Brand Systems', fill: 'IDENTITY', tagline: 'Identities that scale with intelligence.', accent: 'sage' },
+  { num: '03', name: '3D & Immersive', fill: 'SPATIAL', tagline: 'Environments you experience.', accent: 'lavender' },
+  { num: '04', name: 'Digital Product', fill: 'PRODUCT', tagline: 'Interfaces that feel inevitable.', accent: 'coral' },
+  { num: '05', name: 'Motion Design', fill: 'KINETIC', tagline: 'Movement as communication.', accent: 'sage' },
+  { num: '06', name: 'AI Content OS', fill: 'INTELLIGENCE', tagline: 'Create once. Deploy everywhere.', accent: 'lavender' },
 ];
 
 const Craft = forwardRef<HTMLElement>((_, ref) => {
   const { ref: inViewRef, isInView } = useInView(0.1);
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
     <section ref={ref} id="craft" className="relative py-32 md:py-48">
-      {/* Background decorative number */}
-      <span className="absolute top-16 right-6 md:right-16 section-num" style={{ fontSize: 'clamp(6rem, 15vw, 12rem)' }}>
-        03
-      </span>
-
-      <div className="px-6 md:px-16">
+      {/* Header */}
+      <div className="px-6 md:px-20 lg:px-28">
         <motion.div
           ref={inViewRef}
           variants={staggerContainer}
@@ -35,64 +31,109 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
         >
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
             <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
-              Services
+              Capabilities
             </span>
             <div className="flex-1 max-w-[200px] h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
           </motion.div>
-          <motion.h2 variants={fadeUp} className="max-w-2xl">
-            <span className="font-display italic block tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+          <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
+            <span className="font-display italic tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
               What we
             </span>
-            <span className="font-heading font-bold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2rem, 6vw, 5.5rem)', color: 'hsl(var(--coral))' }}>
-              Build
+            <span className="font-heading font-bold uppercase tracking-[-0.04em] text-stroke-coral" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)' }}>
+              BUILD
             </span>
           </motion.h2>
         </motion.div>
+      </div>
 
-        {/* Services — editorial list with hover reveals */}
-        <div>
-          {services.map((service, i) => (
+      {/* Services — massive typographic items */}
+      <div className="w-full">
+        {services.map((service, i) => {
+          const isHovered = hoveredIdx === i;
+          return (
             <motion.div
               key={service.num}
-              className="group border-t grid grid-cols-1 md:grid-cols-[60px_1fr_1fr_40px] gap-4 md:gap-8 items-center py-6 md:py-7 transition-colors duration-500"
+              className="group relative border-t overflow-hidden cursor-pointer"
               style={{ borderColor: 'hsl(var(--white-10))' }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.5, delay: i * 0.04 }}
-              onMouseEnter={() => setCursorVariant('hover')}
-              onMouseLeave={() => setCursorVariant('default')}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              onMouseEnter={() => { setHoveredIdx(i); setCursorVariant('hover'); }}
+              onMouseLeave={() => { setHoveredIdx(null); setCursorVariant('default'); }}
             >
-              {/* Number */}
-              <span className="font-mono-brand text-[10px] tabular-nums hidden md:block" style={{ color: 'hsl(var(--coral) / 0.3)' }}>
-                {service.num}
-              </span>
+              {/* Background text — giant outlined */}
+              <motion.span
+                className="absolute right-6 md:right-20 top-1/2 -translate-y-1/2 font-heading font-bold uppercase tracking-[-0.05em] pointer-events-none select-none"
+                style={{
+                  fontSize: 'clamp(4rem, 12vw, 12rem)',
+                  WebkitTextStroke: `1px hsl(var(--${service.accent}) / 0.04)`,
+                  WebkitTextFillColor: 'transparent',
+                }}
+                initial={false}
+                animate={{
+                  opacity: isHovered ? 1 : 0.3,
+                  x: isHovered ? -20 : 0,
+                }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {service.fill}
+              </motion.span>
 
-              {/* Name + icon */}
-              <div className="flex items-center gap-4">
-                <span className="text-sm transition-colors duration-500 group-hover:text-coral" style={{ color: 'hsl(var(--white-30))' }}>
-                  {service.icon}
+              <div className="relative px-6 md:px-20 lg:px-28 py-7 md:py-9 grid grid-cols-1 md:grid-cols-[60px_1fr_auto] gap-4 md:gap-10 items-center">
+                {/* Number */}
+                <span
+                  className="font-mono-brand text-[10px] tabular-nums transition-colors duration-500 hidden md:block"
+                  style={{ color: isHovered ? `hsl(var(--${service.accent}))` : 'hsl(var(--white-10))' }}
+                >
+                  {service.num}
                 </span>
-                <h3 className="font-heading font-semibold text-lg md:text-xl tracking-tight transition-colors duration-500 group-hover:text-foreground" style={{ color: 'hsl(var(--white-60))' }}>
-                  {service.name}
-                </h3>
+
+                {/* Name + tagline */}
+                <div>
+                  <motion.h3
+                    className="font-heading font-semibold text-xl md:text-3xl tracking-[-0.02em] transition-colors duration-500"
+                    style={{ color: isHovered ? 'hsl(var(--foreground))' : 'hsl(var(--white-30))' }}
+                    animate={{ x: isHovered ? 6 : 0 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {service.name}
+                  </motion.h3>
+                  <motion.p
+                    className="text-[12px] mt-1.5"
+                    style={{ color: 'hsl(var(--white-30))' }}
+                    initial={false}
+                    animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 6 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {service.tagline}
+                  </motion.p>
+                </div>
+
+                {/* Arrow */}
+                <motion.div
+                  initial={false}
+                  animate={{ opacity: isHovered ? 1 : 0.1, rotate: isHovered ? 0 : -45, scale: isHovered ? 1 : 0.8 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 15L15 5M15 5H8M15 5v7" stroke={`hsl(var(--${service.accent}))`} strokeWidth="1" strokeLinecap="round" />
+                  </svg>
+                </motion.div>
               </div>
 
-              {/* Tagline — slides in */}
-              <p className="text-[13px] md:opacity-0 md:translate-x-4 md:group-hover:opacity-100 md:group-hover:translate-x-0 transition-all duration-500" style={{ color: 'hsl(var(--white-30))' }}>
-                {service.tagline}
-              </p>
-
-              {/* Arrow */}
-              <div className="hidden md:block opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M4 12L12 4M12 4H7M12 4v5" stroke="hsl(var(--coral))" strokeWidth="1" strokeLinecap="round" />
-                </svg>
-              </div>
+              {/* Bottom accent line */}
+              <motion.div
+                className="absolute bottom-0 left-0 h-px origin-left"
+                style={{ background: `hsl(var(--${service.accent}))` }}
+                initial={false}
+                animate={{ scaleX: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              />
             </motion.div>
-          ))}
-          <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
-        </div>
+          );
+        })}
+        <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
       </div>
     </section>
   );

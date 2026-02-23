@@ -422,21 +422,17 @@
   66% { -webkit-text-stroke-color: hsl(var(--sage)); }
 }
 
-/* ── Hero Grid ── */
-@keyframes hero-grid-scroll {
+/* ── Hero Grid — Multi-column Marquee ── */
+@keyframes hero-col-up {
   0% { transform: translateY(0); }
   100% { transform: translateY(-50%); }
 }
 
-@keyframes hero-grid-float {
-  0%, 100% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.02) translate(0.5%, -0.5%); }
+@keyframes hero-col-down {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
 }
 
-.hero-grid-scroll {
-  animation: hero-grid-scroll 80s linear infinite;
-}
-
-.hero-grid-item {
-  animation: hero-grid-float 10s ease-in-out infinite;
+.hero-grid-perspective {
+  will-change: transform;
 }

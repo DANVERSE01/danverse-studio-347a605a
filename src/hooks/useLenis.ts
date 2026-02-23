@@ -5,10 +5,12 @@ export function useLenis() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(pointer: coarse)').matches;
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: isMobile ? 0.8 : 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
+      touchMultiplier: isMobile ? 1.5 : 2,
       infinite: false,
     });
 
@@ -30,7 +32,7 @@ export function useLenis() {
           const el = document.getElementById(id);
           if (el) {
             e.preventDefault();
-            lenis.scrollTo(el, { offset: 0, duration: 1.4 });
+            lenis.scrollTo(el, { offset: 0, duration: isMobile ? 1 : 1.4 });
           }
         }
       }

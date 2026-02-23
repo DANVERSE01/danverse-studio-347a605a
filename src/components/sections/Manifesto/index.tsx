@@ -1,7 +1,13 @@
 import { useRef, forwardRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const MANIFESTO = "We don't make ads. We build worlds. Every pixel, every frame, every interaction is a statement. We exist to make the impossible feel inevitable.";
+const LINES = [
+  "We don't make ads.",
+  "We build worlds.",
+  "Every pixel is a statement.",
+  "We make the impossible",
+  "feel inevitable.",
+];
 
 const Manifesto = forwardRef<HTMLElement>((_, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,35 +16,53 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
     offset: ['start start', 'end end'],
   });
 
-  const words = MANIFESTO.split(' ');
-
   return (
     <section ref={ref} id="manifesto">
-      <div ref={containerRef} className="relative" style={{ height: '250vh' }}>
-        <div className="sticky top-0 h-screen flex items-center px-6 md:px-12 lg:px-16">
-          <div className="max-w-[900px]">
-            {/* Section tag */}
+      <div ref={containerRef} className="relative" style={{ height: '300vh' }}>
+        <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+          {/* Decorative section number */}
+          <motion.span
+            className="absolute right-6 md:right-16 section-num"
+            style={{
+              fontSize: 'clamp(6rem, 15vw, 12rem)',
+              top: '10%',
+            }}
+          >
+            02
+          </motion.span>
+
+          {/* Decorative vertical line */}
+          <div className="absolute left-[8%] top-[20%] bottom-[20%] w-px hidden md:block" style={{ background: 'hsl(var(--coral) / 0.06)' }} />
+
+          <div className="px-6 md:px-16 lg:pl-[12%] max-w-[1100px]">
+            {/* Tag */}
             <motion.div
-              className="flex items-center gap-4 mb-12"
+              className="flex items-center gap-4 mb-10"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
                 Manifesto
               </span>
-              <div className="w-16 h-px" style={{ background: 'hsl(var(--amber) / 0.3)' }} />
+              <div className="w-12 h-px" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
             </motion.div>
 
-            <p className="font-display font-normal leading-[1.15] tracking-[-0.02em]"
-              style={{ fontSize: 'clamp(1.8rem, 4.5vw, 4.5rem)' }}
-            >
-              {words.map((word, i) => (
-                <Word key={i} index={i} total={words.length} progress={scrollYProgress}>
-                  {word}
-                </Word>
+            {/* Lines — each reveals independently */}
+            <div className="space-y-2">
+              {LINES.map((line, i) => (
+                <ManifestoLine key={i} index={i} total={LINES.length} progress={scrollYProgress}>
+                  {line}
+                </ManifestoLine>
               ))}
-            </p>
+            </div>
+          </div>
+
+          {/* Decorative dots - bottom right */}
+          <div className="absolute bottom-[15%] right-[10%] hidden md:grid grid-cols-3 gap-3 opacity-[0.05]">
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: 'hsl(var(--sage))' }} />
+            ))}
           </div>
         </div>
       </div>
@@ -47,7 +71,7 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
 });
 Manifesto.displayName = 'Manifesto';
 
-function Word({
+function ManifestoLine({
   children,
   index,
   total,
@@ -58,22 +82,26 @@ function Word({
   total: number;
   progress: ReturnType<typeof useScroll>['scrollYProgress'];
 }) {
-  const start = index * (0.7 / total);
-  const end = start + 0.4;
-  const opacity = useTransform(progress, [start, end], [0.08, 1]);
-  const color = useTransform(
-    opacity,
-    [0.08, 1],
-    ['hsl(40 10% 95% / 0.08)', 'hsl(40 20% 95%)']
-  );
+  const start = index * (0.6 / total);
+  const end = start + 0.35;
+  const opacity = useTransform(progress, [start, end], [0.04, 1]);
+  const x = useTransform(progress, [start, end], [20, 0]);
+
+  // Alternate between serif italic and sans bold for visual rhythm
+  const isSerif = index % 2 === 0;
 
   return (
-    <motion.span
-      className="inline-block mr-[0.3em]"
-      style={{ opacity, color }}
+    <motion.p
+      className={`${isSerif ? 'font-display italic font-normal' : 'font-heading font-bold uppercase'} tracking-[-0.02em]`}
+      style={{
+        opacity,
+        x,
+        fontSize: isSerif ? 'clamp(2rem, 5vw, 5rem)' : 'clamp(1.8rem, 4.5vw, 4.5rem)',
+        color: 'hsl(var(--foreground))',
+      }}
     >
       {children}
-    </motion.span>
+    </motion.p>
   );
 }
 

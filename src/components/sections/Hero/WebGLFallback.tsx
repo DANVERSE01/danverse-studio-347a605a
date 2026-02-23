@@ -1,32 +1,44 @@
 export default function WebGLFallback() {
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      {/* Warm ambient orb */}
+      {/* Soft coral ambient */}
       <div
-        className="absolute w-[900px] h-[900px] rounded-full animate-float-1"
+        className="absolute w-[1000px] h-[1000px] rounded-full animate-float-1"
         style={{
-          background: 'radial-gradient(circle, hsl(var(--amber) / 0.08) 0%, transparent 70%)',
-          top: '-20%',
-          right: '-10%',
+          background: 'radial-gradient(circle, hsl(var(--coral) / 0.05) 0%, transparent 65%)',
+          top: '-30%',
+          right: '-20%',
         }}
       />
+      {/* Sage glow */}
       <div
-        className="absolute w-[600px] h-[600px] rounded-full animate-float-2"
+        className="absolute w-[700px] h-[700px] rounded-full animate-float-2"
         style={{
-          background: 'radial-gradient(circle, hsl(var(--burnt) / 0.06) 0%, transparent 70%)',
-          bottom: '-10%',
-          left: '10%',
+          background: 'radial-gradient(circle, hsl(var(--sage) / 0.04) 0%, transparent 60%)',
+          bottom: '-20%',
+          left: '-10%',
         }}
       />
-      {/* Subtle horizontal line accents */}
-      <div
-        className="absolute top-1/3 left-0 right-0 h-px opacity-[0.06]"
-        style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--amber)), transparent)' }}
-      />
-      <div
-        className="absolute top-2/3 left-0 right-0 h-px opacity-[0.04]"
-        style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--cream)), transparent)' }}
-      />
+      {/* Decorative rotating ring */}
+      <svg
+        className="absolute top-[15%] right-[12%] w-[300px] h-[300px] animate-rotate-slow opacity-[0.04]"
+        viewBox="0 0 300 300"
+        fill="none"
+      >
+        <circle cx="150" cy="150" r="140" stroke="hsl(var(--coral))" strokeWidth="0.5" strokeDasharray="4 8" />
+        <circle cx="150" cy="150" r="100" stroke="hsl(var(--sage))" strokeWidth="0.5" strokeDasharray="2 12" />
+      </svg>
+      {/* Decorative dots grid */}
+      <div className="absolute bottom-[20%] left-[8%] grid grid-cols-5 gap-4 opacity-[0.04]">
+        {Array.from({ length: 25 }).map((_, i) => (
+          <div key={i} className="w-1 h-1 rounded-full" style={{ background: 'hsl(var(--coral))' }} />
+        ))}
+      </div>
+      {/* Diagonal line */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.03]" preserveAspectRatio="none">
+        <line x1="70%" y1="0" x2="30%" y2="100%" stroke="hsl(var(--coral))" strokeWidth="0.5" />
+        <line x1="75%" y1="0" x2="35%" y2="100%" stroke="hsl(var(--sage))" strokeWidth="0.3" />
+      </svg>
     </div>
   );
 }

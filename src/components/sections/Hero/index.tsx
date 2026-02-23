@@ -172,12 +172,12 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
             </MagneticButton>
 
             <button
-              className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.15em] transition-colors duration-300 group"
+              className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.15em] transition-all duration-500 group"
               style={{ color: 'hsl(var(--cream) / 0.3)' }}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <span className="relative w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500 group-hover:border-sage" style={{ borderColor: 'hsl(var(--sage) / 0.15)' }}>
-                <span className="w-0 h-0 border-l-[5px] border-l-[hsl(var(--sage))] border-y-[3px] border-y-transparent ml-0.5" />
+              <span className="showreel-ring relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 glass-btn group-hover:shadow-[0_0_20px_hsl(var(--sage)/0.15)]">
+                <span className="w-0 h-0 border-l-[6px] border-l-[hsl(var(--sage))] border-y-[4px] border-y-transparent ml-0.5 transition-transform duration-300 group-hover:scale-110" />
               </span>
               <span className="group-hover:text-foreground transition-colors duration-300">Showreel</span>
             </button>

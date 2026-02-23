@@ -79,7 +79,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-6">
             <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
-              className="hidden md:flex items-center gap-2 font-mono-brand text-[9px] uppercase tracking-[0.25em]"
+              className="hidden md:flex items-center gap-2 font-mono-brand text-[9px] uppercase tracking-[0.25em] glass-btn rounded-full px-5 py-2.5 transition-all duration-500 hover:shadow-[0_0_20px_hsl(var(--coral)/0.1)]"
               style={{ color: 'hsl(var(--coral))' }}
             >
               <span className="w-1.5 h-1.5 rounded-full animate-pulse-glow" style={{ background: 'hsl(var(--coral))' }} />

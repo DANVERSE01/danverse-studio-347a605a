@@ -436,3 +436,116 @@
 .hero-grid-perspective {
   will-change: transform;
 }
+
+/* ── Premium Button System ── */
+@keyframes border-spin {
+  from { --border-angle: 0deg; }
+  to { --border-angle: 360deg; }
+}
+
+@keyframes btn-glow-pulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer-btn-sweep {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.glass-btn {
+  background: hsl(var(--coral) / 0.04);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid hsl(var(--coral) / 0.12);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-btn:hover {
+  background: hsl(var(--coral) / 0.08);
+  border-color: hsl(var(--coral) / 0.25);
+  box-shadow: 0 0 30px hsl(var(--coral) / 0.08), 0 0 60px hsl(var(--lavender) / 0.04);
+}
+
+.gradient-border-spin {
+  position: relative;
+  z-index: 0;
+}
+.gradient-border-spin::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--border-angle),
+    hsl(var(--coral) / 0.5),
+    hsl(var(--lavender) / 0.3),
+    hsl(var(--sage) / 0.2),
+    hsl(var(--coral) / 0.5)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-spin 4s linear infinite;
+  z-index: -1;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+.gradient-border-spin:hover::before {
+  opacity: 1;
+}
+
+/* Shimmer sweep overlay for buttons */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--cream) / 0.06),
+    transparent
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  pointer-events: none;
+}
+.btn-shimmer:hover::after {
+  animation: shimmer-btn-sweep 0.8s ease forwards;
+}
+
+/* Showreel pulse rings */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.showreel-ring {
+  position: relative;
+}
+.showreel-ring::before,
+.showreel-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid hsl(var(--sage) / 0.2);
+  pointer-events: none;
+}
+.showreel-ring:hover::before {
+  animation: pulse-ring 1.2s ease-out infinite;
+}
+.showreel-ring:hover::after {
+  animation: pulse-ring 1.2s ease-out 0.4s infinite;
+}

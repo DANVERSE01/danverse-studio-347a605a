@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
 import { useDanverseStore } from '@/store/useDanverseStore';
@@ -13,30 +13,21 @@ import imgQuantumBrand from '@/assets/works/quantum-brand.jpg';
 import imgGenesisEngine from '@/assets/works/genesis-engine.jpg';
 import imgPrismReality from '@/assets/works/prism-reality.jpg';
 
-const filters = ['all', 'ads', 'branding', 'web', '3d', 'ai'] as const;
-
 const works = [
-  { id: '1', title: 'Neon Pulse', client: 'Vodafone', category: 'ads' as const, year: 2024, role: 'Campaign Direction & Post-Production', image: imgNeonPulse },
-  { id: '2', title: 'Metamorphosis', client: 'Samsung', category: 'branding' as const, year: 2024, role: 'Visual Identity & Brand System', image: imgMetamorphosis },
-  { id: '3', title: 'Neural Interface', client: 'IBM', category: 'web' as const, year: 2024, role: 'Product Design & Development', image: imgNeuralInterface },
-  { id: '4', title: 'Void Architecture', client: 'Grand Hyatt', category: '3d' as const, year: 2024, role: 'Spatial Design & CGI', image: imgVoidArchitecture },
-  { id: '5', title: 'Synth Culture', client: 'Netflix', category: 'ads' as const, year: 2023, role: 'Campaign & Motion Design', image: imgSynthCulture },
-  { id: '6', title: 'Quantum Brand', client: 'Mastercard', category: 'branding' as const, year: 2023, role: 'Brand Strategy & Design System', image: imgQuantumBrand },
-  { id: '7', title: 'Genesis Engine', client: 'Toyota', category: 'ai' as const, year: 2024, role: 'AI Integration & Creative Tech', image: imgGenesisEngine },
-  { id: '8', title: 'Prism Reality', client: 'Swarovski', category: '3d' as const, year: 2023, role: 'Immersive Experience Design', image: imgPrismReality },
+  { id: '1', title: 'Neon Pulse', client: 'Vodafone', category: 'ADS', year: '2024', image: imgNeonPulse, accent: 'coral', span: 'col-span-1 row-span-2' },
+  { id: '2', title: 'Metamorphosis', client: 'Samsung', category: 'BRANDING', year: '2024', image: imgMetamorphosis, accent: 'sage', span: 'col-span-1 row-span-1' },
+  { id: '3', title: 'Neural Interface', client: 'IBM', category: 'WEB', year: '2024', image: imgNeuralInterface, accent: 'lavender', span: 'col-span-1 row-span-1' },
+  { id: '4', title: 'Void Architecture', client: 'Grand Hyatt', category: '3D', year: '2024', image: imgVoidArchitecture, accent: 'coral', span: 'col-span-2 row-span-1' },
+  { id: '5', title: 'Synth Culture', client: 'Netflix', category: 'ADS', year: '2023', image: imgSynthCulture, accent: 'sage', span: 'col-span-1 row-span-1' },
+  { id: '6', title: 'Quantum Brand', client: 'Mastercard', category: 'BRANDING', year: '2023', image: imgQuantumBrand, accent: 'lavender', span: 'col-span-1 row-span-2' },
+  { id: '7', title: 'Genesis Engine', client: 'Toyota', category: 'AI', year: '2024', image: imgGenesisEngine, accent: 'coral', span: 'col-span-1 row-span-1' },
+  { id: '8', title: 'Prism Reality', client: 'Swarovski', category: '3D', year: '2023', image: imgPrismReality, accent: 'sage', span: 'col-span-1 row-span-1' },
 ];
-
-const accentColors = ['coral', 'sage', 'lavender', 'coral', 'sage', 'lavender', 'coral', 'sage'];
 
 const Works = forwardRef<HTMLElement>((_, ref) => {
   const { ref: inViewRef, isInView } = useInView(0.05);
-  const activeFilter = useDanverseStore((s) => s.activeFilter);
-  const setActiveFilter = useDanverseStore((s) => s.setActiveFilter);
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [mouseY, setMouseY] = useState(0);
-
-  const filtered = activeFilter === 'all' ? works : works.filter((w) => w.category === activeFilter);
 
   return (
     <section
@@ -45,20 +36,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
       className="relative py-32 md:py-48"
       style={{ background: 'hsl(var(--section-warm-black))' }}
     >
-      {/* Giant background text */}
-      <div className="absolute top-24 left-8 pointer-events-none select-none">
-        <span
-          className="font-display-alt font-extrabold uppercase"
-          style={{
-            fontSize: 'clamp(8rem, 22vw, 22rem)',
-            color: 'hsl(var(--coral) / 0.025)',
-            lineHeight: 0.85,
-          }}
-        >
-          WORK
-        </span>
-      </div>
-
       {/* Section header */}
       <div className="px-6 md:px-20 lg:px-28">
         <motion.div
@@ -66,166 +43,126 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="mb-20"
+          className="mb-16"
         >
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
             <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
               Selected Work
             </span>
             <div className="w-16 h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
-            <span className="font-mono-brand text-[10px] tabular-nums" style={{ color: 'hsl(var(--white-30))' }}>
-              ({filtered.length})
+          </motion.div>
+
+          <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
+            <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
+              Selected
             </span>
-          </motion.div>
-
-          <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-            <h2 className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-              <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
-                Selected
-              </span>
-              <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{
+            <span
+              className="font-display-alt font-extrabold uppercase tracking-[-0.04em]"
+              style={{
                 fontSize: 'clamp(3rem, 8vw, 8rem)',
-                WebkitTextStroke: '1.5px hsl(var(--coral) / 0.5)',
+                background: 'linear-gradient(135deg, hsl(var(--coral)), hsl(35 60% 60%))',
+                WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-              }}>
-                WORKS
-              </span>
-            </h2>
-
-            <div className="flex flex-wrap gap-1">
-              {filters.map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setActiveFilter(f)}
-                  className="px-4 py-2 text-[10px] font-mono-brand uppercase tracking-[0.15em] transition-all duration-400"
-                  style={{
-                    background: activeFilter === f ? 'hsl(var(--coral) / 0.08)' : 'transparent',
-                    color: activeFilter === f ? 'hsl(var(--coral))' : 'hsl(var(--white-30))',
-                    border: `1px solid ${activeFilter === f ? 'hsl(var(--coral) / 0.2)' : 'transparent'}`,
-                  }}
-                >
-                  {f}
-                </button>
-              ))}
-            </div>
-          </motion.div>
+                backgroundClip: 'text',
+              }}
+            >
+              WORKS
+            </span>
+          </motion.h2>
         </motion.div>
       </div>
 
-      {/* Projects list */}
-      <div className="w-full">
-        <AnimatePresence mode="popLayout">
-          {filtered.map((work, i) => {
-            const accent = accentColors[i % accentColors.length];
+      {/* Asymmetric image grid */}
+      <div className="px-6 md:px-20 lg:px-28">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[280px]">
+          {works.map((work, i) => {
             const isHovered = hoveredId === work.id;
             return (
               <motion.div
                 key={work.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
-                className="group relative border-t cursor-pointer"
-                style={{ borderColor: 'hsl(var(--white-10))' }}
+                className={`relative overflow-hidden cursor-pointer group ${work.span}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => { setHoveredId(work.id); setCursorVariant('hover'); }}
                 onMouseLeave={() => { setHoveredId(null); setCursorVariant('default'); }}
-                onMouseMove={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  setMouseY(e.clientY - rect.top);
-                }}
               >
+                {/* Image with zoom */}
+                <motion.img
+                  src={work.image}
+                  alt={work.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  animate={{ scale: isHovered ? 1.08 : 1 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  loading="lazy"
+                />
+
+                {/* Color overlay */}
+                <div
+                  className="absolute inset-0 transition-opacity duration-700"
+                  style={{
+                    background: `linear-gradient(180deg, hsl(var(--${work.accent}) / ${isHovered ? '0.1' : '0.3'}) 0%, hsl(var(--void) / ${isHovered ? '0.4' : '0.7'}) 100%)`,
+                  }}
+                />
+
+                {/* Glow border on hover */}
                 <motion.div
                   className="absolute inset-0 pointer-events-none"
-                  style={{ background: `hsl(var(--${accent}) / 0.02)` }}
-                  initial={false}
+                  style={{ boxShadow: `inset 0 0 0 1px hsl(var(--${work.accent}) / 0.3)` }}
                   animate={{ opacity: isHovered ? 1 : 0 }}
                   transition={{ duration: 0.4 }}
                 />
 
-                {/* Floating image */}
-                <motion.div
-                  className="absolute right-[5%] md:right-[15%] pointer-events-none z-10 overflow-hidden hidden md:block"
-                  style={{ width: 280, height: 180, top: mouseY - 90 }}
-                  initial={false}
-                  animate={{
-                    opacity: isHovered ? 1 : 0,
-                    scale: isHovered ? 1 : 0.85,
-                    rotate: isHovered ? -2 : 0,
-                  }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <img src={work.image} alt={work.title} className="w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute inset-0" style={{ background: `hsl(var(--${accent}) / 0.1)`, mixBlendMode: 'multiply' }} />
-                </motion.div>
+                {/* Content overlay */}
+                <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
+                  {/* Top: category + year */}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono-brand text-[9px] uppercase tracking-[0.25em]" style={{ color: `hsl(var(--${work.accent}))` }}>
+                      {work.category}
+                    </span>
+                    <span className="font-mono-brand text-[9px]" style={{ color: 'hsl(var(--cream) / 0.4)' }}>
+                      {work.year}
+                    </span>
+                  </div>
 
-                <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_auto] gap-4 md:gap-12 items-center">
-                  <span
-                    className="font-script italic text-5xl md:text-7xl transition-all duration-500 tabular-nums"
-                    style={{ color: isHovered ? `hsl(var(--${accent}))` : 'hsl(var(--white-10))', minWidth: '90px' }}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-
-                  <div className="overflow-hidden">
+                  {/* Bottom: title + client */}
+                  <div>
                     <motion.h3
-                      className="font-display-alt font-bold uppercase tracking-[-0.03em] transition-colors duration-500"
-                      style={{
-                        fontSize: 'clamp(1.5rem, 3.5vw, 3.5rem)',
-                        color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))',
-                      }}
-                      animate={{ x: isHovered ? 8 : 0 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="font-display-alt font-bold uppercase text-xl md:text-2xl tracking-[-0.02em] mb-1"
+                      style={{ color: 'hsl(var(--cream))' }}
+                      animate={{ y: isHovered ? 0 : 5 }}
+                      transition={{ duration: 0.4 }}
                     >
                       {work.title}
                     </motion.h3>
                     <motion.p
-                      className="font-script italic text-[13px] mt-1"
-                      style={{ color: 'hsl(var(--cream) / 0.4)' }}
-                      initial={false}
-                      animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
-                      transition={{ duration: 0.3 }}
+                      className="font-script italic text-sm"
+                      style={{ color: 'hsl(var(--cream) / 0.5)' }}
+                      animate={{ opacity: isHovered ? 1 : 0.6, y: isHovered ? 0 : 4 }}
+                      transition={{ duration: 0.4 }}
                     >
-                      {work.role}
+                      {work.client}
                     </motion.p>
                   </div>
-
-                  <div className="flex items-center gap-6">
-                    <span className="font-mono-brand text-[9px] uppercase tracking-[0.2em]" style={{ color: `hsl(var(--${accent}))` }}>
-                      {work.category}
-                    </span>
-                    <span className="font-mono-brand text-[9px]" style={{ color: 'hsl(var(--white-10))' }}>
-                      {work.year}
-                    </span>
-                    <span className="font-body text-[11px] hidden md:inline" style={{ color: 'hsl(var(--white-30))' }}>
-                      {work.client}
-                    </span>
-                  </div>
-
-                  <motion.div
-                    className="flex items-center justify-end"
-                    initial={false}
-                    animate={{ opacity: isHovered ? 1 : 0.1, x: isHovered ? 0 : -8 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <path d="M7 17L17 7M17 7H10M17 7v7" stroke={`hsl(var(--${accent}))`} strokeWidth="1" strokeLinecap="round" />
-                    </svg>
-                  </motion.div>
                 </div>
 
+                {/* Arrow indicator */}
                 <motion.div
-                  className="absolute bottom-0 left-0 h-px origin-left"
-                  style={{ background: `hsl(var(--${accent}))` }}
-                  initial={false}
-                  animate={{ scaleX: isHovered ? 1 : 0 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                />
+                  className="absolute top-5 right-5 z-10"
+                  animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `hsl(var(--${work.accent}) / 0.2)`, backdropFilter: 'blur(10px)' }}>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M4 12L12 4M12 4H7M12 4v5" stroke={`hsl(var(--${work.accent}))`} strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  </div>
+                </motion.div>
               </motion.div>
             );
           })}
-        </AnimatePresence>
-        <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
+        </div>
       </div>
 
       {/* View all CTA */}
@@ -235,10 +172,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        <button
-          className="group flex items-center gap-4 font-mono-brand text-[10px] uppercase tracking-[0.25em] transition-colors duration-300"
-          style={{ color: 'hsl(var(--coral))' }}
-        >
+        <button className="group flex items-center gap-4 font-mono-brand text-[10px] uppercase tracking-[0.25em] transition-colors duration-300" style={{ color: 'hsl(var(--coral))' }}>
           <span className="w-10 h-px transition-all duration-500 group-hover:w-16" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
           View all projects
           <span className="w-10 h-px transition-all duration-500 group-hover:w-16" style={{ background: 'hsl(var(--coral) / 0.3)' }} />

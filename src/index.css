@@ -275,6 +275,51 @@
     clip-path: inset(0 0 100% 0);
     animation: clip-reveal-up 0.8s var(--ease-out-expo) forwards;
   }
+
+  /* Crystal shimmer on text */
+  .shimmer-text {
+    background: linear-gradient(
+      120deg,
+      hsl(var(--cream)) 0%,
+      hsl(var(--cream)) 35%,
+      hsl(var(--coral)) 48%,
+      hsl(var(--lavender)) 52%,
+      hsl(var(--cream)) 65%,
+      hsl(var(--cream)) 100%
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-sweep 6s ease-in-out infinite;
+  }
+
+  /* Crystal shimmer on stroke text */
+  .shimmer-stroke {
+    animation: shimmer-stroke-color 6s ease-in-out infinite;
+  }
+
+  /* CTA shimmer glow */
+  .shimmer-cta {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      hsl(var(--coral) / 0.08) 45%,
+      hsl(var(--lavender) / 0.06) 55%,
+      transparent 70%
+    );
+    background-size: 250% 100%;
+    animation: shimmer-sweep 4s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: inherit;
+  }
 }
 
 /* ── Reduced Motion ── */
@@ -364,4 +409,15 @@
 @keyframes text-shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
+}
+
+@keyframes shimmer-sweep {
+  0%, 100% { background-position: 200% center; }
+  50% { background-position: -200% center; }
+}
+
+@keyframes shimmer-stroke-color {
+  0%, 100% { -webkit-text-stroke-color: hsl(var(--coral)); }
+  33% { -webkit-text-stroke-color: hsl(var(--lavender)); }
+  66% { -webkit-text-stroke-color: hsl(var(--sage)); }
 }

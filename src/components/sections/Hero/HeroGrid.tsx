@@ -115,11 +115,11 @@ function MarqueeColumn({
               src={src}
               alt=""
               loading={i < 5 ? 'eager' : 'lazy'}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.15]"
             />
-            {/* Gradient overlay for depth */}
+            {/* Gradient overlay for depth — dims on hover */}
             <div
-              className="absolute inset-0 transition-opacity duration-500"
+              className="absolute inset-0 transition-all duration-700 group-hover:opacity-40"
               style={{
                 background: `linear-gradient(
                   ${direction === 'up' ? '180deg' : '0deg'},
@@ -129,11 +129,18 @@ function MarqueeColumn({
                 )`,
               }}
             />
-            {/* Prismatic edge glow on hover */}
+            {/* Crimson color tint on hover */}
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
               style={{
-                boxShadow: 'inset 0 0 30px hsl(var(--coral) / 0.15), inset 0 0 60px hsl(var(--lavender) / 0.08)',
+                background: 'hsl(0 85% 55% / 0.08)',
+              }}
+            />
+            {/* Aggressive crimson glow on hover */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+              style={{
+                boxShadow: 'inset 0 0 40px hsl(0 85% 55% / 0.3), inset 0 0 80px hsl(0 85% 55% / 0.15), 0 0 30px hsl(0 85% 55% / 0.2)',
               }}
             />
           </div>

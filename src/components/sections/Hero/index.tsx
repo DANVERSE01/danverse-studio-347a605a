@@ -85,14 +85,14 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
           <div className="flex items-baseline gap-4 md:gap-6 flex-wrap">
             <motion.span
               variants={heroWord}
-              className="font-script italic font-light"
-              style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', color: 'hsl(var(--cream))' }}
+              className="font-script italic font-light shimmer-text"
+              style={{ fontSize: 'clamp(3rem, 8vw, 7rem)' }}
             >
               We
             </motion.span>
             <motion.span
               variants={heroWord}
-              className="font-display-alt font-extrabold uppercase tracking-[-0.05em]"
+              className="font-display-alt font-extrabold uppercase tracking-[-0.05em] shimmer-stroke"
               style={{
                 fontSize: 'clamp(4rem, 13vw, 14rem)',
                 WebkitTextStroke: '2px hsl(var(--coral))',
@@ -107,8 +107,8 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
           <div className="flex items-baseline gap-3 md:gap-6 flex-wrap -mt-2 md:-mt-6">
             <motion.span
               variants={heroWord}
-              className="font-script italic font-light"
-              style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)', color: 'hsl(var(--cream) / 0.5)' }}
+              className="font-script italic font-light shimmer-text"
+              style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)' }}
             >
               cinematic
             </motion.span>

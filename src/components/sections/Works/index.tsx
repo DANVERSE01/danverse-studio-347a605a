@@ -83,10 +83,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
 
           <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <h2 className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-              <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
+              <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
                 Selected
               </span>
-              <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{
+              <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
                 fontSize: 'clamp(3rem, 8vw, 8rem)',
                 WebkitTextStroke: '1.5px hsl(var(--coral) / 0.5)',
                 WebkitTextFillColor: 'transparent',

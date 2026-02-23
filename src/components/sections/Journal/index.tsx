@@ -56,7 +56,7 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
             <div className="w-16 h-px" style={{ background: 'hsl(var(--lavender) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
+            <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
               Thinking,
             </span>
             <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', color: 'hsl(var(--lavender))' }}>

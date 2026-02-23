@@ -25,10 +25,10 @@ function CounterUp({ end, suffix = '' }: { end: number; suffix?: string }) {
 
   return (
     <span ref={ref} className="inline-flex items-baseline gap-1">
-      <span className="font-script italic tabular-nums" style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)', color: 'hsl(var(--cream))' }}>
+      <span className="font-display italic tabular-nums" style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)', color: 'hsl(var(--pearl))' }}>
         {count}
       </span>
-      <span className="font-script italic text-xl md:text-2xl" style={{ color: 'hsl(var(--coral))' }}>
+      <span className="font-display italic text-xl md:text-2xl" style={{ color: 'hsl(var(--rose-gold))' }}>
         {suffix}
       </span>
     </span>
@@ -48,10 +48,10 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
       {/* Giant background text */}
       <div className="absolute bottom-8 left-8 pointer-events-none select-none">
         <span
-          className="font-display-alt font-extrabold uppercase"
+          className="font-heading font-extrabold uppercase"
           style={{
             fontSize: 'clamp(6rem, 18vw, 18rem)',
-            color: 'hsl(var(--sage) / 0.04)',
+            color: 'hsl(var(--platinum) / 0.04)',
             lineHeight: 0.85,
           }}
         >
@@ -61,18 +61,18 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
 
       <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
         <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-          <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--sage))' }}>
+          <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--platinum))' }}>
             Studio
           </span>
-          <div className="w-16 h-px" style={{ background: 'hsl(var(--sage) / 0.25)' }} />
+          <div className="w-16 h-px" style={{ background: 'hsl(var(--platinum) / 0.25)' }} />
         </motion.div>
         <motion.h2 variants={fadeUp} className="mb-24 flex items-baseline gap-3 md:gap-5 flex-wrap">
-          <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
+          <span className="font-display italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
             Behind the
           </span>
-          <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
+          <span className="font-heading font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
             fontSize: 'clamp(3rem, 8vw, 8rem)',
-            WebkitTextStroke: '1.5px hsl(var(--sage) / 0.4)',
+            WebkitTextStroke: '1.5px hsl(var(--platinum) / 0.4)',
             WebkitTextFillColor: 'transparent',
           }}>
             CURTAIN
@@ -81,7 +81,7 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
       </motion.div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-6 md:gap-12 mb-32 border-t border-b py-16" style={{ borderColor: 'hsl(var(--sage) / 0.1)' }}>
+      <div className="grid grid-cols-3 gap-6 md:gap-12 mb-32 border-t border-b py-16" style={{ borderColor: 'hsl(var(--platinum) / 0.1)' }}>
         {[
           { end: 12, suffix: '+', label: 'Creatives' },
           { end: 4, suffix: '', label: 'Countries' },
@@ -90,8 +90,8 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
           <div key={stat.label}>
             <CounterUp end={stat.end} suffix={stat.suffix} />
             <div className="flex items-center gap-2 mt-2">
-              <div className="w-3 h-px" style={{ background: 'hsl(var(--sage) / 0.4)' }} />
-              <p className="font-mono-brand text-[9px] uppercase tracking-[0.25em]" style={{ color: 'hsl(var(--cream) / 0.4)' }}>
+              <div className="w-3 h-px" style={{ background: 'hsl(var(--platinum) / 0.4)' }} />
+              <p className="font-mono-brand text-[9px] uppercase tracking-[0.25em]" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>
                 {stat.label}
               </p>
             </div>
@@ -102,34 +102,34 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
       {/* Split */}
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 items-start">
         <div>
-          <p className="font-script italic text-3xl md:text-4xl leading-[1.3] mb-8" style={{ color: 'hsl(var(--cream))' }}>
+          <p className="font-display italic text-3xl md:text-4xl leading-[1.3] mb-8" style={{ color: 'hsl(var(--pearl))' }}>
             We are not an agency.
             <br />
             <span style={{
-              WebkitTextStroke: '1px hsl(var(--sage) / 0.5)',
+              WebkitTextStroke: '1px hsl(var(--platinum) / 0.5)',
               WebkitTextFillColor: 'transparent',
             }}>We are a system.</span>
           </p>
-          <p className="text-[13px] leading-[1.9] mb-10 max-w-md" style={{ color: 'hsl(var(--cream) / 0.4)' }}>
+          <p className="text-[13px] leading-[1.9] mb-10 max-w-md" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>
             12 humans obsessed with the future of communication,
             operating at the intersection of technology and culture.
             No templates. No shortcuts. Only intentional work.
           </p>
           <button
             className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.2em] group transition-colors duration-300"
-            style={{ color: 'hsl(var(--sage))' }}
+            style={{ color: 'hsl(var(--platinum))' }}
           >
-            <span className="w-8 h-px transition-all duration-500 group-hover:w-12" style={{ background: 'hsl(var(--sage) / 0.5)' }} />
+            <span className="w-8 h-px transition-all duration-500 group-hover:w-12" style={{ background: 'hsl(var(--platinum) / 0.5)' }} />
             Join the studio
           </button>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           {[
-            { h: 300, accent: 'coral' },
-            { h: 220, accent: 'sage' },
-            { h: 220, accent: 'lavender' },
-            { h: 300, accent: 'coral' },
+            { h: 300, accent: 'rose-gold' },
+            { h: 220, accent: 'platinum' },
+            { h: 220, accent: 'rose-gold' },
+            { h: 300, accent: 'platinum' },
           ].map((item, i) => (
             <div
               key={i}

@@ -27,7 +27,7 @@ const works = [
   { id: '8', title: 'Prism Reality', client: 'Swarovski', category: '3d' as const, year: 2023, role: 'Immersive Experience Design', image: imgPrismReality },
 ];
 
-const accentColors = ['coral', 'sage', 'lavender', 'coral', 'sage', 'lavender', 'coral', 'sage'];
+const accentColors = ['rose-gold', 'platinum', 'rose-gold', 'platinum', 'rose-gold', 'platinum', 'rose-gold', 'platinum'];
 
 const Works = forwardRef<HTMLElement>((_, ref) => {
   const { ref: inViewRef, isInView } = useInView(0.05);
@@ -37,7 +37,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [mouseY, setMouseY] = useState(0);
   const [selectedWork, setSelectedWork] = useState<typeof works[0] | null>(null);
-  const [selectedAccent, setSelectedAccent] = useState('coral');
+  const [selectedAccent, setSelectedAccent] = useState('rose-gold');
 
   const filtered = activeFilter === 'all' ? works : works.filter((w) => w.category === activeFilter);
 
@@ -51,10 +51,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
       {/* Giant background text */}
       <div className="absolute top-24 left-8 pointer-events-none select-none">
         <span
-          className="font-display-alt font-extrabold uppercase"
+          className="font-heading font-extrabold uppercase"
           style={{
             fontSize: 'clamp(8rem, 22vw, 22rem)',
-            color: 'hsl(var(--coral) / 0.025)',
+            color: 'hsl(var(--rose-gold) / 0.025)',
             lineHeight: 0.85,
           }}
         >
@@ -72,10 +72,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
           className="mb-20"
         >
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
+            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--rose-gold))' }}>
               Selected Work
             </span>
-            <div className="w-16 h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
+            <div className="w-16 h-px" style={{ background: 'hsl(var(--rose-gold) / 0.15)' }} />
             <span className="font-mono-brand text-[10px] tabular-nums" style={{ color: 'hsl(var(--white-30))' }}>
               ({filtered.length})
             </span>
@@ -83,12 +83,12 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
 
           <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <h2 className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-              <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
+              <span className="font-display italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
                 Selected
               </span>
-              <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
+              <span className="font-heading font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
                 fontSize: 'clamp(3rem, 8vw, 8rem)',
-                WebkitTextStroke: '1.5px hsl(var(--coral) / 0.5)',
+                WebkitTextStroke: '1.5px hsl(var(--rose-gold) / 0.5)',
                 WebkitTextFillColor: 'transparent',
               }}>
                 WORKS
@@ -102,10 +102,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   onClick={() => setActiveFilter(f)}
                   className="relative px-5 py-2 text-[10px] font-mono-brand uppercase tracking-[0.15em] rounded-full transition-all duration-500"
                   style={{
-                    background: activeFilter === f ? 'hsl(var(--coral) / 0.1)' : 'transparent',
-                    color: activeFilter === f ? 'hsl(var(--coral))' : 'hsl(var(--white-30))',
-                    boxShadow: activeFilter === f ? '0 0 20px hsl(var(--coral) / 0.08), inset 0 0 12px hsl(var(--coral) / 0.04)' : 'none',
-                    border: `1px solid ${activeFilter === f ? 'hsl(var(--coral) / 0.2)' : 'transparent'}`,
+                    background: activeFilter === f ? 'hsl(var(--rose-gold) / 0.1)' : 'transparent',
+                    color: activeFilter === f ? 'hsl(var(--rose-gold))' : 'hsl(var(--white-30))',
+                    boxShadow: activeFilter === f ? '0 0 20px hsl(var(--rose-gold) / 0.08), inset 0 0 12px hsl(var(--rose-gold) / 0.04)' : 'none',
+                    border: `1px solid ${activeFilter === f ? 'hsl(var(--rose-gold) / 0.2)' : 'transparent'}`,
                   }}
                 >
                   {f}
@@ -166,7 +166,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
 
                 <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_auto] gap-4 md:gap-12 items-center">
                   <span
-                    className="font-script italic text-5xl md:text-7xl transition-all duration-500 tabular-nums"
+                    className="font-display italic text-5xl md:text-7xl transition-all duration-500 tabular-nums"
                     style={{ color: isHovered ? `hsl(var(--${accent}))` : 'hsl(var(--white-10))', minWidth: '90px' }}
                   >
                     {String(i + 1).padStart(2, '0')}
@@ -174,10 +174,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
 
                   <div className="overflow-hidden">
                     <motion.h3
-                      className="font-display-alt font-bold uppercase tracking-[-0.03em] transition-colors duration-500"
+                      className="font-heading font-bold uppercase tracking-[-0.03em] transition-colors duration-500"
                       style={{
                         fontSize: 'clamp(1.5rem, 3.5vw, 3.5rem)',
-                        color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))',
+                        color: isHovered ? 'hsl(var(--pearl))' : 'hsl(var(--white-30))',
                       }}
                       animate={{ x: isHovered ? 8 : 0 }}
                       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -185,8 +185,8 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                       {work.title}
                     </motion.h3>
                     <motion.p
-                      className="font-script italic text-[13px] mt-1"
-                      style={{ color: 'hsl(var(--cream) / 0.4)' }}
+                      className="font-display italic text-[13px] mt-1"
+                      style={{ color: 'hsl(var(--pearl) / 0.4)' }}
                       initial={false}
                       animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
                       transition={{ duration: 0.3 }}
@@ -242,7 +242,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
       >
         <button
           className="group glass-btn gradient-border-spin btn-shimmer rounded-full px-8 py-4 font-mono-brand text-[10px] uppercase tracking-[0.25em] transition-all duration-500 flex items-center gap-3"
-          style={{ color: 'hsl(var(--coral))' }}
+          style={{ color: 'hsl(var(--rose-gold))' }}
         >
           View all projects
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-500 group-hover:translate-x-1">

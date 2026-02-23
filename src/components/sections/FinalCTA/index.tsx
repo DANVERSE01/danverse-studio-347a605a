@@ -19,10 +19,10 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
       {/* Giant background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <span
-          className="font-display-alt font-extrabold uppercase whitespace-nowrap"
+          className="font-heading font-extrabold uppercase whitespace-nowrap"
           style={{
             fontSize: 'clamp(8rem, 25vw, 25rem)',
-            color: 'hsl(var(--coral) / 0.03)',
+            color: 'hsl(var(--rose-gold) / 0.03)',
           }}
         >
           HELLO
@@ -34,7 +34,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
         className="absolute pointer-events-none transition-all duration-200"
         style={{
           width: 500, height: 500, borderRadius: '50%',
-          background: 'radial-gradient(circle, hsl(var(--coral) / 0.025), transparent 60%)',
+          background: 'radial-gradient(circle, hsl(var(--rose-gold) / 0.025), transparent 60%)',
           left: mouse.x - 250, top: mouse.y - 250,
         }}
         aria-hidden="true"
@@ -48,11 +48,11 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="w-10 h-px" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
-          <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
+          <div className="w-10 h-px" style={{ background: 'hsl(var(--rose-gold) / 0.3)' }} />
+          <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--rose-gold))' }}>
             Contact
           </span>
-          <div className="w-10 h-px" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
+          <div className="w-10 h-px" style={{ background: 'hsl(var(--rose-gold) / 0.3)' }} />
         </motion.div>
 
         <motion.h2
@@ -60,17 +60,17 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="font-script italic block tracking-[0.01em] shimmer-text" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
+          <span className="font-display italic block tracking-[0.01em] shimmer-text" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
             Start a
           </span>
-          <span className="font-display-alt font-extrabold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)', color: 'hsl(var(--coral))' }}>
+          <span className="font-heading font-extrabold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)', color: 'hsl(var(--rose-gold))' }}>
             Project
           </span>
         </motion.h2>
 
         <motion.p
-          className="font-script italic text-[15px] mt-5 max-w-sm mx-auto leading-relaxed"
-          style={{ color: 'hsl(var(--cream) / 0.4)' }}
+          className="font-display italic text-[15px] mt-5 max-w-sm mx-auto leading-relaxed"
+          style={{ color: 'hsl(var(--pearl) / 0.4)' }}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3, duration: 0.6 }}
@@ -88,12 +88,12 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         {submitted ? (
-          <div className="text-center py-16 border" style={{ borderColor: 'hsl(var(--coral) / 0.15)' }}>
-            <span className="font-script italic text-4xl block mb-3" style={{ color: 'hsl(var(--coral))' }}>✓</span>
-            <h3 className="font-script italic text-2xl mb-2" style={{ color: 'hsl(var(--cream))' }}>
+          <div className="text-center py-16 border" style={{ borderColor: 'hsl(var(--rose-gold) / 0.15)' }}>
+            <span className="font-display italic text-4xl block mb-3" style={{ color: 'hsl(var(--rose-gold))' }}>✓</span>
+            <h3 className="font-display italic text-2xl mb-2" style={{ color: 'hsl(var(--pearl))' }}>
               Received.
             </h3>
-            <p className="text-[13px]" style={{ color: 'hsl(var(--cream) / 0.4)' }}>We'll be in touch shortly.</p>
+            <p className="text-[13px]" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>We'll be in touch shortly.</p>
           </div>
         ) : (
           <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
@@ -102,27 +102,27 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
               { name: 'email', label: 'Email', type: 'email', placeholder: 'your@email.com' },
             ].map((field) => (
               <div key={field.name} className="group">
-                <label className="block font-mono-brand text-[9px] uppercase tracking-[0.3em] mb-3" style={{ color: 'hsl(var(--cream) / 0.4)' }}>
+                <label className="block font-mono-brand text-[9px] uppercase tracking-[0.3em] mb-3" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>
                   {field.label}
                 </label>
                 <input
                   type={field.type}
                   required
                   placeholder={field.placeholder}
-                  className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-coral placeholder:opacity-20"
-                  style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--cream))' }}
+                  className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold placeholder:opacity-20"
+                  style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
                   value={formData[field.name as keyof typeof formData]}
                   onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
                 />
               </div>
             ))}
             <div>
-              <label className="block font-mono-brand text-[9px] uppercase tracking-[0.3em] mb-3" style={{ color: 'hsl(var(--cream) / 0.4)' }}>
+              <label className="block font-mono-brand text-[9px] uppercase tracking-[0.3em] mb-3" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>
                 Project Type
               </label>
               <select
-                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-coral"
-                style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--cream))' }}
+                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold"
+                style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
               >
@@ -132,14 +132,14 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
               </select>
             </div>
             <div>
-              <label className="block font-mono-brand text-[9px] uppercase tracking-[0.3em] mb-3" style={{ color: 'hsl(var(--cream) / 0.4)' }}>
+              <label className="block font-mono-brand text-[9px] uppercase tracking-[0.3em] mb-3" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>
                 Budget
               </label>
               <input
                 type="text"
                 placeholder="$10k — $50k"
-                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-coral placeholder:opacity-20"
-                style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--cream))' }}
+                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold placeholder:opacity-20"
+                style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
               />
@@ -147,7 +147,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
             <motion.button
               type="submit"
               className="w-full py-5 text-[10px] font-mono-brand uppercase tracking-[0.25em] glass-btn gradient-border-spin btn-shimmer group flex items-center justify-center gap-3 rounded-sm"
-              style={{ color: 'hsl(var(--coral))' }}
+              style={{ color: 'hsl(var(--rose-gold))' }}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}

@@ -19,10 +19,10 @@ const Clients = forwardRef<HTMLElement>((_, ref) => {
       {/* Giant background text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <span
-          className="font-display-alt font-extrabold uppercase whitespace-nowrap"
+          className="font-heading font-extrabold uppercase whitespace-nowrap"
           style={{
             fontSize: 'clamp(10rem, 28vw, 28rem)',
-            color: 'hsl(var(--cream) / 0.02)',
+            color: 'hsl(var(--pearl) / 0.02)',
           }}
         >
           TRUST
@@ -32,18 +32,18 @@ const Clients = forwardRef<HTMLElement>((_, ref) => {
       <div className="px-6 md:px-20 lg:px-28 mb-20">
         <motion.div ref={inViewRef} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--sage))' }}>
+            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--platinum))' }}>
               Trusted by
             </span>
-            <div className="w-16 h-px" style={{ background: 'hsl(var(--sage) / 0.15)' }} />
+            <div className="w-16 h-px" style={{ background: 'hsl(var(--platinum) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
+            <span className="font-display italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
               Global
             </span>
-            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
+            <span className="font-heading font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
               fontSize: 'clamp(3rem, 8vw, 8rem)',
-              WebkitTextStroke: '1.5px hsl(var(--sage) / 0.4)',
+              WebkitTextStroke: '1.5px hsl(var(--platinum) / 0.4)',
               WebkitTextFillColor: 'transparent',
             }}>
               PARTNERS
@@ -58,7 +58,7 @@ const Clients = forwardRef<HTMLElement>((_, ref) => {
             {[...row1, ...row1].map((brand, i) => (
               <span
                 key={i}
-                className="font-display-alt font-bold text-xl md:text-3xl mx-8 md:mx-12 transition-colors duration-500 hover:text-coral shrink-0 tracking-[0.05em] uppercase"
+                className="font-heading font-bold text-xl md:text-3xl mx-8 md:mx-12 transition-colors duration-500 hover:text-rose-gold shrink-0 tracking-[0.05em] uppercase"
                 style={{ color: 'hsl(var(--white-10))' }}
               >
                 {brand}
@@ -72,7 +72,7 @@ const Clients = forwardRef<HTMLElement>((_, ref) => {
             {[...row2, ...row2].map((brand, i) => (
               <span
                 key={i}
-                className="font-script italic text-2xl md:text-4xl mx-8 md:mx-12 transition-colors duration-500 hover:text-sage shrink-0"
+                className="font-display italic text-2xl md:text-4xl mx-8 md:mx-12 transition-colors duration-500 hover:text-platinum shrink-0"
                 style={{ color: 'hsl(var(--white-10))' }}
               >
                 {brand}

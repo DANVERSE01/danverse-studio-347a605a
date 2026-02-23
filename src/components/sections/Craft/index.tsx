@@ -5,12 +5,12 @@ import { useDanverseStore } from '@/store/useDanverseStore';
 import { forwardRef, useState } from 'react';
 
 const services = [
-  { num: '01', name: 'Cinematic Ads', fill: 'ADVERTISING', tagline: 'Stories that outlive the scroll.', accent: 'coral' },
-  { num: '02', name: 'Brand Systems', fill: 'IDENTITY', tagline: 'Identities that scale with intelligence.', accent: 'sage' },
-  { num: '03', name: '3D & Immersive', fill: 'SPATIAL', tagline: 'Environments you experience.', accent: 'lavender' },
-  { num: '04', name: 'Digital Product', fill: 'PRODUCT', tagline: 'Interfaces that feel inevitable.', accent: 'coral' },
-  { num: '05', name: 'Motion Design', fill: 'KINETIC', tagline: 'Movement as communication.', accent: 'sage' },
-  { num: '06', name: 'AI Content OS', fill: 'INTELLIGENCE', tagline: 'Create once. Deploy everywhere.', accent: 'lavender' },
+  { num: '01', name: 'Cinematic Ads', fill: 'ADVERTISING', tagline: 'Stories that outlive the scroll.', accent: 'rose-gold' },
+  { num: '02', name: 'Brand Systems', fill: 'IDENTITY', tagline: 'Identities that scale with intelligence.', accent: 'platinum' },
+  { num: '03', name: '3D & Immersive', fill: 'SPATIAL', tagline: 'Environments you experience.', accent: 'rose-gold' },
+  { num: '04', name: 'Digital Product', fill: 'PRODUCT', tagline: 'Interfaces that feel inevitable.', accent: 'platinum' },
+  { num: '05', name: 'Motion Design', fill: 'KINETIC', tagline: 'Movement as communication.', accent: 'rose-gold' },
+  { num: '06', name: 'AI Content OS', fill: 'INTELLIGENCE', tagline: 'Create once. Deploy everywhere.', accent: 'platinum' },
 ];
 
 const Craft = forwardRef<HTMLElement>((_, ref) => {
@@ -28,10 +28,10 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
       {/* Giant watermark */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <span
-          className="font-display-alt font-extrabold uppercase whitespace-nowrap"
+          className="font-heading font-extrabold uppercase whitespace-nowrap"
           style={{
             fontSize: 'clamp(8rem, 25vw, 28rem)',
-            color: 'hsl(var(--coral) / 0.03)',
+            color: 'hsl(var(--rose-gold) / 0.03)',
           }}
         >
           BUILD
@@ -48,16 +48,16 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
           className="mb-20"
         >
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
+            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--rose-gold))' }}>
               Capabilities
             </span>
-            <div className="flex-1 max-w-[200px] h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
+            <div className="flex-1 max-w-[200px] h-px" style={{ background: 'hsl(var(--rose-gold) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
+            <span className="font-display italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
               What we
             </span>
-            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', WebkitTextStroke: '1.5px hsl(var(--coral))', WebkitTextFillColor: 'transparent' }}>
+            <span className="font-heading font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', WebkitTextStroke: '1.5px hsl(var(--rose-gold))', WebkitTextFillColor: 'transparent' }}>
               BUILD
             </span>
           </motion.h2>
@@ -82,7 +82,7 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
             >
               {/* Background text */}
               <motion.span
-                className="absolute right-6 md:right-20 top-1/2 -translate-y-1/2 font-display-alt font-extrabold uppercase tracking-[-0.05em] pointer-events-none select-none"
+                className="absolute right-6 md:right-20 top-1/2 -translate-y-1/2 font-heading font-extrabold uppercase tracking-[-0.05em] pointer-events-none select-none"
                 style={{
                   fontSize: 'clamp(4rem, 12vw, 12rem)',
                   WebkitTextStroke: `1px hsl(var(--${service.accent}) / 0.04)`,
@@ -106,15 +106,15 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
                 <div>
                   <motion.h3
                     className="font-heading font-semibold text-xl md:text-3xl tracking-[-0.02em] transition-colors duration-500"
-                    style={{ color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))' }}
+                    style={{ color: isHovered ? 'hsl(var(--pearl))' : 'hsl(var(--white-30))' }}
                     animate={{ x: isHovered ? 6 : 0 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {service.name}
                   </motion.h3>
                   <motion.p
-                    className="font-script italic text-[14px] mt-1.5"
-                    style={{ color: 'hsl(var(--cream) / 0.5)' }}
+                    className="font-display italic text-[14px] mt-1.5"
+                    style={{ color: 'hsl(var(--pearl) / 0.5)' }}
                     initial={false}
                     animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 6 }}
                     transition={{ duration: 0.3 }}

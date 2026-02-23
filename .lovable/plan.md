@@ -1,45 +1,46 @@
 
+# Works Hover Effects + Cinematic Loading Screen
 
-# Hero Grid Glow + Favicon Fix + Site Audit
+## 1. Works Section -- Crimson Glow Hover Effects
 
-## 1. Hero Grid -- Aggressive Crimson Glow on Hover
+**File: `src/components/sections/Works/index.tsx`**
 
-**File: `src/components/sections/Hero/HeroGrid.tsx`**
+Currently the work rows have a subtle background tint and floating image on hover. Will intensify with:
 
-Currently the hover effect is a subtle `inset box-shadow` with low opacity. Will upgrade to:
-- **Crimson border glow**: Strong red `box-shadow` (both inset and outset) on hover
-- **Scale boost**: Increase from `scale-110` to `scale-115` for more dramatic zoom
-- **Red color overlay**: Add a crimson tint overlay that fades in on hover
-- **Brighter image**: Reduce the dark overlay opacity on hover so images pop more
-- Add a transition on the gradient overlay so it lightens on hover
+### Row Hover Enhancements
+- **Crimson glow background**: Increase the hover overlay from `0.02` to `0.06` opacity with a radial gradient glow effect
+- **Crimson bottom line**: Already animates `scaleX` -- will add `box-shadow` glow to the accent line (`0 0 12px`)
+- **Floating image glow**: Add crimson `box-shadow` around the floating preview image (`0 0 25px hsl(0 85% 55% / 0.3)`)
+- **Title text glow**: Add `text-shadow` on the title when hovered (`0 0 20px hsl(0 85% 55% / 0.15)`)
+- **Number glow**: Add glow to the index number on hover
+- **Row border**: Top border brightens on hover from `white-10` to `white-20`
 
-```text
-Before (hover):
-  box-shadow: inset 0 0 30px hsl(0 85% 55% / 0.15)
+### Floating Image Enhancements
+- Add a crimson border glow around the floating preview image
+- Add a subtle crimson gradient overlay instead of just multiply blend
 
-After (hover):
-  box-shadow: inset 0 0 40px hsl(0 85% 55% / 0.3),
-              inset 0 0 80px hsl(0 85% 55% / 0.15),
-              0 0 30px hsl(0 85% 55% / 0.2)
-  + crimson color overlay at 0.08 opacity
-  + gradient overlay dims to 0.15 (from 0.45)
-```
+## 2. Loading Screen -- Cinematic Chrome Flash
 
-## 2. Favicon Fix
+**File: `src/components/ui/LoadingScreen.tsx`**
 
-**File: `index.html`**
+Currently it's a simple logo + thin progress bar. Will upgrade to a more cinematic experience:
 
-The favicon reference is correct (`/favicon.png`), but the old `favicon.ico` still exists. Will:
-- Re-copy the uploaded dark DANVERSE logo (`hf_20260223_072920`) to `public/favicon.png`
-- Remove the old `favicon.ico` to avoid browser cache confusion
-- Add `?v=2` cache-busting param to the favicon link
+### Visual Enhancements
+- **Crimson progress bar**: Already using `--rose-gold` (which is now crimson) -- will make it thicker (2px instead of 1px) and add a glow effect (`box-shadow: 0 0 15px`)
+- **Chrome flash sweep**: Add a bright white/crimson light sweep across the progress bar as it fills
+- **Logo glow**: Add a subtle crimson glow behind the logo that pulses during loading
+- **Counter styling**: Make the percentage counter larger (`text-xs` instead of `text-[9px]`) with crimson color at full opacity
+- **Exit animation**: Add a vertical clip/wipe exit instead of simple fade -- more cinematic
+- **Longer duration**: Extend total time slightly (2.5s total instead of 2.2s) for more drama
+- **Background particles**: Add 2-3 subtle floating crimson dots in the background for atmosphere
+- **Progress bar width**: Increase from `w-40` to `w-56` for more visual impact
 
-## 3. Site-wide Color Audit (minor fixes found)
-
-All sections are already using the Obsidian Chrome tokens (`rose-gold`, `platinum`, `pearl`). The CSS variables are correctly mapped to crimson/chrome values. No broken color references found -- the system is consistent.
+### Technical Details
+- Progress bar gets `box-shadow: 0 0 15px hsl(0 85% 55% / 0.4), 0 0 30px hsl(0 85% 55% / 0.2)`
+- Logo gets animated `filter: drop-shadow(0 0 20px hsl(0 85% 55% / 0.3))` during count phase
+- Exit uses `clipPath` animation from `inset(0)` to `inset(50% 0)` for a cinematic horizontal wipe
+- Floating dots use simple CSS keyframe float animation
 
 ### Files to modify:
-1. `src/components/sections/Hero/HeroGrid.tsx` -- aggressive hover glow
-2. `index.html` -- favicon cache bust
-3. Copy favicon image to `public/favicon.png`
-
+1. `src/components/sections/Works/index.tsx` -- hover glow effects
+2. `src/components/ui/LoadingScreen.tsx` -- cinematic upgrade

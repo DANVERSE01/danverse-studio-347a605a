@@ -3,100 +3,100 @@
 @tailwind utilities;
 
 /* ══════════════════════════════════════════════════
-   DANVERSE — Ultra-refined Design System
-   Coral × Sage × Deep Ink — Rare. Warm. Futuristic.
+   DANVERSE — Vivid Cinematic Design System
+   Electric Blue × Hot Coral × Deep Navy
    ══════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    /* ── Deep Ink palette ── */
-    --background: 225 40% 5%;
-    --foreground: 35 20% 90%;
+    /* ── Deep Navy palette ── */
+    --background: 230 55% 4%;
+    --foreground: 210 20% 92%;
 
-    --card: 225 35% 8%;
-    --card-foreground: 35 20% 90%;
+    --card: 228 50% 7%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 225 35% 7%;
-    --popover-foreground: 35 20% 90%;
+    --popover: 228 50% 6%;
+    --popover-foreground: 210 20% 92%;
 
-    /* Coral terracotta — the star accent */
-    --primary: 16 65% 52%;
-    --primary-foreground: 225 40% 5%;
+    /* Electric coral — blazing accent */
+    --primary: 8 85% 56%;
+    --primary-foreground: 230 55% 4%;
 
-    /* Sage — organic secondary */
-    --secondary: 100 14% 54%;
-    --secondary-foreground: 35 20% 90%;
+    /* Electric blue — vivid secondary */
+    --secondary: 215 90% 58%;
+    --secondary-foreground: 210 20% 92%;
 
-    --muted: 225 20% 12%;
-    --muted-foreground: 35 10% 50%;
+    --muted: 228 30% 12%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 16 65% 52%;
-    --accent-foreground: 225 40% 5%;
+    --accent: 8 85% 56%;
+    --accent-foreground: 230 55% 4%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 10% 90% / 0.06;
-    --input: 35 10% 90% / 0.06;
-    --ring: 16 65% 52%;
+    --border: 215 20% 90% / 0.06;
+    --input: 215 20% 90% / 0.06;
+    --ring: 8 85% 56%;
 
     --radius: 0.125rem;
 
-    --sidebar-background: 225 35% 6%;
-    --sidebar-foreground: 35 20% 85%;
-    --sidebar-primary: 16 65% 52%;
-    --sidebar-primary-foreground: 225 40% 5%;
-    --sidebar-accent: 225 20% 12%;
-    --sidebar-accent-foreground: 35 20% 85%;
-    --sidebar-border: 35 10% 90% / 0.06;
-    --sidebar-ring: 16 65% 52%;
+    --sidebar-background: 228 50% 5%;
+    --sidebar-foreground: 210 20% 88%;
+    --sidebar-primary: 8 85% 56%;
+    --sidebar-primary-foreground: 230 55% 4%;
+    --sidebar-accent: 228 30% 12%;
+    --sidebar-accent-foreground: 210 20% 88%;
+    --sidebar-border: 215 20% 90% / 0.06;
+    --sidebar-ring: 8 85% 56%;
 
     /* ── Extended Palette ── */
-    --void: 225 50% 3%;
-    --abyss: 225 40% 5%;
-    --deep: 225 35% 8%;
-    --surface: 225 30% 10%;
-    --surface-raised: 225 25% 13%;
+    --void: 230 60% 2%;
+    --abyss: 230 55% 4%;
+    --deep: 228 50% 7%;
+    --surface: 228 40% 9%;
+    --surface-raised: 228 35% 12%;
 
-    /* Star colors */
-    --coral: 16 65% 52%;
-    --coral-dim: 16 65% 52% / 0.10;
-    --coral-glow: 16 65% 52% / 0.25;
-    --sage: 100 14% 54%;
-    --sage-dim: 100 14% 54% / 0.10;
-    --cream: 35 30% 88%;
-    --cream-dim: 35 30% 88% / 0.08;
-    --lavender: 260 20% 60%;
-    --lavender-dim: 260 20% 60% / 0.08;
+    /* Star colors — vivid & luminous */
+    --coral: 8 85% 56%;
+    --coral-dim: 8 85% 56% / 0.12;
+    --coral-glow: 8 85% 56% / 0.30;
+    --sage: 215 90% 58%;
+    --sage-dim: 215 90% 58% / 0.12;
+    --cream: 45 30% 92%;
+    --cream-dim: 45 30% 92% / 0.08;
+    --lavender: 280 65% 65%;
+    --lavender-dim: 280 65% 65% / 0.10;
 
     /* Section backgrounds */
-    --section-terracotta: 12 60% 28%;
-    --section-terracotta-light: 12 55% 35%;
-    --section-charcoal: 225 25% 10%;
-    --section-warm-black: 30 15% 6%;
-    --section-midnight: 230 45% 7%;
-    --section-olive: 80 20% 12%;
+    --section-terracotta: 8 70% 25%;
+    --section-terracotta-light: 8 65% 32%;
+    --section-charcoal: 228 40% 9%;
+    --section-warm-black: 230 40% 5%;
+    --section-midnight: 225 60% 6%;
+    --section-olive: 215 50% 8%;
 
     /* Legacy aliases */
-    --cyan: 16 65% 52%;
-    --cyan-dim: 16 65% 52% / 0.10;
-    --cyan-glow: 16 65% 52% / 0.25;
-    --magenta: 100 14% 54%;
-    --magenta-dim: 100 14% 54% / 0.10;
-    --purple: 260 20% 60%;
-    --purple-mid: 260 30% 50%;
-    --gold: 35 30% 88%;
-    --gold-dim: 35 30% 88% / 0.08;
-    --amber: 16 65% 52%;
-    --amber-dim: 16 65% 52% / 0.10;
-    --amber-glow: 16 65% 52% / 0.25;
+    --cyan: 215 90% 58%;
+    --cyan-dim: 215 90% 58% / 0.12;
+    --cyan-glow: 215 90% 58% / 0.30;
+    --magenta: 330 80% 60%;
+    --magenta-dim: 330 80% 60% / 0.12;
+    --purple: 280 65% 65%;
+    --purple-mid: 280 70% 55%;
+    --gold: 45 70% 65%;
+    --gold-dim: 45 70% 65% / 0.10;
+    --amber: 25 90% 55%;
+    --amber-dim: 25 90% 55% / 0.12;
+    --amber-glow: 25 90% 55% / 0.30;
 
-    --white-60: 35 15% 90% / 0.50;
-    --white-30: 35 15% 90% / 0.22;
-    --white-10: 35 15% 90% / 0.07;
-    --border-bright: 35 15% 90% / 0.12;
+    --white-60: 210 15% 95% / 0.55;
+    --white-30: 210 15% 95% / 0.25;
+    --white-10: 210 15% 95% / 0.08;
+    --border-bright: 210 15% 95% / 0.14;
 
     /* ── Typography ── */
     --text-hero: clamp(4.5rem, 14vw + 0.5rem, 16rem);
@@ -111,9 +111,10 @@
     --font-script: 'Cormorant Garamond', Georgia, serif;
     --font-display-alt: 'Syne', system-ui, sans-serif;
 
-    /* ── Shadows ── */
-    --shadow-glow-coral: 0 0 80px hsl(16 65% 52% / 0.12), 0 0 160px hsl(16 65% 52% / 0.04);
-    --shadow-card: 0 4px 0 hsl(0 0% 0% / 0.1), 0 24px 60px hsl(0 0% 0% / 0.4);
+    /* ── Shadows — luminous glows ── */
+    --shadow-glow-coral: 0 0 60px hsl(8 85% 56% / 0.15), 0 0 120px hsl(8 85% 56% / 0.06);
+    --shadow-glow-blue: 0 0 60px hsl(215 90% 58% / 0.15), 0 0 120px hsl(215 90% 58% / 0.06);
+    --shadow-card: 0 4px 0 hsl(0 0% 0% / 0.15), 0 24px 60px hsl(0 0% 0% / 0.5);
 
     /* ── Transitions ── */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -131,11 +132,11 @@
     --z-modal: 400;
     --z-cursor: 9999;
 
-    /* ── Gradients ── */
-    --gradient-text: linear-gradient(135deg, hsl(35 30% 88%) 0%, hsl(16 65% 52%) 60%, hsl(100 14% 54%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.02) 0%, transparent 100%);
-    --gradient-card-border: linear-gradient(135deg, hsl(16 65% 52% / 0.15) 0%, hsl(100 14% 54% / 0.08) 100%);
-    --gradient-vignette: radial-gradient(ellipse at center, transparent 30%, hsl(225 50% 3% / 0.8) 100%);
+    /* ── Gradients — vivid & luminous ── */
+    --gradient-text: linear-gradient(135deg, hsl(45 30% 92%) 0%, hsl(8 85% 56%) 50%, hsl(215 90% 58%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.03) 0%, transparent 100%);
+    --gradient-card-border: linear-gradient(135deg, hsl(8 85% 56% / 0.20) 0%, hsl(215 90% 58% / 0.12) 100%);
+    --gradient-vignette: radial-gradient(ellipse at center, transparent 30%, hsl(230 60% 2% / 0.85) 100%);
     --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   }
 }
@@ -170,7 +171,7 @@
   }
 
   ::selection {
-    background: hsl(var(--coral) / 0.25);
+    background: hsl(var(--coral) / 0.30);
     color: hsl(var(--cream));
   }
 }
@@ -196,7 +197,12 @@
     color: transparent;
   }
   .text-stroke-sage {
-    -webkit-text-stroke: 1px hsl(var(--sage) / 0.4);
+    -webkit-text-stroke: 1px hsl(var(--sage) / 0.5);
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .text-stroke-blue {
+    -webkit-text-stroke: 1.5px hsl(var(--sage));
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
@@ -290,7 +296,7 @@
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(var(--coral) / 0.15); }
+::-webkit-scrollbar-thumb { background: hsl(var(--coral) / 0.20); }
 
 /* ── Keyframes ── */
 @keyframes marquee-left {

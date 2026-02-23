@@ -54,10 +54,10 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
             <div className="flex-1 max-w-[200px] h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
+            <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
               What we
             </span>
-            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', color: 'hsl(var(--coral))' }}>
+            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', WebkitTextStroke: '1.5px hsl(var(--coral))', WebkitTextFillColor: 'transparent' }}>
               BUILD
             </span>
           </motion.h2>

@@ -60,7 +60,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="font-script italic block tracking-[0.01em]" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)', color: 'hsl(var(--cream))' }}>
+          <span className="font-script italic block tracking-[0.01em] shimmer-text" style={{ fontSize: 'clamp(3rem, 9vw, 8rem)' }}>
             Start a
           </span>
           <span className="font-display-alt font-extrabold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)', color: 'hsl(var(--coral))' }}>

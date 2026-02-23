@@ -67,10 +67,10 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
           <div className="w-16 h-px" style={{ background: 'hsl(var(--sage) / 0.25)' }} />
         </motion.div>
         <motion.h2 variants={fadeUp} className="mb-24 flex items-baseline gap-3 md:gap-5 flex-wrap">
-          <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
+          <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
             Behind the
           </span>
-          <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{
+          <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em] shimmer-stroke" style={{
             fontSize: 'clamp(3rem, 8vw, 8rem)',
             WebkitTextStroke: '1.5px hsl(var(--sage) / 0.4)',
             WebkitTextFillColor: 'transparent',

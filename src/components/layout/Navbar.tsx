@@ -71,7 +71,7 @@ export default function Navbar() {
               >
                 {link.label}
                 {activeSection === link.href.replace('#', '') && (
-                  <motion.div className="absolute -bottom-1 left-0 right-0 h-px" style={{ background: 'hsl(var(--coral))' }} layoutId="nav-indicator" />
+                  <motion.div className="absolute -bottom-1 left-0 right-0 h-px" style={{ background: 'hsl(var(--rose-gold))' }} layoutId="nav-indicator" />
                 )}
               </a>
             ))}
@@ -79,10 +79,10 @@ export default function Navbar() {
 
           <div className="flex items-center gap-6">
             <a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
-              className="hidden md:flex items-center gap-2 font-mono-brand text-[9px] uppercase tracking-[0.25em] glass-btn rounded-full px-5 py-2.5 transition-all duration-500 hover:shadow-[0_0_20px_hsl(var(--coral)/0.1)]"
-              style={{ color: 'hsl(var(--coral))' }}
+              className="hidden md:flex items-center gap-2 font-mono-brand text-[9px] uppercase tracking-[0.25em] glass-btn rounded-full px-5 py-2.5 transition-all duration-500 hover:shadow-[0_0_20px_hsl(var(--rose-gold)/0.1)]"
+              style={{ color: 'hsl(var(--rose-gold))' }}
             >
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse-glow" style={{ background: 'hsl(var(--coral))' }} />
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse-glow" style={{ background: 'hsl(var(--rose-gold))' }} />
               Get in touch
             </a>
             <button className="md:hidden w-8 h-8 flex flex-col items-center justify-center gap-1.5" onClick={() => setMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
@@ -102,7 +102,7 @@ export default function Navbar() {
                   {link.label}
                 </motion.a>
               ))}
-              <motion.a href="#contact" variants={fadeUp} onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }} className="font-mono-brand text-[10px] uppercase tracking-[0.25em] mt-4" style={{ color: 'hsl(var(--coral))' }}>
+              <motion.a href="#contact" variants={fadeUp} onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }} className="font-mono-brand text-[10px] uppercase tracking-[0.25em] mt-4" style={{ color: 'hsl(var(--rose-gold))' }}>
                 Get in touch
               </motion.a>
             </motion.div>

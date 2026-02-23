@@ -22,24 +22,24 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
       ref={ref}
       id="manifesto"
       className="relative"
-      style={{ background: 'linear-gradient(180deg, hsl(215 35% 8%), hsl(220 40% 6%))' }}
+      style={{ background: 'linear-gradient(180deg, hsl(210 20% 7%), hsl(220 25% 6%))' }}
     >
       <div ref={containerRef} className="relative" style={{ height: '350vh' }}>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
           {/* Giant background text */}
           <motion.span
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display-alt font-extrabold uppercase pointer-events-none select-none whitespace-nowrap"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-heading font-extrabold uppercase pointer-events-none select-none whitespace-nowrap"
             style={{
               fontSize: 'clamp(10rem, 30vw, 30rem)',
-              color: 'hsl(var(--coral) / 0.06)',
+              color: 'hsl(var(--rose-gold) / 0.04)',
             }}
           >
             BOLD
           </motion.span>
 
           {/* Decorative corner marks */}
-          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 hidden md:block" style={{ borderColor: 'hsl(var(--coral) / 0.12)' }} />
-          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 hidden md:block" style={{ borderColor: 'hsl(var(--coral) / 0.12)' }} />
+          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 hidden md:block" style={{ borderColor: 'hsl(var(--rose-gold) / 0.12)' }} />
+          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 hidden md:block" style={{ borderColor: 'hsl(var(--rose-gold) / 0.12)' }} />
 
           <div className="px-6 md:px-20 lg:pl-[12%] max-w-[1200px]">
             {/* Tag */}
@@ -49,10 +49,10 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
+              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--rose-gold))' }}>
                 Manifesto
               </span>
-              <div className="w-12 h-px" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
+              <div className="w-12 h-px" style={{ background: 'hsl(var(--rose-gold) / 0.3)' }} />
             </motion.div>
 
             {/* Lines */}
@@ -90,9 +90,9 @@ function ManifestoLine({
   const x = useTransform(progress, [start, end], [30, 0]);
 
   const classMap = {
-    script: 'font-script italic font-light tracking-[0.01em]',
-    bold: 'font-display-alt font-extrabold uppercase tracking-[-0.04em]',
-    stroke: 'font-display-alt font-extrabold uppercase tracking-[-0.04em]',
+    script: 'font-display italic font-light tracking-[0.01em]',
+    bold: 'font-heading font-extrabold uppercase tracking-[-0.04em]',
+    stroke: 'font-heading font-extrabold uppercase tracking-[-0.04em]',
   };
 
   const sizeMap = {
@@ -102,10 +102,10 @@ function ManifestoLine({
   };
 
   const styleMap = {
-    script: { color: 'hsl(var(--cream))' },
-    bold: { color: 'hsl(var(--coral))' },
+    script: { color: 'hsl(var(--pearl))' },
+    bold: { color: 'hsl(var(--rose-gold))' },
     stroke: {
-      WebkitTextStroke: '1.5px hsl(var(--coral) / 0.6)',
+      WebkitTextStroke: '1.5px hsl(var(--rose-gold) / 0.6)',
       WebkitTextFillColor: 'transparent',
       color: 'transparent',
     } as React.CSSProperties,

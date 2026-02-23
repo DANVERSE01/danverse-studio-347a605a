@@ -36,13 +36,13 @@ export default function LoadingScreen() {
             <motion.img src={danverseLogo} alt="Danverse" className="h-16 md:h-20 w-auto"
               initial={{ opacity: 0, y: 8, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} />
             <div className="w-40 h-px relative overflow-hidden" style={{ background: 'hsl(var(--white-10))' }}>
-              <motion.div className="absolute inset-y-0 left-0 h-full" style={{ background: 'hsl(var(--coral))' }}
+              <motion.div className="absolute inset-y-0 left-0 h-full" style={{ background: 'hsl(var(--rose-gold))' }}
                 initial={{ width: '0%' }} animate={{ width: phase !== 'enter' ? '100%' : '0%' }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }} />
             </div>
           </div>
           <motion.span className="absolute bottom-8 right-8 font-mono-brand text-[9px] tabular-nums tracking-wider"
-            style={{ color: 'hsl(var(--coral) / 0.3)' }} initial={{ opacity: 0 }} animate={{ opacity: phase !== 'enter' ? 1 : 0 }}>
+            style={{ color: 'hsl(var(--rose-gold) / 0.3)' }} initial={{ opacity: 0 }} animate={{ opacity: phase !== 'enter' ? 1 : 0 }}>
             {counter}%
           </motion.span>
         </motion.div>

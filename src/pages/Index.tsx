@@ -36,47 +36,47 @@ const Index = () => {
       <main>
         <Hero />
 
-        <SectionDivider variant="expanding-line" accent="coral" />
+        <SectionDivider variant="expanding-line" accent="rose-gold" />
 
         <Manifesto />
 
-        <SectionDivider variant="morph-wave" accent="sage" />
+        <SectionDivider variant="morph-wave" accent="platinum" />
 
         <SectionReveal variant="clip-diagonal">
           <Craft />
         </SectionReveal>
 
-        <SectionDivider variant="diamond" accent="coral" />
+        <SectionDivider variant="diamond" accent="rose-gold" />
 
         <SectionReveal variant="scale-fade">
           <Works />
         </SectionReveal>
 
-        <SectionDivider variant="orbiting-dots" accent="sage" />
+        <SectionDivider variant="orbiting-dots" accent="platinum" />
 
         <SectionReveal variant="slide-rotate">
           <Process />
         </SectionReveal>
 
-        <SectionDivider variant="gradient-wipe" accent="lavender" />
+        <SectionDivider variant="gradient-wipe" accent="rose-gold" />
 
         <SectionReveal variant="clip-up">
           <Clients />
         </SectionReveal>
 
-        <SectionDivider variant="expanding-line" accent="sage" />
+        <SectionDivider variant="expanding-line" accent="platinum" />
 
         <SectionReveal variant="fade-up">
           <Studio />
         </SectionReveal>
 
-        <SectionDivider variant="morph-wave" accent="coral" />
+        <SectionDivider variant="morph-wave" accent="rose-gold" />
 
         <SectionReveal variant="clip-diagonal">
           <Journal />
         </SectionReveal>
 
-        <SectionDivider variant="diamond" accent="lavender" />
+        <SectionDivider variant="diamond" accent="platinum" />
 
         <SectionReveal variant="scale-fade">
           <FinalCTA />

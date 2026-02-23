@@ -16,8 +16,9 @@ export default {
         heading: ['var(--font-heading)'],
         body: ['var(--font-body)'],
         'mono-brand': ['var(--font-mono)'],
-        script: ['var(--font-script)'],
-        'display-alt': ['var(--font-display-alt)'],
+        // Legacy aliases — point to display/heading
+        script: ['var(--font-display)'],
+        'display-alt': ['var(--font-heading)'],
       },
       colors: {
         border: "hsl(var(--border))",

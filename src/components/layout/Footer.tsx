@@ -21,7 +21,7 @@ export default function Footer() {
             <p className="text-[12px] leading-relaxed max-w-xs mb-6" style={{ color: 'hsl(var(--white-30))' }}>AI-powered creative studio at the intersection of technology and culture.</p>
             <div className="flex gap-4">
               {['LI', 'IG', 'BE', 'GH'].map((s) => (
-                <a key={s} href="#" className="font-mono-brand text-[9px] uppercase tracking-wider transition-colors duration-300 hover:text-coral" style={{ color: 'hsl(var(--white-30))' }}>{s}</a>
+                <a key={s} href="#" className="font-mono-brand text-[9px] uppercase tracking-wider transition-colors duration-300 hover:text-rose-gold" style={{ color: 'hsl(var(--white-30))' }}>{s}</a>
               ))}
             </div>
           </div>

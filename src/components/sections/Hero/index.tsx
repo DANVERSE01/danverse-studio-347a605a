@@ -41,16 +41,16 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
         transition={{ delay: 2, duration: 1 }}
       >
         <div className="flex flex-col items-end gap-1">
-          <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--sage))' }}>
+          <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--platinum))' }}>
             30.0444° N
           </span>
           <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--white-10))' }}>
             31.2357° E
           </span>
         </div>
-        <div className="w-px h-12" style={{ background: 'hsl(var(--coral) / 0.1)' }} />
+        <div className="w-px h-12" style={{ background: 'hsl(var(--rose-gold) / 0.1)' }} />
         <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full animate-pulse-glow" style={{ background: 'hsl(var(--sage))' }} />
+          <span className="w-1.5 h-1.5 rounded-full animate-pulse-glow" style={{ background: 'hsl(var(--platinum))' }} />
           <span className="font-mono-brand text-[9px] tracking-[0.2em] uppercase" style={{ color: 'hsl(var(--white-10))' }}>
             Available
           </span>
@@ -71,31 +71,31 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
           <motion.div className="flex items-center gap-4 mb-6" variants={heroWord}>
             <motion.div
               className="h-px origin-left"
-              style={{ background: 'hsl(var(--coral))' }}
+              style={{ background: 'hsl(var(--rose-gold))' }}
               initial={{ width: 0 }}
               animate={{ width: 48 }}
               transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             />
-            <span className="font-mono-brand text-[10px] tracking-[0.4em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
+            <span className="font-mono-brand text-[10px] tracking-[0.4em] uppercase" style={{ color: 'hsl(var(--rose-gold))' }}>
               Creative Studio / Cairo
             </span>
           </motion.div>
 
-          {/* Line 1: Script "We" + huge outlined "CRAFT" */}
+          {/* Line 1 */}
           <div className="flex items-baseline gap-4 md:gap-6 flex-wrap">
             <motion.span
               variants={heroWord}
-              className="font-script italic font-light shimmer-text"
+              className="font-display italic font-light shimmer-text"
               style={{ fontSize: 'clamp(3rem, 8vw, 7rem)' }}
             >
               We
             </motion.span>
             <motion.span
               variants={heroWord}
-              className="font-display-alt font-extrabold uppercase tracking-[-0.05em] shimmer-stroke"
+              className="font-heading font-extrabold uppercase tracking-[-0.05em] shimmer-stroke"
               style={{
                 fontSize: 'clamp(4rem, 13vw, 14rem)',
-                WebkitTextStroke: '2px hsl(var(--coral))',
+                WebkitTextStroke: '2px hsl(var(--rose-gold))',
                 WebkitTextFillColor: 'transparent',
               }}
             >
@@ -103,19 +103,19 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
             </motion.span>
           </div>
 
-          {/* Line 2: "cinematic" in script + filled "WORLDS" */}
+          {/* Line 2 */}
           <div className="flex items-baseline gap-3 md:gap-6 flex-wrap -mt-2 md:-mt-6">
             <motion.span
               variants={heroWord}
-              className="font-script italic font-light shimmer-text"
+              className="font-display italic font-light shimmer-text"
               style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)' }}
             >
               cinematic
             </motion.span>
             <motion.span
               variants={heroWord}
-              className="font-display-alt font-extrabold uppercase tracking-[-0.04em]"
-              style={{ fontSize: 'clamp(4rem, 13vw, 14rem)', color: 'hsl(var(--coral))' }}
+              className="font-heading font-extrabold uppercase tracking-[-0.04em]"
+              style={{ fontSize: 'clamp(4rem, 13vw, 14rem)', color: 'hsl(var(--rose-gold))' }}
             >
               WORLDS
             </motion.span>
@@ -123,11 +123,11 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
 
           {/* Line 3 */}
           <motion.div className="flex items-center gap-6 mt-4 md:mt-2" variants={heroWord}>
-            <span className="font-script italic text-lg md:text-xl" style={{ color: 'hsl(var(--cream) / 0.25)' }}>
+            <span className="font-display italic text-lg md:text-xl" style={{ color: 'hsl(var(--pearl) / 0.25)' }}>
               that feel inevitable.
             </span>
             <svg className="w-6 h-6 animate-rotate-slow opacity-20" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2L22 12L12 22L2 12Z" stroke="hsl(var(--coral))" strokeWidth="0.5" />
+              <path d="M12 2L22 12L12 22L2 12Z" stroke="hsl(var(--rose-gold))" strokeWidth="0.5" />
             </svg>
           </motion.div>
         </motion.div>
@@ -138,7 +138,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
         <div className="border-t pt-6 flex flex-col md:flex-row md:items-end md:justify-between gap-6" style={{ borderColor: 'hsl(var(--white-10))' }}>
           <motion.p
             className="font-body text-[12px] max-w-[280px] leading-[1.9]"
-            style={{ color: 'hsl(var(--cream) / 0.3)' }}
+            style={{ color: 'hsl(var(--pearl) / 0.3)' }}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.7 }}
@@ -159,7 +159,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
               <NeonBorder>
                 <span
                   className="font-heading font-medium text-[11px] tracking-[0.15em] uppercase px-8 py-4 flex items-center gap-4"
-                  style={{ color: 'hsl(var(--coral))' }}
+                  style={{ color: 'hsl(var(--rose-gold))' }}
                   onMouseEnter={() => setCursorVariant('cta')}
                   onMouseLeave={() => setCursorVariant('default')}
                 >
@@ -173,11 +173,11 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
 
             <button
               className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.15em] transition-all duration-500 group"
-              style={{ color: 'hsl(var(--cream) / 0.3)' }}
+              style={{ color: 'hsl(var(--pearl) / 0.3)' }}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <span className="showreel-ring relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 glass-btn group-hover:shadow-[0_0_20px_hsl(var(--sage)/0.15)]">
-                <span className="w-0 h-0 border-l-[6px] border-l-[hsl(var(--sage))] border-y-[4px] border-y-transparent ml-0.5 transition-transform duration-300 group-hover:scale-110" />
+              <span className="showreel-ring relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 glass-btn group-hover:shadow-[0_0_20px_hsl(var(--platinum)/0.15)]">
+                <span className="w-0 h-0 border-l-[6px] border-l-[hsl(var(--platinum))] border-y-[4px] border-y-transparent ml-0.5 transition-transform duration-300 group-hover:scale-110" />
               </span>
               <span className="group-hover:text-foreground transition-colors duration-300">Showreel</span>
             </button>

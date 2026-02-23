@@ -178,7 +178,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                 style={{ background: 'hsl(var(--surface))', border: '1px solid hsl(var(--white-10))' }}
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M12 4L4 12M4 4l8 8" stroke="hsl(var(--cream))" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M12 4L4 12M4 4l8 8" stroke="hsl(var(--pearl))" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </button>
 
@@ -210,13 +210,13 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                     <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: `hsl(var(--${work.accent}))` }}>
                       {work.category} — {work.year}
                     </span>
-                    <h1 className="font-display-alt font-extrabold uppercase tracking-[-0.03em] mt-3" style={{
+                    <h1 className="font-heading font-extrabold uppercase tracking-[-0.03em] mt-3" style={{
                       fontSize: 'clamp(2.5rem, 8vw, 7rem)',
-                      color: 'hsl(var(--cream))',
+                      color: 'hsl(var(--pearl))',
                     }}>
                       {work.title}
                     </h1>
-                    <p className="font-script italic text-xl md:text-2xl mt-2" style={{ color: 'hsl(var(--cream) / 0.5)' }}>
+                    <p className="font-display italic text-xl md:text-2xl mt-2" style={{ color: 'hsl(var(--pearl) / 0.5)' }}>
                       {work.client}
                     </p>
                   </motion.div>
@@ -237,7 +237,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                       <h3 className="font-mono-brand text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: `hsl(var(--${work.accent}))` }}>
                         Role
                       </h3>
-                      <p className="font-script italic text-2xl leading-relaxed" style={{ color: 'hsl(var(--cream))' }}>
+                      <p className="font-display italic text-2xl leading-relaxed" style={{ color: 'hsl(var(--pearl))' }}>
                         {work.role}
                       </p>
                     </div>
@@ -246,7 +246,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                       <h3 className="font-mono-brand text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: `hsl(var(--${work.accent}))` }}>
                         Challenge
                       </h3>
-                      <p className="text-[14px] leading-[1.9]" style={{ color: 'hsl(var(--cream) / 0.6)' }}>
+                      <p className="text-[14px] leading-[1.9]" style={{ color: 'hsl(var(--pearl) / 0.6)' }}>
                         {details.challenge}
                       </p>
                     </div>
@@ -255,7 +255,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                       <h3 className="font-mono-brand text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: `hsl(var(--${work.accent}))` }}>
                         Approach
                       </h3>
-                      <p className="text-[14px] leading-[1.9]" style={{ color: 'hsl(var(--cream) / 0.6)' }}>
+                      <p className="text-[14px] leading-[1.9]" style={{ color: 'hsl(var(--pearl) / 0.6)' }}>
                         {details.approach}
                       </p>
                     </div>
@@ -277,10 +277,10 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.7 + i * 0.1, duration: 0.5 }}
                           >
-                            <span className="font-script italic text-3xl tabular-nums" style={{ color: `hsl(var(--${work.accent}))` }}>
+                            <span className="font-display italic text-3xl tabular-nums" style={{ color: `hsl(var(--${work.accent}))` }}>
                               {String(i + 1).padStart(2, '0')}
                             </span>
-                            <p className="font-heading font-medium text-lg pt-2" style={{ color: 'hsl(var(--cream))' }}>
+                            <p className="font-heading font-medium text-lg pt-2" style={{ color: 'hsl(var(--pearl))' }}>
                               {result}
                             </p>
                           </motion.div>
@@ -299,7 +299,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                             className="px-4 py-2 text-[11px] font-mono-brand tracking-wider"
                             style={{
                               border: `1px solid hsl(var(--${work.accent}) / 0.15)`,
-                              color: 'hsl(var(--cream) / 0.6)',
+                              color: 'hsl(var(--pearl) / 0.6)',
                               background: `hsl(var(--${work.accent}) / 0.03)`,
                             }}
                           >
@@ -321,7 +321,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                           <span className="font-mono-brand text-[9px] tracking-[0.25em] uppercase block mb-1" style={{ color: 'hsl(var(--white-30))' }}>
                             {meta.label}
                           </span>
-                          <span className="font-heading text-sm" style={{ color: 'hsl(var(--cream))' }}>
+                          <span className="font-heading text-sm" style={{ color: 'hsl(var(--pearl))' }}>
                             {meta.value}
                           </span>
                         </div>
@@ -330,7 +330,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                   </div>
                 </motion.div>
 
-                {/* ═══ Gallery Section ═══ */}
+                {/* Gallery Section */}
                 {gallery && gallery.length > 0 && (
                   <motion.div
                     className="mt-24"
@@ -363,13 +363,12 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                               loading="lazy"
                             />
-                            {/* Hover overlay */}
                             <div
                               className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                               style={{ background: 'linear-gradient(180deg, transparent 50%, hsl(var(--void) / 0.7) 100%)' }}
                             >
                               <div className="flex items-center justify-between w-full">
-                                <p className="font-body text-[12px]" style={{ color: 'hsl(var(--cream) / 0.8)' }}>
+                                <p className="font-body text-[12px]" style={{ color: 'hsl(var(--pearl) / 0.8)' }}>
                                   {img.caption}
                                 </p>
                                 <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: `hsl(var(--${work.accent}) / 0.15)`, border: `1px solid hsl(var(--${work.accent}) / 0.3)` }}>
@@ -380,12 +379,11 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                               </div>
                             </div>
                           </div>
-                          {/* Caption bar */}
                           <div className="px-4 py-3 flex items-center justify-between" style={{ borderTop: '1px solid hsl(var(--white-10))' }}>
                             <span className="font-mono-brand text-[9px] tracking-[0.2em] uppercase" style={{ color: 'hsl(var(--white-30))' }}>
                               {String(i + 1).padStart(2, '0')} / {String(gallery.length).padStart(2, '0')}
                             </span>
-                            <span className="font-body text-[11px]" style={{ color: 'hsl(var(--cream) / 0.4)' }}>
+                            <span className="font-body text-[11px]" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>
                               {img.caption}
                             </span>
                           </div>
@@ -403,7 +401,7 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1, duration: 0.6 }}
                 >
-                  <p className="font-script italic text-2xl" style={{ color: 'hsl(var(--cream) / 0.5)' }}>
+                  <p className="font-display italic text-2xl" style={{ color: 'hsl(var(--pearl) / 0.5)' }}>
                     Interested in similar work?
                   </p>
                   <button
@@ -422,39 +420,6 @@ export default function WorkModal({ work, onClose }: WorkModalProps) {
                   </button>
                 </motion.div>
               </div>
-
-              {/* ═══ Lightbox ═══ */}
-              <AnimatePresence>
-                {lightboxImg && (
-                  <motion.div
-                    className="fixed inset-0 z-[600] flex items-center justify-center p-6"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onClick={() => setLightboxImg(null)}
-                  >
-                    <div className="absolute inset-0" style={{ background: 'hsl(var(--void) / 0.95)', backdropFilter: 'blur(30px)' }} />
-                    <motion.img
-                      src={lightboxImg}
-                      alt="Gallery detail"
-                      className="relative z-10 max-w-[90vw] max-h-[85vh] object-contain"
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <button
-                      className="absolute top-6 right-6 z-20 w-10 h-10 rounded-full flex items-center justify-center"
-                      style={{ background: 'hsl(var(--surface))', border: '1px solid hsl(var(--white-10))' }}
-                      onClick={() => setLightboxImg(null)}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                        <path d="M12 4L4 12M4 4l8 8" stroke="hsl(var(--cream))" strokeWidth="1.5" strokeLinecap="round" />
-                      </svg>
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </motion.div>
         </motion.div>

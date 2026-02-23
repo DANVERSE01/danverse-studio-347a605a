@@ -8,17 +8,17 @@ const articles = [
   {
     title: 'The Death of the 30-Second Spot',
     excerpt: 'Why the future of advertising is non-linear, AI-driven, and built for feeds not screens.',
-    category: 'Strategy', readTime: '8 min', date: 'Dec 2024', accent: 'coral',
+    category: 'Strategy', readTime: '8 min', date: 'Dec 2024', accent: 'rose-gold',
   },
   {
     title: 'Cairo Is the New Berlin',
     excerpt: 'How the Middle East is redefining the global creative landscape — from the inside out.',
-    category: 'Culture', readTime: '6 min', date: 'Nov 2024', accent: 'sage',
+    category: 'Culture', readTime: '6 min', date: 'Nov 2024', accent: 'platinum',
   },
   {
     title: 'Building an AI Content OS',
     excerpt: "We replaced 3 agencies with one system. Here's what happened next.",
-    category: 'Engineering', readTime: '12 min', date: 'Oct 2024', accent: 'lavender',
+    category: 'Engineering', readTime: '12 min', date: 'Oct 2024', accent: 'rose-gold',
   },
 ];
 
@@ -37,10 +37,10 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
       {/* Giant background text */}
       <div className="absolute top-16 right-8 pointer-events-none select-none">
         <span
-          className="font-script italic"
+          className="font-display italic"
           style={{
             fontSize: 'clamp(8rem, 20vw, 20rem)',
-            color: 'hsl(var(--lavender) / 0.03)',
+            color: 'hsl(var(--platinum) / 0.03)',
           }}
         >
           Read
@@ -50,16 +50,16 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
       <div className="px-6 md:px-20 lg:px-28">
         <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="mb-20">
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--lavender))' }}>
+            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--platinum))' }}>
               Journal
             </span>
-            <div className="w-16 h-px" style={{ background: 'hsl(var(--lavender) / 0.15)' }} />
+            <div className="w-16 h-px" style={{ background: 'hsl(var(--platinum) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-script italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
+            <span className="font-display italic font-light tracking-[0.01em] shimmer-text" style={{ fontSize: 'var(--text-section)' }}>
               Thinking,
             </span>
-            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', color: 'hsl(var(--lavender))' }}>
+            <span className="font-heading font-extrabold uppercase tracking-[-0.04em]" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', color: 'hsl(var(--platinum))' }}>
               VISIBLE
             </span>
           </motion.h2>
@@ -92,7 +92,7 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
 
               <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[80px_1fr_1fr_auto] gap-4 md:gap-12 items-center">
                 <span
-                  className="font-script italic text-4xl md:text-5xl tabular-nums transition-colors duration-500"
+                  className="font-display italic text-4xl md:text-5xl tabular-nums transition-colors duration-500"
                   style={{ color: isHovered ? `hsl(var(--${article.accent}))` : 'hsl(var(--white-10))' }}
                 >
                   {String(i + 1).padStart(2, '0')}
@@ -101,15 +101,15 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
                 <div>
                   <motion.h3
                     className="font-heading font-semibold text-lg md:text-2xl tracking-[-0.02em] transition-colors duration-500"
-                    style={{ color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))' }}
+                    style={{ color: isHovered ? 'hsl(var(--pearl))' : 'hsl(var(--white-30))' }}
                     animate={{ x: isHovered ? 6 : 0 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {article.title}
                   </motion.h3>
                   <motion.p
-                    className="font-script italic text-[13px] mt-1.5 max-w-xs"
-                    style={{ color: 'hsl(var(--cream) / 0.4)' }}
+                    className="font-display italic text-[13px] mt-1.5 max-w-xs"
+                    style={{ color: 'hsl(var(--pearl) / 0.4)' }}
                     initial={false}
                     animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 6 }}
                     transition={{ duration: 0.3 }}

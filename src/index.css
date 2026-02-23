@@ -3,107 +3,114 @@
 @tailwind utilities;
 
 /* ══════════════════════════════════════════════════
-   DANVERSE — Prismatic Crystal Design System
-   Platinum × Rose Gold × Arctic — Ultra-Premium
+   DANVERSE — Pearl Luxe Design System
+   Rose Gold × Platinum × Pearl — Ultra-Premium
    ══════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Manrope:wght@200;300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Manrope:wght@200;300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
 @layer base {
   :root {
-    /* ── Ultra-deep crystalline backgrounds ── */
-    --background: 228 28% 3%;
-    --foreground: 220 15% 93%;
+    /* ── Deep luxe backgrounds ── */
+    --background: 225 20% 4%;
+    --foreground: 40 15% 90%;
 
-    --card: 225 32% 6%;
-    --card-foreground: 220 15% 93%;
+    --card: 225 22% 6%;
+    --card-foreground: 40 15% 90%;
 
-    --popover: 225 32% 5%;
-    --popover-foreground: 220 15% 93%;
+    --popover: 225 22% 5%;
+    --popover-foreground: 40 15% 90%;
 
-    /* Platinum Ice — primary crystal accent */
-    --primary: 210 100% 72%;
-    --primary-foreground: 228 28% 3%;
+    /* Rose Gold — primary luxe accent */
+    --primary: 12 45% 68%;
+    --primary-foreground: 225 20% 4%;
 
-    /* Silver frost — secondary */
-    --secondary: 225 12% 55%;
-    --secondary-foreground: 220 15% 93%;
+    /* Platinum — secondary */
+    --secondary: 220 20% 55%;
+    --secondary-foreground: 40 15% 90%;
 
-    --muted: 225 18% 9%;
+    --muted: 225 15% 10%;
     --muted-foreground: 220 10% 42%;
 
-    --accent: 210 100% 72%;
-    --accent-foreground: 228 28% 3%;
+    --accent: 12 45% 68%;
+    --accent-foreground: 225 20% 4%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 92% / 0.05;
-    --input: 220 20% 92% / 0.05;
-    --ring: 210 100% 72%;
+    --border: 40 10% 90% / 0.06;
+    --input: 40 10% 90% / 0.06;
+    --ring: 12 45% 68%;
 
     --radius: 0.125rem;
 
-    --sidebar-background: 228 28% 4%;
-    --sidebar-foreground: 220 15% 88%;
-    --sidebar-primary: 210 100% 72%;
-    --sidebar-primary-foreground: 228 28% 3%;
-    --sidebar-accent: 225 18% 9%;
-    --sidebar-accent-foreground: 220 15% 88%;
-    --sidebar-border: 220 20% 92% / 0.05;
-    --sidebar-ring: 210 100% 72%;
+    --sidebar-background: 225 20% 4%;
+    --sidebar-foreground: 40 15% 88%;
+    --sidebar-primary: 12 45% 68%;
+    --sidebar-primary-foreground: 225 20% 4%;
+    --sidebar-accent: 225 15% 10%;
+    --sidebar-accent-foreground: 40 15% 88%;
+    --sidebar-border: 40 10% 90% / 0.06;
+    --sidebar-ring: 12 45% 68%;
 
-    /* ── Extended Crystal Palette ── */
-    --void: 230 32% 2%;
-    --abyss: 228 28% 3%;
-    --deep: 225 32% 6%;
-    --surface: 225 25% 8%;
-    --surface-raised: 225 22% 11%;
+    /* ── Extended Luxe Palette ── */
+    --void: 228 25% 3%;
+    --abyss: 225 20% 4%;
+    --deep: 225 22% 6%;
+    --surface: 225 18% 9%;
+    --surface-raised: 225 16% 12%;
 
-    /* ── Prismatic Accent System ── */
+    /* ── Pearl Luxe Accent System ── */
+    /* Pearl — warm champagne base */
+    --pearl: 40 20% 92%;
+    --pearl-dim: 40 20% 92% / 0.06;
+
     /* Rose Gold — warm luxurious accent */
-    --coral: 15 65% 65%;
-    --coral-dim: 15 65% 65% / 0.08;
-    --coral-glow: 15 65% 65% / 0.20;
+    --rose-gold: 12 45% 68%;
+    --rose-gold-dim: 12 45% 68% / 0.08;
+    --rose-gold-glow: 12 45% 68% / 0.15;
 
-    /* Arctic Teal — cool crystal accent */
-    --sage: 180 50% 60%;
-    --sage-dim: 180 50% 60% / 0.08;
+    /* Platinum Blue — cool metallic accent */
+    --platinum: 220 25% 72%;
+    --platinum-dim: 220 25% 72% / 0.08;
 
-    /* Platinum — text and highlights */
-    --cream: 220 15% 93%;
-    --cream-dim: 220 15% 93% / 0.06;
+    /* Aliases for backward compatibility */
+    --coral: 12 45% 68%;
+    --coral-dim: 12 45% 68% / 0.08;
+    --coral-glow: 12 45% 68% / 0.15;
+    --sage: 220 25% 72%;
+    --sage-dim: 220 25% 72% / 0.08;
+    --cream: 40 20% 92%;
+    --cream-dim: 40 20% 92% / 0.06;
+    --lavender: 280 20% 72%;
+    --lavender-dim: 280 20% 72% / 0.06;
 
-    /* Amethyst — prismatic purple */
-    --lavender: 265 50% 70%;
-    --lavender-dim: 265 50% 70% / 0.06;
-
-    /* Section backgrounds — deep crystalline shifts */
-    --section-terracotta: 225 35% 5%;
-    --section-terracotta-light: 220 30% 9%;
-    --section-charcoal: 230 22% 5%;
-    --section-warm-black: 228 28% 4%;
-    --section-midnight: 235 40% 5%;
-    --section-olive: 215 25% 5%;
+    /* Section backgrounds — luxe tonal shifts */
+    --section-terracotta: 220 28% 6%;
+    --section-terracotta-light: 215 22% 10%;
+    --section-charcoal: 228 18% 5%;
+    --section-warm-black: 225 22% 4%;
+    --section-midnight: 232 30% 5%;
+    --section-olive: 210 20% 6%;
 
     /* Legacy aliases */
-    --cyan: 210 100% 72%;
-    --cyan-dim: 210 100% 72% / 0.08;
-    --cyan-glow: 210 100% 72% / 0.20;
-    --magenta: 340 55% 65%;
-    --magenta-dim: 340 55% 65% / 0.08;
-    --purple: 265 50% 70%;
-    --purple-mid: 265 55% 60%;
-    --gold: 38 70% 65%;
-    --gold-dim: 38 70% 65% / 0.06;
-    --amber: 38 70% 65%;
-    --amber-dim: 38 70% 65% / 0.08;
-    --amber-glow: 38 70% 65% / 0.20;
+    --cyan: 220 25% 72%;
+    --cyan-dim: 220 25% 72% / 0.08;
+    --cyan-glow: 220 25% 72% / 0.20;
+    --magenta: 12 45% 68%;
+    --magenta-dim: 12 45% 68% / 0.08;
+    --purple: 280 20% 72%;
+    --purple-mid: 280 25% 60%;
+    --gold: 38 55% 65%;
+    --gold-dim: 38 55% 65% / 0.06;
+    --amber: 38 55% 65%;
+    --amber-dim: 38 55% 65% / 0.08;
+    --amber-glow: 38 55% 65% / 0.20;
 
-    --white-60: 220 15% 93% / 0.55;
-    --white-30: 220 15% 93% / 0.25;
-    --white-10: 220 15% 93% / 0.08;
-    --border-bright: 220 15% 93% / 0.12;
+    --white-60: 40 20% 92% / 0.55;
+    --white-30: 40 20% 92% / 0.25;
+    --white-10: 40 20% 92% / 0.08;
+    --border-bright: 40 20% 92% / 0.12;
 
     /* ── Premium Typography Scale ── */
     --text-hero: clamp(4.5rem, 14vw + 0.5rem, 16rem);
@@ -115,11 +122,9 @@
     --font-heading: 'Manrope', system-ui, sans-serif;
     --font-body: 'DM Sans', system-ui, sans-serif;
     --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
-    --font-script: 'Cormorant', Georgia, serif;
-    --font-display-alt: 'Unbounded', system-ui, sans-serif;
 
-    /* ── Shadows — prismatic crystal glow ── */
-    --shadow-glow-coral: 0 0 60px hsl(15 65% 65% / 0.06), 0 0 160px hsl(210 100% 72% / 0.03);
+    /* ── Shadows — pearl luxe glow ── */
+    --shadow-glow-coral: 0 0 60px hsl(12 45% 68% / 0.06), 0 0 160px hsl(220 25% 72% / 0.03);
     --shadow-card: 0 2px 0 hsl(0 0% 0% / 0.2), 0 20px 50px hsl(0 0% 0% / 0.55);
 
     /* ── Transitions ── */
@@ -138,11 +143,11 @@
     --z-modal: 400;
     --z-cursor: 9999;
 
-    /* ── Gradients — prismatic crystal ── */
-    --gradient-text: linear-gradient(135deg, hsl(220 15% 95%) 0%, hsl(15 65% 65%) 40%, hsl(265 50% 70%) 70%, hsl(180 50% 60%) 100%);
+    /* ── Gradients — pearlescent luxe ── */
+    --gradient-text: linear-gradient(135deg, hsl(40 20% 95%) 0%, hsl(12 45% 68%) 40%, hsl(280 20% 72%) 70%, hsl(220 25% 72%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.025) 0%, transparent 100%);
-    --gradient-card-border: linear-gradient(135deg, hsl(15 65% 65% / 0.12) 0%, hsl(265 50% 70% / 0.06) 50%, hsl(180 50% 60% / 0.08) 100%);
-    --gradient-vignette: radial-gradient(ellipse at center, transparent 25%, hsl(230 32% 2% / 0.90) 100%);
+    --gradient-card-border: linear-gradient(135deg, hsl(12 45% 68% / 0.12) 0%, hsl(280 20% 72% / 0.06) 50%, hsl(220 25% 72% / 0.08) 100%);
+    --gradient-vignette: radial-gradient(ellipse at center, transparent 25%, hsl(228 25% 3% / 0.90) 100%);
     --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   }
 }
@@ -178,8 +183,8 @@
   }
 
   ::selection {
-    background: hsl(15 65% 65% / 0.20);
-    color: hsl(var(--cream));
+    background: hsl(12 45% 68% / 0.20);
+    color: hsl(var(--pearl));
   }
 }
 
@@ -198,21 +203,21 @@
     color: transparent;
   }
   .text-stroke-coral {
-    -webkit-text-stroke: 1.5px hsl(var(--coral));
+    -webkit-text-stroke: 1.5px hsl(var(--rose-gold));
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
   .text-stroke-sage {
-    -webkit-text-stroke: 1px hsl(var(--sage) / 0.4);
+    -webkit-text-stroke: 1px hsl(var(--platinum) / 0.4);
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
 
   .glass {
-    background: hsl(225 32% 6% / 0.70);
+    background: hsl(225 22% 6% / 0.70);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid hsl(220 15% 93% / 0.04);
+    border: 1px solid hsl(40 20% 92% / 0.04);
   }
 
   .gradient-border {
@@ -244,24 +249,25 @@
     font-family: var(--font-mono);
   }
 
+  /* Legacy aliases — redirect to display */
   .font-script {
-    font-family: var(--font-script);
+    font-family: var(--font-display);
   }
 
   .font-display-alt {
-    font-family: var(--font-display-alt);
+    font-family: var(--font-heading);
   }
 
   .deco-circle {
     border-radius: 50%;
-    border: 1px solid hsl(var(--coral) / 0.10);
+    border: 1px solid hsl(var(--rose-gold) / 0.10);
   }
 
   .section-num {
     font-family: var(--font-display);
     font-style: italic;
     line-height: 1;
-    color: hsl(var(--coral) / 0.04);
+    color: hsl(var(--rose-gold) / 0.04);
     user-select: none;
     pointer-events: none;
   }
@@ -276,27 +282,27 @@
     animation: clip-reveal-up 0.8s var(--ease-out-expo) forwards;
   }
 
-  /* Crystal shimmer on text */
+  /* Pearl shimmer on text */
   .shimmer-text {
     background: linear-gradient(
       120deg,
-      hsl(var(--cream)) 0%,
-      hsl(var(--cream)) 35%,
-      hsl(var(--coral)) 48%,
-      hsl(var(--lavender)) 52%,
-      hsl(var(--cream)) 65%,
-      hsl(var(--cream)) 100%
+      hsl(var(--pearl)) 0%,
+      hsl(var(--pearl)) 30%,
+      hsl(var(--rose-gold)) 45%,
+      hsl(var(--platinum)) 55%,
+      hsl(var(--pearl)) 70%,
+      hsl(var(--pearl)) 100%
     );
-    background-size: 300% 100%;
+    background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: shimmer-sweep 6s ease-in-out infinite;
+    animation: pearl-sheen 8s ease-in-out infinite;
   }
 
-  /* Crystal shimmer on stroke text */
+  /* Pearl shimmer on stroke text */
   .shimmer-stroke {
-    animation: shimmer-stroke-color 6s ease-in-out infinite;
+    animation: shimmer-stroke-color 8s ease-in-out infinite;
   }
 
   /* CTA shimmer glow */
@@ -311,14 +317,19 @@
     background: linear-gradient(
       105deg,
       transparent 30%,
-      hsl(var(--coral) / 0.08) 45%,
-      hsl(var(--lavender) / 0.06) 55%,
+      hsl(var(--rose-gold) / 0.06) 45%,
+      hsl(var(--platinum) / 0.04) 55%,
       transparent 70%
     );
     background-size: 250% 100%;
-    animation: shimmer-sweep 4s ease-in-out infinite;
+    animation: pearl-sheen 6s ease-in-out infinite;
     pointer-events: none;
     border-radius: inherit;
+  }
+
+  /* Pearl glow utility */
+  .pearl-glow {
+    box-shadow: 0 0 40px hsl(var(--rose-gold) / 0.06), 0 0 80px hsl(var(--platinum) / 0.03);
   }
 }
 
@@ -340,7 +351,7 @@
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(var(--coral) / 0.12); }
+::-webkit-scrollbar-thumb { background: hsl(var(--rose-gold) / 0.12); }
 
 /* ── Keyframes ── */
 @keyframes marquee-left {
@@ -411,15 +422,16 @@
   100% { background-position: 200% center; }
 }
 
-@keyframes shimmer-sweep {
+/* Pearl Sheen — pearlescent iridescence */
+@keyframes pearl-sheen {
   0%, 100% { background-position: 200% center; }
   50% { background-position: -200% center; }
 }
 
 @keyframes shimmer-stroke-color {
-  0%, 100% { -webkit-text-stroke-color: hsl(var(--coral)); }
-  33% { -webkit-text-stroke-color: hsl(var(--lavender)); }
-  66% { -webkit-text-stroke-color: hsl(var(--sage)); }
+  0%, 100% { -webkit-text-stroke-color: hsl(var(--rose-gold)); }
+  33% { -webkit-text-stroke-color: hsl(var(--platinum)); }
+  66% { -webkit-text-stroke-color: hsl(var(--rose-gold) / 0.6); }
 }
 
 /* ── Hero Grid — Multi-column Marquee ── */
@@ -460,16 +472,16 @@
 }
 
 .glass-btn {
-  background: hsl(var(--coral) / 0.04);
+  background: hsl(var(--rose-gold) / 0.04);
   backdrop-filter: blur(16px) saturate(150%);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
-  border: 1px solid hsl(var(--coral) / 0.12);
+  border: 1px solid hsl(var(--rose-gold) / 0.12);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-btn:hover {
-  background: hsl(var(--coral) / 0.08);
-  border-color: hsl(var(--coral) / 0.25);
-  box-shadow: 0 0 30px hsl(var(--coral) / 0.08), 0 0 60px hsl(var(--lavender) / 0.04);
+  background: hsl(var(--rose-gold) / 0.08);
+  border-color: hsl(var(--rose-gold) / 0.25);
+  box-shadow: 0 0 30px hsl(var(--rose-gold) / 0.08), 0 0 60px hsl(var(--platinum) / 0.04);
 }
 
 .gradient-border-spin {
@@ -484,10 +496,10 @@
   padding: 1px;
   background: conic-gradient(
     from var(--border-angle),
-    hsl(var(--coral) / 0.5),
-    hsl(var(--lavender) / 0.3),
-    hsl(var(--sage) / 0.2),
-    hsl(var(--coral) / 0.5)
+    hsl(var(--rose-gold) / 0.5),
+    hsl(var(--platinum) / 0.3),
+    hsl(var(--rose-gold) / 0.2),
+    hsl(var(--rose-gold) / 0.5)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -516,7 +528,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    hsl(var(--cream) / 0.06),
+    hsl(var(--pearl) / 0.06),
     transparent
   );
   transform: translateX(-100%) skewX(-15deg);
@@ -540,7 +552,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid hsl(var(--sage) / 0.2);
+  border: 1px solid hsl(var(--platinum) / 0.2);
   pointer-events: none;
 }
 .showreel-ring:hover::before {

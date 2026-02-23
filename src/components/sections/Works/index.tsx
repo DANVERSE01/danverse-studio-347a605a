@@ -4,17 +4,26 @@ import { useInView } from '@/hooks/useInView';
 import { useDanverseStore } from '@/store/useDanverseStore';
 import { forwardRef, useState } from 'react';
 
+import imgNeonPulse from '@/assets/works/neon-pulse.jpg';
+import imgMetamorphosis from '@/assets/works/metamorphosis.jpg';
+import imgNeuralInterface from '@/assets/works/neural-interface.jpg';
+import imgVoidArchitecture from '@/assets/works/void-architecture.jpg';
+import imgSynthCulture from '@/assets/works/synth-culture.jpg';
+import imgQuantumBrand from '@/assets/works/quantum-brand.jpg';
+import imgGenesisEngine from '@/assets/works/genesis-engine.jpg';
+import imgPrismReality from '@/assets/works/prism-reality.jpg';
+
 const filters = ['all', 'ads', 'branding', 'web', '3d', 'ai'] as const;
 
 const works = [
-  { id: '1', title: 'Neon Pulse', client: 'Vodafone', category: 'ads' as const, year: 2024, role: 'Campaign Direction & Post-Production' },
-  { id: '2', title: 'Metamorphosis', client: 'Samsung', category: 'branding' as const, year: 2024, role: 'Visual Identity & Brand System' },
-  { id: '3', title: 'Neural Interface', client: 'IBM', category: 'web' as const, year: 2024, role: 'Product Design & Development' },
-  { id: '4', title: 'Void Architecture', client: 'Grand Hyatt', category: '3d' as const, year: 2024, role: 'Spatial Design & CGI' },
-  { id: '5', title: 'Synth Culture', client: 'Netflix', category: 'ads' as const, year: 2023, role: 'Campaign & Motion Design' },
-  { id: '6', title: 'Quantum Brand', client: 'Mastercard', category: 'branding' as const, year: 2023, role: 'Brand Strategy & Design System' },
-  { id: '7', title: 'Genesis Engine', client: 'Toyota', category: 'ai' as const, year: 2024, role: 'AI Integration & Creative Tech' },
-  { id: '8', title: 'Prism Reality', client: 'Swarovski', category: '3d' as const, year: 2023, role: 'Immersive Experience Design' },
+  { id: '1', title: 'Neon Pulse', client: 'Vodafone', category: 'ads' as const, year: 2024, role: 'Campaign Direction & Post-Production', image: imgNeonPulse },
+  { id: '2', title: 'Metamorphosis', client: 'Samsung', category: 'branding' as const, year: 2024, role: 'Visual Identity & Brand System', image: imgMetamorphosis },
+  { id: '3', title: 'Neural Interface', client: 'IBM', category: 'web' as const, year: 2024, role: 'Product Design & Development', image: imgNeuralInterface },
+  { id: '4', title: 'Void Architecture', client: 'Grand Hyatt', category: '3d' as const, year: 2024, role: 'Spatial Design & CGI', image: imgVoidArchitecture },
+  { id: '5', title: 'Synth Culture', client: 'Netflix', category: 'ads' as const, year: 2023, role: 'Campaign & Motion Design', image: imgSynthCulture },
+  { id: '6', title: 'Quantum Brand', client: 'Mastercard', category: 'branding' as const, year: 2023, role: 'Brand Strategy & Design System', image: imgQuantumBrand },
+  { id: '7', title: 'Genesis Engine', client: 'Toyota', category: 'ai' as const, year: 2024, role: 'AI Integration & Creative Tech', image: imgGenesisEngine },
+  { id: '8', title: 'Prism Reality', client: 'Swarovski', category: '3d' as const, year: 2023, role: 'Immersive Experience Design', image: imgPrismReality },
 ];
 
 const accentColors = ['coral', 'sage', 'lavender', 'coral', 'sage', 'lavender', 'coral', 'sage'];
@@ -25,6 +34,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
   const setActiveFilter = useDanverseStore((s) => s.setActiveFilter);
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [mouseY, setMouseY] = useState(0);
 
   const filtered = activeFilter === 'all' ? works : works.filter((w) => w.category === activeFilter);
 
@@ -50,7 +60,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
           </motion.div>
 
           <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-            {/* Headline with outlined text */}
             <h2 className="flex items-baseline gap-3 md:gap-5 flex-wrap">
               <span className="font-display italic tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
                 Selected
@@ -80,7 +89,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
         </motion.div>
       </div>
 
-      {/* Projects — full-width editorial list with dramatic hover */}
+      {/* Projects — full-width editorial list with image reveal on hover */}
       <div className="w-full">
         <AnimatePresence mode="popLayout">
           {filtered.map((work, i) => {
@@ -98,6 +107,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                 style={{ borderColor: 'hsl(var(--white-10))' }}
                 onMouseEnter={() => { setHoveredId(work.id); setCursorVariant('hover'); }}
                 onMouseLeave={() => { setHoveredId(null); setCursorVariant('default'); }}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  setMouseY(e.clientY - rect.top);
+                }}
               >
                 {/* Background reveal on hover */}
                 <motion.div
@@ -107,6 +120,32 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   animate={{ opacity: isHovered ? 1 : 0 }}
                   transition={{ duration: 0.4 }}
                 />
+
+                {/* Floating image thumbnail — appears on hover */}
+                <motion.div
+                  className="absolute right-[5%] md:right-[15%] pointer-events-none z-10 overflow-hidden hidden md:block"
+                  style={{
+                    width: 280,
+                    height: 180,
+                    top: mouseY - 90,
+                  }}
+                  initial={false}
+                  animate={{
+                    opacity: isHovered ? 1 : 0,
+                    scale: isHovered ? 1 : 0.85,
+                    rotate: isHovered ? -2 : 0,
+                  }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <img
+                    src={work.image}
+                    alt={work.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  {/* Overlay tint */}
+                  <div className="absolute inset-0" style={{ background: `hsl(var(--${accent}) / 0.1)`, mixBlendMode: 'multiply' }} />
+                </motion.div>
 
                 <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_auto] gap-4 md:gap-12 items-center">
                   {/* Large number */}
@@ -120,7 +159,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                     {String(i + 1).padStart(2, '0')}
                   </span>
 
-                  {/* Title — massive on hover */}
+                  {/* Title */}
                   <div className="overflow-hidden">
                     <motion.h3
                       className="font-heading font-bold uppercase tracking-[-0.03em] transition-colors duration-500"
@@ -133,7 +172,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                     >
                       {work.title}
                     </motion.h3>
-                    {/* Role — reveals on hover */}
                     <motion.p
                       className="font-body text-[11px] mt-1"
                       style={{ color: 'hsl(var(--white-30))' }}
@@ -183,7 +221,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
             );
           })}
         </AnimatePresence>
-        {/* Final border */}
         <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
       </div>
 

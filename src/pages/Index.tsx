@@ -1,13 +1,14 @@
-import { useRef, useCallback } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import CustomCursor from '@/components/layout/CustomCursor';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import SmoothScroll from '@/components/layout/SmoothScroll';
 import Hero from '@/components/sections/Hero';
 import Manifesto from '@/components/sections/Manifesto';
 import Craft from '@/components/sections/Craft';
 import Works from '@/components/sections/Works';
+import WorkModal from '@/components/sections/Works/WorkModal';
 import Process from '@/components/sections/Process';
 import Clients from '@/components/sections/Clients';
 import Studio from '@/components/sections/Studio';
@@ -30,19 +31,23 @@ const Index = () => {
       <CustomCursor />
       <Navbar />
 
-      <main>
-        <Hero />
-        <Manifesto />
-        <Craft />
-        <Works />
-        <Process />
-        <Clients />
-        <Studio />
-        <Journal />
-        <FinalCTA />
-      </main>
+      <SmoothScroll>
+        <main>
+          <Hero />
+          <Manifesto />
+          <Craft />
+          <Works />
+          <Process />
+          <Clients />
+          <Studio />
+          <Journal />
+          <FinalCTA />
+        </main>
 
-      <Footer />
+        <Footer />
+      </SmoothScroll>
+
+      <WorkModal />
     </HelmetProvider>
   );
 };

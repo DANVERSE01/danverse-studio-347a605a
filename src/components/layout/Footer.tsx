@@ -5,6 +5,14 @@ import danverseLogo from '@/assets/danverse-logo.webp';
 export default function Footer() {
   const { ref, isInView } = useInView(0.1);
 
+  const nav = [
+    { label: 'Work', href: '#works' },
+    { label: 'Services', href: '#craft' },
+    { label: 'Process', href: '#process' },
+    { label: 'Studio', href: '#studio' },
+    { label: 'Journal', href: '#journal' },
+  ];
+
   return (
     <footer className="relative pt-32 pb-8 px-6 md:px-16 overflow-hidden">
       <div className="absolute top-12 left-0 w-full overflow-hidden pointer-events-none select-none" aria-hidden="true">
@@ -28,8 +36,16 @@ export default function Footer() {
           <div>
             <h4 className="font-mono-brand text-[9px] uppercase tracking-[0.25em] mb-5" style={{ color: 'hsl(var(--white-30))' }}>Navigate</h4>
             <ul className="space-y-3">
-              {['Work', 'Services', 'Process', 'Studio', 'Journal'].map((l) => (
-                <li key={l}><a href={`#${l.toLowerCase()}`} className="text-[12px] transition-colors duration-300 hover:text-foreground" style={{ color: 'hsl(var(--white-30))' }}>{l}</a></li>
+              {nav.map((n) => (
+                <li key={n.href}>
+                  <a
+                    href={n.href}
+                    className="text-[12px] transition-colors duration-300 hover:text-foreground"
+                    style={{ color: 'hsl(var(--white-30))' }}
+                  >
+                    {n.label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>

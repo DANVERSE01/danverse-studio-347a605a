@@ -16,11 +16,12 @@ export function useLenis() {
 
     lenisRef.current = lenis;
 
+    let rafId = 0;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // Support anchor scrolling with Lenis
     const handleClick = (e: MouseEvent) => {
@@ -41,6 +42,7 @@ export function useLenis() {
 
     return () => {
       document.removeEventListener('click', handleClick, { capture: true });
+      if (rafId) cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);

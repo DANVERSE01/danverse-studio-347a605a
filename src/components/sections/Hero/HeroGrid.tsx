@@ -150,17 +150,17 @@ export default function HeroGrid() {
       <div
         className="absolute hero-grid-perspective"
         style={{
-          top: '-15%',
-          left: '-10%',
-          right: '-10%',
-          bottom: '-15%',
-          perspective: '1200px',
+          top: '-20%',
+          left: '-12%',
+          right: '-12%',
+          bottom: '-20%',
+          perspective: '900px',
         }}
       >
         <div
           className="w-full h-full flex gap-3 md:gap-4 px-2"
           style={{
-            transform: 'rotateX(8deg) rotateZ(-3deg) scale(1.15)',
+            transform: 'rotateX(12deg) rotateY(5deg) rotateZ(-5deg) scale(1.25)',
             transformStyle: 'preserve-3d',
           }}
         >

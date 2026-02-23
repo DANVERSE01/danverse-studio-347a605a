@@ -5,13 +5,13 @@ import { useDanverseStore } from '@/store/useDanverseStore';
 import { forwardRef } from 'react';
 
 const services = [
-  { num: '01', name: 'Cinematic Advertising', tagline: 'Spots that live in culture', tags: ['Film', 'Digital', 'TV'] },
-  { num: '02', name: 'AI Brand Systems', tagline: 'Identities that scale with AI', tags: ['Identity', 'AI', 'Systems'] },
-  { num: '03', name: '3D & Immersive', tagline: 'Worlds you inhabit', tags: ['WebGL', 'AR', 'VR'] },
-  { num: '04', name: 'Digital Product Design', tagline: 'Interfaces that feel inevitable', tags: ['UX', 'UI', 'Dev'] },
-  { num: '05', name: 'Motion Systems', tagline: 'Movement as language', tags: ['Motion', 'Brand', 'Systems'] },
-  { num: '06', name: 'UGC → Premium Pipelines', tagline: 'Authentic at scale', tags: ['UGC', 'Content', 'Scale'] },
-  { num: '07', name: 'AI Content OS', tagline: 'Create once, deploy everywhere', tags: ['AI', 'Automation', 'CMS'] },
+  { num: '01', name: 'Cinematic Advertising', tagline: 'Spots that live in culture, not just feeds.', tags: ['Film', 'Digital', 'TV'] },
+  { num: '02', name: 'AI Brand Systems', tagline: 'Identities that learn, adapt, and scale.', tags: ['Identity', 'AI', 'Systems'] },
+  { num: '03', name: '3D & Immersive', tagline: 'Worlds you don\'t visit — you inhabit.', tags: ['WebGL', 'AR', 'VR'] },
+  { num: '04', name: 'Digital Product', tagline: 'Interfaces that feel inevitable.', tags: ['UX', 'UI', 'Dev'] },
+  { num: '05', name: 'Motion Systems', tagline: 'Movement as a language.', tags: ['Motion', 'Brand'] },
+  { num: '06', name: 'UGC Pipelines', tagline: 'Authentic content at scale.', tags: ['UGC', 'Content'] },
+  { num: '07', name: 'AI Content OS', tagline: 'Create once. Deploy everywhere.', tags: ['AI', 'Automation'] },
 ];
 
 const Craft = forwardRef<HTMLElement>((_, ref) => {
@@ -19,100 +19,81 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
 
   return (
-    <section ref={ref} id="craft" className="py-24 md:py-32 overflow-hidden">
-      <div className="px-6 md:px-12 lg:px-24 mb-12">
+    <section ref={ref} id="craft" className="py-32 md:py-40">
+      <div className="px-6 md:px-12 lg:px-16 mb-16">
         <motion.div
           ref={inViewRef}
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <motion.span
-            variants={fadeUp}
-            className="font-mono-brand text-xs tracking-[0.2em] uppercase block mb-4"
-            style={{ color: 'hsl(var(--cyan))' }}
-          >
-            / 03 THE CRAFT
-          </motion.span>
+          <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
+            <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+              Services
+            </span>
+            <div className="flex-1 h-px" style={{ background: 'hsl(var(--amber) / 0.15)' }} />
+          </motion.div>
           <motion.h2
             variants={fadeUp}
-            className="font-display font-black tracking-tight"
-            style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', color: 'hsl(var(--foreground))' }}
+            className="font-display font-normal italic tracking-tight"
+            style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'hsl(var(--foreground))' }}
           >
-            What We Build
+            What we build
           </motion.h2>
         </motion.div>
       </div>
 
-      {/* Horizontal scroll on desktop */}
-      <div
-        className="flex gap-6 overflow-x-auto pb-8 px-6 md:px-12 lg:px-24 snap-x snap-mandatory scrollbar-none"
-        style={{ scrollbarWidth: 'none' }}
-      >
-        {services.map((service) => (
+      {/* Services list — editorial style */}
+      <div className="px-6 md:px-12 lg:px-16">
+        {services.map((service, i) => (
           <motion.div
             key={service.num}
-            className="flex-shrink-0 w-[320px] md:w-[380px] h-[480px] md:h-[520px] rounded-2xl overflow-hidden gradient-border snap-start"
-            style={{
-              backgroundColor: 'hsl(var(--surface))',
-              border: '1px solid hsl(var(--border))',
-              boxShadow: 'var(--shadow-card)',
-            }}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
+            className="group border-t py-8 md:py-10 grid grid-cols-1 md:grid-cols-[80px_1fr_1fr] gap-4 md:gap-8 items-start"
+            style={{ borderColor: 'hsl(var(--white-10))' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5, delay: i * 0.05 }}
             onMouseEnter={() => setCursorVariant('hover')}
             onMouseLeave={() => setCursorVariant('default')}
           >
-            {/* Animated gradient area */}
-            <div className="h-[60%] relative overflow-hidden">
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `linear-gradient(135deg, hsl(var(--cyan)/0.08), hsl(var(--magenta)/0.06), hsl(var(--purple)/0.08))`,
-                }}
-              />
-              <div
-                className="absolute inset-0 opacity-30 animate-blob-1"
-                style={{
-                  background: `radial-gradient(circle at 30% 50%, hsl(var(--cyan)/0.2), transparent 60%)`,
-                }}
-              />
-              <div
-                className="absolute inset-0 opacity-20 animate-blob-2"
-                style={{
-                  background: `radial-gradient(circle at 70% 40%, hsl(var(--magenta)/0.2), transparent 60%)`,
-                }}
-              />
-            </div>
-
-            {/* Info panel */}
-            <div className="h-[40%] p-6 glass relative">
-              <span
-                className="absolute top-4 right-6 font-mono-brand text-3xl font-bold"
-                style={{ color: 'hsl(var(--cyan-dim))' }}
+            <span
+              className="font-mono-brand text-xs tabular-nums"
+              style={{ color: 'hsl(var(--amber) / 0.4)' }}
+            >
+              {service.num}
+            </span>
+            <div>
+              <h3
+                className="font-heading font-semibold text-xl md:text-2xl tracking-tight transition-colors duration-500 group-hover:text-amber"
+                style={{ color: 'hsl(var(--foreground))' }}
               >
-                {service.num}
-              </span>
-              <h3 className="font-heading font-bold text-xl mb-2" style={{ color: 'hsl(var(--foreground))' }}>
                 {service.name}
               </h3>
-              <p className="text-sm mb-4" style={{ color: 'hsl(var(--white-60))' }}>
-                {service.tagline}
-              </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex gap-2 mt-3">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="glass rounded-full px-3 py-1 text-xs font-heading"
-                    style={{ color: 'hsl(var(--white-60))' }}
+                    className="text-[10px] font-mono-brand uppercase tracking-wider px-2 py-0.5 rounded-sm"
+                    style={{
+                      color: 'hsl(var(--white-30))',
+                      border: '1px solid hsl(var(--white-10))',
+                    }}
                   >
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
+            <p
+              className="font-body text-sm leading-relaxed md:text-right"
+              style={{ color: 'hsl(var(--white-30))' }}
+            >
+              {service.tagline}
+            </p>
           </motion.div>
         ))}
+        <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
       </div>
     </section>
   );

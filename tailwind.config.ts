@@ -17,7 +17,6 @@ export default {
         display: ['var(--font-display)'],
         heading: ['var(--font-heading)'],
         body: ['var(--font-body)'],
-        arabic: ['var(--font-arabic)'],
         'mono-brand': ['var(--font-mono)'],
       },
       colors: {
@@ -64,12 +63,27 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // DANVERSE palette
+        // DANVERSE warm palette
         void: "hsl(var(--void))",
         abyss: "hsl(var(--abyss))",
         deep: "hsl(var(--deep))",
         surface: "hsl(var(--surface))",
         "surface-raised": "hsl(var(--surface-raised))",
+        amber: {
+          DEFAULT: "hsl(var(--amber))",
+          dim: "hsl(var(--amber-dim))",
+          glow: "hsl(var(--amber-glow))",
+        },
+        burnt: {
+          DEFAULT: "hsl(var(--burnt))",
+          dim: "hsl(var(--burnt-dim))",
+        },
+        cream: {
+          DEFAULT: "hsl(var(--cream))",
+          dim: "hsl(var(--cream-dim))",
+        },
+        stone: "hsl(var(--stone))",
+        // Legacy aliases
         cyan: {
           DEFAULT: "hsl(var(--cyan))",
           dim: "hsl(var(--cyan-dim))",
@@ -106,14 +120,14 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "marquee-left": "marquee-left 40s linear infinite",
-        "marquee-right": "marquee-right 35s linear infinite",
-        "scroll-indicator": "scroll-indicator 1.5s ease-in-out infinite",
-        "blob-1": "blob-move-1 8s ease-in-out infinite",
-        "blob-2": "blob-move-2 10s ease-in-out infinite",
-        "blob-3": "blob-move-3 12s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "radar-spin": "radar-spin 3s linear infinite",
+        "marquee-left": "marquee-left 50s linear infinite",
+        "marquee-right": "marquee-right 45s linear infinite",
+        "scroll-indicator": "scroll-indicator 2s ease-in-out infinite",
+        "float-1": "float-slow 12s ease-in-out infinite",
+        "float-2": "float-slow-2 15s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "radar-spin": "radar-spin 4s linear infinite",
+        shimmer: "shimmer 2s ease-in-out infinite",
       },
     },
   },

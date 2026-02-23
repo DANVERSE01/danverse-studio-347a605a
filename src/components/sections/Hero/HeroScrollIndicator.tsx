@@ -6,25 +6,26 @@ export default function HeroScrollIndicator() {
 
   return (
     <motion.div
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
       style={{ opacity }}
     >
       <span
-        className="font-mono-brand text-[10px] tracking-[0.3em] uppercase"
+        className="font-mono-brand text-[9px] tracking-[0.3em] uppercase"
         style={{ color: 'hsl(var(--white-30))' }}
       >
-        SCROLL
+        Scroll
       </span>
-      <svg
-        width="16"
-        height="40"
-        viewBox="0 0 16 40"
-        fill="none"
-        className="animate-scroll-indicator"
-      >
-        <line x1="8" y1="0" x2="8" y2="32" stroke="hsl(var(--white-30))" strokeWidth="1" />
-        <path d="M4 28l4 4 4-4" stroke="hsl(var(--white-30))" strokeWidth="1" strokeLinecap="round" />
-      </svg>
+      <div className="w-px h-8 relative overflow-hidden" style={{ background: 'hsl(var(--white-10))' }}>
+        <motion.div
+          className="w-full absolute top-0"
+          style={{
+            height: '50%',
+            background: 'hsl(var(--amber) / 0.5)',
+          }}
+          animate={{ y: ['0%', '200%'] }}
+          transition={{ duration: 1.5, ease: 'easeInOut', repeat: Infinity }}
+        />
+      </div>
     </motion.div>
   );
 }

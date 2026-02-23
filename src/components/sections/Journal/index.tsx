@@ -8,23 +8,23 @@ const articles = [
   {
     title: 'The Death of the 30-Second Spot',
     excerpt: 'Why the future of advertising is non-linear, AI-driven, and built for feeds — not living rooms.',
-    category: 'STRATEGY',
+    category: 'Strategy',
     readTime: '8 min',
-    date: '2024-12',
+    date: 'Dec 2024',
   },
   {
     title: 'Cairo Is the New Berlin for Creative Tech',
     excerpt: 'How the Middle East is redefining the global creative landscape with AI-first studios.',
-    category: 'CULTURE',
+    category: 'Culture',
     readTime: '6 min',
-    date: '2024-11',
+    date: 'Nov 2024',
   },
   {
     title: 'Building an AI Content OS in 90 Days',
     excerpt: 'We replaced 3 agencies with one system. Here\'s the architecture, the failures, and the numbers.',
-    category: 'AI',
+    category: 'Engineering',
     readTime: '12 min',
-    date: '2024-10',
+    date: 'Oct 2024',
   },
 ];
 
@@ -33,61 +33,64 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
 
   return (
-    <section ref={ref} id="journal" className="py-24 md:py-32 px-6 md:px-12 lg:px-24">
-      <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="mb-12">
-        <motion.span variants={fadeUp} className="font-mono-brand text-xs tracking-[0.2em] uppercase block mb-4" style={{ color: 'hsl(var(--cyan))' }}>
-          / 08 JOURNAL
-        </motion.span>
-        <motion.h2 variants={fadeUp} className="font-display font-black tracking-tight" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', color: 'hsl(var(--foreground))' }}>
-          Thinking Made Visible
+    <section ref={ref} id="journal" className="py-32 md:py-40 px-6 md:px-12 lg:px-16">
+      <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="mb-16">
+        <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
+          <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+            Journal
+          </span>
+          <div className="flex-1 h-px" style={{ background: 'hsl(var(--amber) / 0.15)' }} />
+        </motion.div>
+        <motion.h2 variants={fadeUp} className="font-display font-normal italic tracking-tight" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'hsl(var(--foreground))' }}>
+          Thinking, visible
         </motion.h2>
       </motion.div>
 
-      <div className="space-y-8">
+      <div className="space-y-0">
         {articles.map((article, i) => (
           <motion.article
             key={article.title}
-            className={`grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 rounded-2xl overflow-hidden group ${i === 0 ? 'md:grid-cols-[1fr_2fr]' : ''}`}
-            style={{
-              backgroundColor: 'hsl(var(--surface))',
-              border: '1px solid hsl(var(--border))',
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
+            className="group border-t py-10 md:py-14 grid grid-cols-1 md:grid-cols-[1fr_2fr_auto] gap-4 md:gap-12 items-start"
+            style={{ borderColor: 'hsl(var(--white-10))' }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
             onMouseEnter={() => setCursorVariant('hover')}
             onMouseLeave={() => setCursorVariant('default')}
           >
-            {/* Image placeholder */}
-            <div
-              className={`relative h-64 md:h-80 overflow-hidden ${i === 0 ? 'md:order-2' : ''}`}
-              style={{
-                background: `linear-gradient(${135 + i * 45}deg, hsl(var(--deep)), hsl(var(--surface)), hsl(var(--cyan)/0.05))`,
-              }}
-            >
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]" />
+            {/* Meta */}
+            <div className="flex md:flex-col gap-3 md:gap-2">
+              <span className="font-mono-brand text-[10px] uppercase tracking-wider" style={{ color: 'hsl(var(--amber))' }}>
+                {article.category}
+              </span>
+              <span className="font-mono-brand text-[10px]" style={{ color: 'hsl(var(--white-30))' }}>
+                {article.readTime}
+              </span>
+              <span className="font-mono-brand text-[10px]" style={{ color: 'hsl(var(--white-30))' }}>
+                {article.date}
+              </span>
             </div>
 
-            {/* Text */}
-            <div className={`p-8 flex flex-col justify-center ${i === 0 ? 'md:order-1' : ''}`}>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="glass rounded-full px-3 py-1 text-xs font-heading" style={{ color: 'hsl(var(--cyan))' }}>
-                  {article.category}
-                </span>
-                <span className="text-xs" style={{ color: 'hsl(var(--white-30))' }}>
-                  {article.readTime} · {article.date}
-                </span>
-              </div>
-              <h3 className="font-display font-bold text-xl md:text-2xl mb-3" style={{ color: 'hsl(var(--foreground))' }}>
+            {/* Content */}
+            <div>
+              <h3 className="font-heading font-semibold text-xl md:text-2xl tracking-tight mb-2 transition-colors duration-500 group-hover:text-amber" style={{ color: 'hsl(var(--foreground))' }}>
                 {article.title}
               </h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'hsl(var(--white-60))' }}>
+              <p className="text-sm leading-relaxed max-w-lg" style={{ color: 'hsl(var(--white-30))' }}>
                 {article.excerpt}
               </p>
             </div>
+
+            {/* Arrow */}
+            <div className="hidden md:flex items-center self-center opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 15L15 5M15 5H8M15 5v7" stroke="hsl(var(--amber))" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
           </motion.article>
         ))}
+        <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
       </div>
     </section>
   );

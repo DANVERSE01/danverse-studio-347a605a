@@ -1,80 +1,31 @@
 export default function WebGLFallback() {
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      {/* Rotating conic mesh gradient */}
+      {/* Warm ambient orb */}
       <div
-        className="absolute inset-[-50%] animate-[mesh-rotate_20s_linear_infinite]"
+        className="absolute w-[900px] h-[900px] rounded-full animate-float-1"
         style={{
-          background:
-            'conic-gradient(from 0deg at 50% 50%, hsl(var(--cyan)) 0deg, hsl(var(--purple)) 120deg, hsl(var(--magenta)) 240deg, hsl(var(--cyan)) 360deg)',
-          opacity: 0.12,
-          filter: 'blur(80px)',
+          background: 'radial-gradient(circle, hsl(var(--amber) / 0.08) 0%, transparent 70%)',
+          top: '-20%',
+          right: '-10%',
         }}
       />
-
-      {/* Radial pulse layers */}
       <div
-        className="absolute w-[800px] h-[800px] rounded-full animate-[mesh-pulse-1_8s_ease-in-out_infinite]"
+        className="absolute w-[600px] h-[600px] rounded-full animate-float-2"
         style={{
-          background:
-            'radial-gradient(circle, hsl(var(--cyan) / 0.4) 0%, hsl(var(--cyan) / 0) 70%)',
-          top: '0%',
+          background: 'radial-gradient(circle, hsl(var(--burnt) / 0.06) 0%, transparent 70%)',
+          bottom: '-10%',
           left: '10%',
         }}
       />
+      {/* Subtle horizontal line accents */}
       <div
-        className="absolute w-[700px] h-[700px] rounded-full animate-[mesh-pulse-2_10s_ease-in-out_infinite]"
-        style={{
-          background:
-            'radial-gradient(circle, hsl(var(--magenta) / 0.3) 0%, hsl(var(--magenta) / 0) 70%)',
-          top: '20%',
-          right: '-5%',
-        }}
+        className="absolute top-1/3 left-0 right-0 h-px opacity-[0.06]"
+        style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--amber)), transparent)' }}
       />
       <div
-        className="absolute w-[600px] h-[600px] rounded-full animate-[mesh-pulse-3_12s_ease-in-out_infinite]"
-        style={{
-          background:
-            'radial-gradient(circle, hsl(var(--purple) / 0.35) 0%, hsl(var(--purple) / 0) 70%)',
-          bottom: '-10%',
-          left: '30%',
-        }}
-      />
-
-      {/* Traveling light streak */}
-      <div
-        className="absolute w-[200%] h-[1px] animate-[light-streak_6s_ease-in-out_infinite]"
-        style={{
-          background:
-            'linear-gradient(90deg, transparent 0%, hsl(var(--cyan) / 0.6) 30%, hsl(var(--magenta) / 0.6) 70%, transparent 100%)',
-          top: '40%',
-          left: '-50%',
-          transform: 'rotate(-15deg)',
-          filter: 'blur(2px)',
-          opacity: 0.4,
-        }}
-      />
-      <div
-        className="absolute w-[200%] h-[1px] animate-[light-streak-2_8s_ease-in-out_infinite_2s]"
-        style={{
-          background:
-            'linear-gradient(90deg, transparent 0%, hsl(var(--purple) / 0.5) 40%, hsl(var(--cyan) / 0.5) 60%, transparent 100%)',
-          top: '65%',
-          left: '-50%',
-          transform: 'rotate(10deg)',
-          filter: 'blur(3px)',
-          opacity: 0.3,
-        }}
-      />
-
-      {/* Fine grid overlay for depth */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            'linear-gradient(hsl(var(--cyan) / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--cyan) / 0.3) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
+        className="absolute top-2/3 left-0 right-0 h-px opacity-[0.04]"
+        style={{ background: 'linear-gradient(90deg, transparent, hsl(var(--cream)), transparent)' }}
       />
     </div>
   );

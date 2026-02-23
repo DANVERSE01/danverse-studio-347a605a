@@ -2,7 +2,6 @@ import { forwardRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/hooks/useMousePosition';
 import { useInView } from '@/hooks/useInView';
-import { fadeUp } from '@/lib/animations';
 
 const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
   const mouse = useMousePosition();
@@ -11,129 +10,157 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section ref={ref} id="contact" className="relative min-h-screen flex flex-col items-center justify-center py-24 px-6 overflow-hidden">
-      {/* Animated gradient bg */}
+    <section ref={ref} id="contact" className="relative min-h-screen flex flex-col items-center justify-center py-32 px-6 overflow-hidden">
+      {/* Warm ambient background */}
       <div
-        className="absolute inset-0 opacity-15"
+        className="absolute inset-0"
         style={{
-          background: `conic-gradient(from 0deg at 50% 50%, hsl(var(--cyan)), hsl(var(--purple)), hsl(var(--magenta)), hsl(var(--cyan)))`,
-          filter: 'blur(80px)',
-          animation: 'gradient-rotate 8s linear infinite',
+          background: 'radial-gradient(ellipse at 50% 30%, hsl(var(--amber) / 0.06) 0%, transparent 60%)',
         }}
         aria-hidden="true"
       />
 
       {/* Mouse glow */}
       <div
-        className="absolute pointer-events-none"
+        className="absolute pointer-events-none transition-all duration-150"
         style={{
-          width: 800,
-          height: 800,
+          width: 600,
+          height: 600,
           borderRadius: '50%',
-          background: `radial-gradient(circle, hsl(var(--cyan)/0.08), transparent 60%)`,
-          left: mouse.x - 400,
-          top: mouse.y - 400,
-          transition: 'left 100ms, top 100ms',
+          background: 'radial-gradient(circle, hsl(var(--amber) / 0.04), transparent 60%)',
+          left: mouse.x - 300,
+          top: mouse.y - 300,
         }}
         aria-hidden="true"
       />
 
-      <div className="relative z-10 text-center mb-16" ref={inViewRef}>
-        <motion.h2
-          className="font-display font-black tracking-tight"
-          style={{ fontSize: 'var(--text-display)', color: 'hsl(var(--foreground))' }}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+      <div className="relative z-10 text-center mb-20" ref={inViewRef}>
+        <motion.div
+          className="flex items-center justify-center gap-4 mb-8"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6 }}
         >
-          <span className="text-gradient">START A</span>
-          <br />
-          <span className="text-gradient">PROJECT</span>
+          <div className="w-12 h-px" style={{ background: 'hsl(var(--amber) / 0.3)' }} />
+          <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+            Let's talk
+          </span>
+          <div className="w-12 h-px" style={{ background: 'hsl(var(--amber) / 0.3)' }} />
+        </motion.div>
+
+        <motion.h2
+          className="font-display font-normal italic tracking-tight"
+          style={{ fontSize: 'clamp(3rem, 10vw, 9rem)', color: 'hsl(var(--foreground))' }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Start a project
         </motion.h2>
+        <motion.p
+          className="text-sm mt-4 max-w-md mx-auto"
+          style={{ color: 'hsl(var(--white-30))' }}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          Tell us about your vision. We respond within 24 hours.
+        </motion.p>
       </div>
 
       {/* Form */}
       <motion.div
-        className="relative z-10 w-full max-w-md glass rounded-2xl p-8"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
+        className="relative z-10 w-full max-w-lg"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
         {submitted ? (
-          <div className="text-center py-8">
-            <span className="text-4xl mb-4 block">🎉</span>
-            <h3 className="font-display font-bold text-xl mb-2" style={{ color: 'hsl(var(--foreground))' }}>
-              Message sent!
+          <div className="text-center py-12 border" style={{ borderColor: 'hsl(var(--white-10))' }}>
+            <h3 className="font-display italic text-2xl mb-2" style={{ color: 'hsl(var(--foreground))' }}>
+              Message received.
             </h3>
-            <p className="text-sm" style={{ color: 'hsl(var(--white-60))' }}>We'll be in touch within 24 hours.</p>
+            <p className="text-sm" style={{ color: 'hsl(var(--white-30))' }}>We'll be in touch shortly.</p>
           </div>
         ) : (
           <form
-            className="space-y-4"
+            className="space-y-6"
             onSubmit={(e) => {
               e.preventDefault();
               setSubmitted(true);
             }}
           >
             {[
-              { name: 'name', label: 'Name', type: 'text' },
-              { name: 'email', label: 'Email', type: 'email' },
+              { name: 'name', label: 'Name', type: 'text', placeholder: 'Your name' },
+              { name: 'email', label: 'Email', type: 'email', placeholder: 'your@email.com' },
             ].map((field) => (
               <div key={field.name}>
-                <label className="block text-xs font-heading uppercase tracking-wider mb-2" style={{ color: 'hsl(var(--white-60))' }}>
+                <label className="block font-mono-brand text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'hsl(var(--white-30))' }}>
                   {field.label}
                 </label>
                 <input
                   type={field.type}
                   required
-                  className="w-full bg-transparent border rounded-lg px-4 py-3 text-sm outline-none transition-colors duration-300 focus:border-cyan"
-                  style={{ borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }}
+                  placeholder={field.placeholder}
+                  className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-300 focus:border-amber placeholder:text-[hsl(var(--white-10))]"
+                  style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--foreground))' }}
                   value={formData[field.name as keyof typeof formData]}
                   onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
                 />
               </div>
             ))}
             <div>
-              <label className="block text-xs font-heading uppercase tracking-wider mb-2" style={{ color: 'hsl(var(--white-60))' }}>
+              <label className="block font-mono-brand text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'hsl(var(--white-30))' }}>
                 Project Type
               </label>
               <select
-                className="w-full bg-transparent border rounded-lg px-4 py-3 text-sm outline-none transition-colors duration-300 focus:border-cyan"
-                style={{ borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }}
+                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-300 focus:border-amber"
+                style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--foreground))' }}
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
               >
-                <option value="branding" style={{ background: 'hsl(var(--surface))' }}>Branding</option>
-                <option value="advertising" style={{ background: 'hsl(var(--surface))' }}>Advertising</option>
-                <option value="web" style={{ background: 'hsl(var(--surface))' }}>Web / Digital</option>
-                <option value="3d" style={{ background: 'hsl(var(--surface))' }}>3D / Immersive</option>
-                <option value="ai" style={{ background: 'hsl(var(--surface))' }}>AI Systems</option>
+                <option value="branding" style={{ background: 'hsl(var(--abyss))' }}>Branding</option>
+                <option value="advertising" style={{ background: 'hsl(var(--abyss))' }}>Advertising</option>
+                <option value="web" style={{ background: 'hsl(var(--abyss))' }}>Web / Digital</option>
+                <option value="3d" style={{ background: 'hsl(var(--abyss))' }}>3D / Immersive</option>
+                <option value="ai" style={{ background: 'hsl(var(--abyss))' }}>AI Systems</option>
               </select>
             </div>
             <div>
-              <label className="block text-xs font-heading uppercase tracking-wider mb-2" style={{ color: 'hsl(var(--white-60))' }}>
+              <label className="block font-mono-brand text-[10px] uppercase tracking-[0.2em] mb-3" style={{ color: 'hsl(var(--white-30))' }}>
                 Budget Range
               </label>
               <input
                 type="text"
                 placeholder="$10k — $50k"
-                className="w-full bg-transparent border rounded-lg px-4 py-3 text-sm outline-none transition-colors duration-300 focus:border-cyan placeholder:text-muted-foreground"
-                style={{ borderColor: 'hsl(var(--border))', color: 'hsl(var(--foreground))' }}
+                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-300 focus:border-amber placeholder:text-[hsl(var(--white-10))]"
+                style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--foreground))' }}
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
               />
             </div>
             <button
               type="submit"
-              className="w-full rounded-lg py-4 text-sm font-heading font-semibold uppercase tracking-wider transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--cyan)/0.3)]"
+              className="w-full py-5 text-xs font-mono-brand uppercase tracking-[0.2em] transition-all duration-500 border group flex items-center justify-center gap-3"
               style={{
-                background: 'hsl(var(--cyan)/0.1)',
-                border: '1px solid hsl(var(--cyan)/0.3)',
-                color: 'hsl(var(--cyan))',
+                borderColor: 'hsl(var(--amber) / 0.3)',
+                color: 'hsl(var(--amber))',
+                background: 'hsl(var(--amber) / 0.03)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'hsl(var(--amber) / 0.08)';
+                e.currentTarget.style.borderColor = 'hsl(var(--amber) / 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'hsl(var(--amber) / 0.03)';
+                e.currentTarget.style.borderColor = 'hsl(var(--amber) / 0.3)';
               }}
             >
-              Send Brief →
+              Send Brief
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
           </form>
         )}

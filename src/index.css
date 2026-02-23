@@ -421,3 +421,22 @@
   33% { -webkit-text-stroke-color: hsl(var(--lavender)); }
   66% { -webkit-text-stroke-color: hsl(var(--sage)); }
 }
+
+/* ── Hero Grid ── */
+@keyframes hero-grid-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes hero-grid-float {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.02) translate(0.5%, -0.5%); }
+}
+
+.hero-grid-scroll {
+  animation: hero-grid-scroll 55s linear infinite;
+}
+
+.hero-grid-item {
+  animation: hero-grid-float 8s ease-in-out infinite;
+}

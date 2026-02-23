@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { useDanverseStore } from '@/store/useDanverseStore';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
 import { staggerContainerFast, fadeUp } from '@/lib/animations';
+import danverseLogo from '@/assets/danverse-logo.webp';
 
 const navLinks = [
   { label: 'Work', href: '#works' },
@@ -54,10 +55,9 @@ export default function Navbar() {
           <a
             href="#hero"
             onClick={(e) => { e.preventDefault(); scrollTo('#hero'); }}
-            className="font-display italic text-lg tracking-tight"
-            style={{ color: 'hsl(var(--foreground))' }}
+            className="flex items-center gap-2"
           >
-            Danverse
+            <img src={danverseLogo} alt="Danverse" className="h-8 w-auto" />
           </a>
 
           <div className="hidden md:flex items-center gap-8">

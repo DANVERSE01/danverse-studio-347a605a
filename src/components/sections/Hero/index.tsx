@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { staggerContainer, heroWord } from '@/lib/animations';
 import MagneticButton from '@/components/ui/MagneticButton';
 import NeonBorder from '@/components/ui/NeonBorder';
-import WebGLFallback from './WebGLFallback';
+import HeroGrid from './HeroGrid';
 import HeroScrollIndicator from './HeroScrollIndicator';
 import { useDanverseStore } from '@/store/useDanverseStore';
 import { forwardRef } from 'react';
@@ -16,7 +16,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
       id="hero"
       className="relative min-h-[100svh] flex flex-col justify-between overflow-hidden"
     >
-      <WebGLFallback />
+      <HeroGrid />
 
       {/* Vignette */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--gradient-vignette)' }} />

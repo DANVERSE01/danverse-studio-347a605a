@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
+import danverseLogo from '@/assets/danverse-logo.webp';
 
 export default function Footer() {
   const { ref, isInView } = useInView(0.1);
@@ -16,7 +17,7 @@ export default function Footer() {
       <div ref={ref} className="relative z-10 max-w-[1400px] mx-auto">
         <div className="border-t py-16 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12" style={{ borderColor: 'hsl(var(--white-10))' }}>
           <div>
-            <span className="font-display italic text-lg block mb-4" style={{ color: 'hsl(var(--foreground))' }}>Danverse</span>
+            <img src={danverseLogo} alt="Danverse" className="h-10 w-auto mb-4" />
             <p className="text-[12px] leading-relaxed max-w-xs mb-6" style={{ color: 'hsl(var(--white-30))' }}>AI-powered creative studio at the intersection of technology and culture.</p>
             <div className="flex gap-4">
               {['LI', 'IG', 'BE', 'GH'].map((s) => (

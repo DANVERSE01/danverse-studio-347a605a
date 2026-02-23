@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import danverseLogo from '@/assets/danverse-logo.webp';
 
 export default function LoadingScreen() {
   const [show, setShow] = useState(() => typeof window !== 'undefined' ? !sessionStorage.getItem('danverse-loaded') : true);
@@ -32,10 +33,8 @@ export default function LoadingScreen() {
         <motion.div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 10000, backgroundColor: 'hsl(var(--void))' }}
           exit={{ opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
           <div className="flex flex-col items-center gap-5">
-            <motion.span className="font-display italic text-3xl md:text-4xl" style={{ color: 'hsl(var(--foreground))' }}
-              initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-              Danverse
-            </motion.span>
+            <motion.img src={danverseLogo} alt="Danverse" className="h-16 md:h-20 w-auto"
+              initial={{ opacity: 0, y: 8, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }} />
             <div className="w-40 h-px relative overflow-hidden" style={{ background: 'hsl(var(--white-10))' }}>
               <motion.div className="absolute inset-y-0 left-0 h-full" style={{ background: 'hsl(var(--coral))' }}
                 initial={{ width: '0%' }} animate={{ width: phase !== 'enter' ? '100%' : '0%' }}

@@ -11,92 +11,92 @@
 
 @layer base {
   :root {
-    /* ── Deep Ink palette ── */
-    --background: 225 40% 5%;
-    --foreground: 35 20% 90%;
+    /* ── Crystal Dark palette ── */
+    --background: 220 25% 4%;
+    --foreground: 210 20% 92%;
 
-    --card: 225 35% 8%;
-    --card-foreground: 35 20% 90%;
+    --card: 215 30% 7%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 225 35% 7%;
-    --popover-foreground: 35 20% 90%;
+    --popover: 215 30% 6%;
+    --popover-foreground: 210 20% 92%;
 
-    /* Coral terracotta — the star accent */
-    --primary: 16 65% 52%;
-    --primary-foreground: 225 40% 5%;
+    /* Ice blue — primary crystal accent */
+    --primary: 200 85% 58%;
+    --primary-foreground: 220 25% 4%;
 
-    /* Sage — organic secondary */
-    --secondary: 100 14% 54%;
-    --secondary-foreground: 35 20% 90%;
+    /* Silver — elegant secondary */
+    --secondary: 220 10% 60%;
+    --secondary-foreground: 210 20% 92%;
 
-    --muted: 225 20% 12%;
-    --muted-foreground: 35 10% 50%;
+    --muted: 220 15% 10%;
+    --muted-foreground: 210 10% 45%;
 
-    --accent: 16 65% 52%;
-    --accent-foreground: 225 40% 5%;
+    --accent: 200 85% 58%;
+    --accent-foreground: 220 25% 4%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 35 10% 90% / 0.06;
-    --input: 35 10% 90% / 0.06;
-    --ring: 16 65% 52%;
+    --border: 210 15% 90% / 0.06;
+    --input: 210 15% 90% / 0.06;
+    --ring: 200 85% 58%;
 
     --radius: 0.125rem;
 
-    --sidebar-background: 225 35% 6%;
-    --sidebar-foreground: 35 20% 85%;
-    --sidebar-primary: 16 65% 52%;
-    --sidebar-primary-foreground: 225 40% 5%;
-    --sidebar-accent: 225 20% 12%;
-    --sidebar-accent-foreground: 35 20% 85%;
-    --sidebar-border: 35 10% 90% / 0.06;
-    --sidebar-ring: 16 65% 52%;
+    --sidebar-background: 220 25% 5%;
+    --sidebar-foreground: 210 20% 88%;
+    --sidebar-primary: 200 85% 58%;
+    --sidebar-primary-foreground: 220 25% 4%;
+    --sidebar-accent: 220 15% 10%;
+    --sidebar-accent-foreground: 210 20% 88%;
+    --sidebar-border: 210 15% 90% / 0.06;
+    --sidebar-ring: 200 85% 58%;
 
-    /* ── Extended Palette ── */
-    --void: 225 50% 3%;
-    --abyss: 225 40% 5%;
-    --deep: 225 35% 8%;
-    --surface: 225 30% 10%;
-    --surface-raised: 225 25% 13%;
+    /* ── Extended Crystal Palette ── */
+    --void: 220 30% 3%;
+    --abyss: 220 25% 4%;
+    --deep: 215 30% 7%;
+    --surface: 215 25% 9%;
+    --surface-raised: 215 20% 12%;
 
-    /* Star colors */
-    --coral: 16 65% 52%;
-    --coral-dim: 16 65% 52% / 0.10;
-    --coral-glow: 16 65% 52% / 0.25;
-    --sage: 100 14% 54%;
-    --sage-dim: 100 14% 54% / 0.10;
-    --cream: 35 30% 88%;
-    --cream-dim: 35 30% 88% / 0.08;
-    --lavender: 260 20% 60%;
-    --lavender-dim: 260 20% 60% / 0.08;
+    /* Crystal colors */
+    --coral: 200 85% 58%;
+    --coral-dim: 200 85% 58% / 0.10;
+    --coral-glow: 200 85% 58% / 0.25;
+    --sage: 170 40% 55%;
+    --sage-dim: 170 40% 55% / 0.10;
+    --cream: 210 20% 92%;
+    --cream-dim: 210 20% 92% / 0.08;
+    --lavender: 270 35% 65%;
+    --lavender-dim: 270 35% 65% / 0.08;
 
-    /* Section backgrounds */
-    --section-terracotta: 12 60% 28%;
-    --section-terracotta-light: 12 55% 35%;
-    --section-charcoal: 225 25% 10%;
-    --section-warm-black: 30 15% 6%;
-    --section-midnight: 230 45% 7%;
-    --section-olive: 80 20% 12%;
+    /* Section backgrounds — crystal tones */
+    --section-terracotta: 215 35% 8%;
+    --section-terracotta-light: 210 30% 12%;
+    --section-charcoal: 220 20% 6%;
+    --section-warm-black: 225 25% 5%;
+    --section-midnight: 225 40% 6%;
+    --section-olive: 200 20% 7%;
 
-    /* Legacy aliases */
-    --cyan: 16 65% 52%;
-    --cyan-dim: 16 65% 52% / 0.10;
-    --cyan-glow: 16 65% 52% / 0.25;
-    --magenta: 100 14% 54%;
-    --magenta-dim: 100 14% 54% / 0.10;
-    --purple: 260 20% 60%;
-    --purple-mid: 260 30% 50%;
-    --gold: 35 30% 88%;
-    --gold-dim: 35 30% 88% / 0.08;
-    --amber: 16 65% 52%;
-    --amber-dim: 16 65% 52% / 0.10;
-    --amber-glow: 16 65% 52% / 0.25;
+    /* Legacy aliases — mapped to crystal */
+    --cyan: 200 85% 58%;
+    --cyan-dim: 200 85% 58% / 0.10;
+    --cyan-glow: 200 85% 58% / 0.25;
+    --magenta: 170 40% 55%;
+    --magenta-dim: 170 40% 55% / 0.10;
+    --purple: 270 35% 65%;
+    --purple-mid: 270 45% 55%;
+    --gold: 45 60% 70%;
+    --gold-dim: 45 60% 70% / 0.08;
+    --amber: 45 60% 70%;
+    --amber-dim: 45 60% 70% / 0.10;
+    --amber-glow: 45 60% 70% / 0.25;
 
-    --white-60: 35 15% 90% / 0.50;
-    --white-30: 35 15% 90% / 0.22;
-    --white-10: 35 15% 90% / 0.07;
-    --border-bright: 35 15% 90% / 0.12;
+    --white-60: 210 15% 92% / 0.50;
+    --white-30: 210 15% 92% / 0.22;
+    --white-10: 210 15% 92% / 0.07;
+    --border-bright: 210 15% 92% / 0.12;
 
     /* ── Typography ── */
     --text-hero: clamp(4.5rem, 14vw + 0.5rem, 16rem);
@@ -111,9 +111,9 @@
     --font-script: 'Cormorant Garamond', Georgia, serif;
     --font-display-alt: 'Syne', system-ui, sans-serif;
 
-    /* ── Shadows ── */
-    --shadow-glow-coral: 0 0 80px hsl(16 65% 52% / 0.12), 0 0 160px hsl(16 65% 52% / 0.04);
-    --shadow-card: 0 4px 0 hsl(0 0% 0% / 0.1), 0 24px 60px hsl(0 0% 0% / 0.4);
+    /* ── Shadows — crystal glow ── */
+    --shadow-glow-coral: 0 0 80px hsl(200 85% 58% / 0.10), 0 0 200px hsl(200 85% 58% / 0.03);
+    --shadow-card: 0 4px 0 hsl(0 0% 0% / 0.15), 0 24px 60px hsl(0 0% 0% / 0.5);
 
     /* ── Transitions ── */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -131,11 +131,11 @@
     --z-modal: 400;
     --z-cursor: 9999;
 
-    /* ── Gradients ── */
-    --gradient-text: linear-gradient(135deg, hsl(35 30% 88%) 0%, hsl(16 65% 52%) 60%, hsl(100 14% 54%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.02) 0%, transparent 100%);
-    --gradient-card-border: linear-gradient(135deg, hsl(16 65% 52% / 0.15) 0%, hsl(100 14% 54% / 0.08) 100%);
-    --gradient-vignette: radial-gradient(ellipse at center, transparent 30%, hsl(225 50% 3% / 0.8) 100%);
+    /* ── Gradients — crystal prismatic ── */
+    --gradient-text: linear-gradient(135deg, hsl(210 20% 92%) 0%, hsl(200 85% 58%) 50%, hsl(170 40% 55%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.03) 0%, transparent 100%);
+    --gradient-card-border: linear-gradient(135deg, hsl(200 85% 58% / 0.15) 0%, hsl(270 35% 65% / 0.08) 100%);
+    --gradient-vignette: radial-gradient(ellipse at center, transparent 30%, hsl(220 30% 3% / 0.85) 100%);
     --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   }
 }
@@ -170,7 +170,7 @@
   }
 
   ::selection {
-    background: hsl(var(--coral) / 0.25);
+    background: hsl(200 85% 58% / 0.25);
     color: hsl(var(--cream));
   }
 }
@@ -202,10 +202,10 @@
   }
 
   .glass {
-    background: hsl(225 35% 10% / 0.6);
-    backdrop-filter: blur(30px) saturate(140%);
-    -webkit-backdrop-filter: blur(30px) saturate(140%);
-    border: 1px solid hsl(35 15% 90% / 0.04);
+    background: hsl(215 30% 8% / 0.65);
+    backdrop-filter: blur(30px) saturate(160%);
+    -webkit-backdrop-filter: blur(30px) saturate(160%);
+    border: 1px solid hsl(200 85% 58% / 0.06);
   }
 
   .gradient-border {

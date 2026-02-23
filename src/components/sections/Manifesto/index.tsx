@@ -22,7 +22,7 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
       ref={ref}
       id="manifesto"
       className="relative"
-      style={{ background: 'hsl(var(--section-terracotta))' }}
+      style={{ background: 'linear-gradient(180deg, hsl(215 35% 8%), hsl(220 40% 6%))' }}
     >
       <div ref={containerRef} className="relative" style={{ height: '350vh' }}>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
@@ -31,15 +31,15 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display-alt font-extrabold uppercase pointer-events-none select-none whitespace-nowrap"
             style={{
               fontSize: 'clamp(10rem, 30vw, 30rem)',
-              color: 'hsl(0 0% 0% / 0.08)',
+              color: 'hsl(var(--coral) / 0.06)',
             }}
           >
             BOLD
           </motion.span>
 
           {/* Decorative corner marks */}
-          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 hidden md:block" style={{ borderColor: 'hsl(35 30% 88% / 0.15)' }} />
-          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 hidden md:block" style={{ borderColor: 'hsl(35 30% 88% / 0.15)' }} />
+          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 hidden md:block" style={{ borderColor: 'hsl(var(--coral) / 0.12)' }} />
+          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 hidden md:block" style={{ borderColor: 'hsl(var(--coral) / 0.12)' }} />
 
           <div className="px-6 md:px-20 lg:pl-[12%] max-w-[1200px]">
             {/* Tag */}
@@ -49,10 +49,10 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(35 30% 88%)' }}>
+              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
                 Manifesto
               </span>
-              <div className="w-12 h-px" style={{ background: 'hsl(35 30% 88% / 0.4)' }} />
+              <div className="w-12 h-px" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
             </motion.div>
 
             {/* Lines */}
@@ -102,10 +102,10 @@ function ManifestoLine({
   };
 
   const styleMap = {
-    script: { color: 'hsl(35 30% 88%)' },
-    bold: { color: 'hsl(35 30% 88%)' },
+    script: { color: 'hsl(var(--cream))' },
+    bold: { color: 'hsl(var(--coral))' },
     stroke: {
-      WebkitTextStroke: '1.5px hsl(35 30% 88% / 0.6)',
+      WebkitTextStroke: '1.5px hsl(var(--coral) / 0.6)',
       WebkitTextFillColor: 'transparent',
       color: 'transparent',
     } as React.CSSProperties,

@@ -181,7 +181,7 @@ export default function HeroGrid() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 50% 50%, transparent 20%, hsl(var(--abyss) / 0.7) 70%, hsl(var(--abyss)) 100%)
+            radial-gradient(ellipse 70% 50% at 50% 50%, transparent 10%, hsl(var(--abyss) / 0.8) 60%, hsl(var(--abyss)) 100%)
           `,
         }}
       />
@@ -189,8 +189,8 @@ export default function HeroGrid() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            linear-gradient(180deg, hsl(var(--abyss) / 0.6) 0%, transparent 25%, transparent 75%, hsl(var(--abyss) / 0.8) 100%),
-            linear-gradient(90deg, hsl(var(--abyss) / 0.5) 0%, transparent 20%, transparent 80%, hsl(var(--abyss) / 0.5) 100%)
+            linear-gradient(180deg, hsl(var(--abyss) / 0.7) 0%, hsl(var(--abyss) / 0.15) 30%, hsl(var(--abyss) / 0.15) 70%, hsl(var(--abyss) / 0.85) 100%),
+            linear-gradient(90deg, hsl(var(--abyss) / 0.6) 0%, transparent 25%, transparent 75%, hsl(var(--abyss) / 0.6) 100%)
           `,
         }}
       />

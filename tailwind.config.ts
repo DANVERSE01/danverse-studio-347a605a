@@ -8,9 +8,7 @@ export default {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+      screens: { "2xl": "1400px" },
     },
     extend: {
       fontFamily: {
@@ -25,34 +23,13 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
+        secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
+        destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
+        muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
+        accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
+        popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
+        card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -63,44 +40,19 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // DANVERSE warm palette
         void: "hsl(var(--void))",
         abyss: "hsl(var(--abyss))",
         deep: "hsl(var(--deep))",
         surface: "hsl(var(--surface))",
         "surface-raised": "hsl(var(--surface-raised))",
-        amber: {
-          DEFAULT: "hsl(var(--amber))",
-          dim: "hsl(var(--amber-dim))",
-          glow: "hsl(var(--amber-glow))",
-        },
-        burnt: {
-          DEFAULT: "hsl(var(--burnt))",
-          dim: "hsl(var(--burnt-dim))",
-        },
-        cream: {
-          DEFAULT: "hsl(var(--cream))",
-          dim: "hsl(var(--cream-dim))",
-        },
-        stone: "hsl(var(--stone))",
-        // Legacy aliases
-        cyan: {
-          DEFAULT: "hsl(var(--cyan))",
-          dim: "hsl(var(--cyan-dim))",
-          glow: "hsl(var(--cyan-glow))",
-        },
-        magenta: {
-          DEFAULT: "hsl(var(--magenta))",
-          dim: "hsl(var(--magenta-dim))",
-        },
-        purple: {
-          DEFAULT: "hsl(var(--purple))",
-          mid: "hsl(var(--purple-mid))",
-        },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          dim: "hsl(var(--gold-dim))",
-        },
+        coral: { DEFAULT: "hsl(var(--coral))", dim: "hsl(var(--coral-dim))", glow: "hsl(var(--coral-glow))" },
+        sage: { DEFAULT: "hsl(var(--sage))", dim: "hsl(var(--sage-dim))" },
+        cream: { DEFAULT: "hsl(var(--cream))", dim: "hsl(var(--cream-dim))" },
+        lavender: { DEFAULT: "hsl(var(--lavender))", dim: "hsl(var(--lavender-dim))" },
+        // Legacy
+        cyan: { DEFAULT: "hsl(var(--cyan))", dim: "hsl(var(--cyan-dim))", glow: "hsl(var(--cyan-glow))" },
+        amber: { DEFAULT: "hsl(var(--amber))", dim: "hsl(var(--amber-dim))", glow: "hsl(var(--amber-glow))" },
+        gold: { DEFAULT: "hsl(var(--gold))", dim: "hsl(var(--gold-dim))" },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -108,26 +60,19 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
+        "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
+        "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "marquee-left": "marquee-left 50s linear infinite",
-        "marquee-right": "marquee-right 45s linear infinite",
-        "scroll-indicator": "scroll-indicator 2s ease-in-out infinite",
-        "float-1": "float-slow 12s ease-in-out infinite",
-        "float-2": "float-slow-2 15s ease-in-out infinite",
+        "marquee-left": "marquee-left 60s linear infinite",
+        "marquee-right": "marquee-right 55s linear infinite",
+        "float-1": "float-slow 20s ease-in-out infinite",
+        "float-2": "float-slow-2 25s ease-in-out infinite",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
-        "radar-spin": "radar-spin 4s linear infinite",
-        shimmer: "shimmer 2s ease-in-out infinite",
+        "rotate-slow": "rotate-slow 30s linear infinite",
+        "dash-move": "dash-move 1s linear infinite",
       },
     },
   },

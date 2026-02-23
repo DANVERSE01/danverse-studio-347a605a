@@ -7,21 +7,19 @@ import { forwardRef } from 'react';
 const filters = ['all', 'ads', 'branding', 'web', '3d', 'ai'] as const;
 
 const works = [
-  { id: '1', title: 'Neon Pulse', client: 'Vodafone', category: 'ads' as const, year: 2024, aspect: 'tall' },
-  { id: '2', title: 'Metamorphosis', client: 'Samsung', category: 'branding' as const, year: 2024, aspect: 'wide' },
-  { id: '3', title: 'Neural Interface', client: 'IBM', category: 'web' as const, year: 2024, aspect: 'square' },
-  { id: '4', title: 'Void Architecture', client: 'Grand Hyatt', category: '3d' as const, year: 2024, aspect: 'tall' },
-  { id: '5', title: 'Synth Culture', client: 'Netflix', category: 'ads' as const, year: 2023, aspect: 'wide' },
-  { id: '6', title: 'Quantum Brand', client: 'Mastercard', category: 'branding' as const, year: 2023, aspect: 'square' },
-  { id: '7', title: 'Genesis Engine', client: 'Toyota', category: 'ai' as const, year: 2024, aspect: 'wide' },
-  { id: '8', title: 'Prism Reality', client: 'Swarovski', category: '3d' as const, year: 2023, aspect: 'tall' },
-  { id: '9', title: 'Echo System', client: 'Pepsi', category: 'web' as const, year: 2024, aspect: 'square' },
-  { id: '10', title: 'Carbon Copy', client: 'Uber Eats', category: 'ads' as const, year: 2023, aspect: 'wide' },
-  { id: '11', title: 'Deep Learning', client: 'Amazon', category: 'ai' as const, year: 2024, aspect: 'tall' },
-  { id: '12', title: 'Cipher Design', client: 'Red Bull', category: 'branding' as const, year: 2024, aspect: 'square' },
+  { id: '1', title: 'Neon Pulse', client: 'Vodafone', category: 'ads' as const, year: 2024, span: 'col-span-1 row-span-2' },
+  { id: '2', title: 'Metamorphosis', client: 'Samsung', category: 'branding' as const, year: 2024, span: 'col-span-1 row-span-1' },
+  { id: '3', title: 'Neural Interface', client: 'IBM', category: 'web' as const, year: 2024, span: 'col-span-1 row-span-1' },
+  { id: '4', title: 'Void Architecture', client: 'Grand Hyatt', category: '3d' as const, year: 2024, span: 'col-span-1 row-span-2' },
+  { id: '5', title: 'Synth Culture', client: 'Netflix', category: 'ads' as const, year: 2023, span: 'col-span-1 row-span-1' },
+  { id: '6', title: 'Quantum Brand', client: 'Mastercard', category: 'branding' as const, year: 2023, span: 'col-span-1 row-span-1' },
+  { id: '7', title: 'Genesis Engine', client: 'Toyota', category: 'ai' as const, year: 2024, span: 'col-span-1 row-span-1' },
+  { id: '8', title: 'Prism Reality', client: 'Swarovski', category: '3d' as const, year: 2023, span: 'col-span-1 row-span-2' },
+  { id: '9', title: 'Echo System', client: 'Pepsi', category: 'web' as const, year: 2024, span: 'col-span-1 row-span-1' },
+  { id: '10', title: 'Carbon Copy', client: 'Uber Eats', category: 'ads' as const, year: 2023, span: 'col-span-1 row-span-1' },
+  { id: '11', title: 'Deep Learning', client: 'Amazon', category: 'ai' as const, year: 2024, span: 'col-span-1 row-span-1' },
+  { id: '12', title: 'Cipher Design', client: 'Red Bull', category: 'branding' as const, year: 2024, span: 'col-span-1 row-span-2' },
 ];
-
-const aspectHeights = { tall: 420, wide: 280, square: 340 };
 
 const Works = forwardRef<HTMLElement>((_, ref) => {
   const { ref: inViewRef, isInView } = useInView(0.05);
@@ -31,43 +29,57 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
 
   const filtered = activeFilter === 'all' ? works : works.filter((w) => w.category === activeFilter);
 
+  // Color per project for visual variety
+  const projectColors = [
+    'hsl(var(--coral) / 0.06)', 'hsl(var(--sage) / 0.06)', 'hsl(var(--lavender) / 0.06)',
+    'hsl(var(--coral) / 0.04)', 'hsl(var(--sage) / 0.04)', 'hsl(var(--cream) / 0.03)',
+    'hsl(var(--lavender) / 0.05)', 'hsl(var(--coral) / 0.05)', 'hsl(var(--sage) / 0.05)',
+    'hsl(var(--cream) / 0.04)', 'hsl(var(--lavender) / 0.04)', 'hsl(var(--coral) / 0.07)',
+  ];
+
   return (
-    <section ref={ref} id="works" className="py-32 md:py-40 px-6 md:px-12 lg:px-16">
+    <section ref={ref} id="works" className="relative py-32 md:py-48 px-6 md:px-16">
+      <span className="absolute top-16 left-6 md:left-16 section-num" style={{ fontSize: 'clamp(6rem, 15vw, 12rem)' }}>
+        04
+      </span>
+
       <motion.div
         ref={inViewRef}
         variants={staggerContainer}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="mb-16"
+        className="mb-20"
       >
         <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-          <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+          <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
             Portfolio
           </span>
-          <div className="flex-1 h-px" style={{ background: 'hsl(var(--amber) / 0.15)' }} />
-          <span className="font-mono-brand text-xs tabular-nums" style={{ color: 'hsl(var(--white-30))' }}>
-            {filtered.length} projects
+          <div className="w-16 h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
+          <span className="font-mono-brand text-[10px] tabular-nums" style={{ color: 'hsl(var(--white-30))' }}>
+            ({filtered.length})
           </span>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <h2
-            className="font-display font-normal italic tracking-tight"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'hsl(var(--foreground))' }}
-          >
-            Selected works
+        <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+          <h2>
+            <span className="font-display italic block tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+              Selected
+            </span>
+            <span className="font-heading font-bold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2rem, 6vw, 5.5rem)', color: 'hsl(var(--coral))' }}>
+              Works
+            </span>
           </h2>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className="px-4 py-1.5 text-[11px] font-mono-brand uppercase tracking-wider transition-all duration-300"
+                className="px-4 py-2 text-[10px] font-mono-brand uppercase tracking-[0.15em] transition-all duration-400"
                 style={{
-                  background: activeFilter === f ? 'hsl(var(--amber) / 0.1)' : 'transparent',
-                  border: `1px solid ${activeFilter === f ? 'hsl(var(--amber) / 0.3)' : 'hsl(var(--white-10))'}`,
-                  color: activeFilter === f ? 'hsl(var(--amber))' : 'hsl(var(--white-30))',
+                  background: activeFilter === f ? 'hsl(var(--coral) / 0.08)' : 'transparent',
+                  color: activeFilter === f ? 'hsl(var(--coral))' : 'hsl(var(--white-30))',
+                  border: `1px solid ${activeFilter === f ? 'hsl(var(--coral) / 0.2)' : 'transparent'}`,
                 }}
               >
                 {f}
@@ -77,63 +89,82 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
         </motion.div>
       </motion.div>
 
-      {/* Masonry grid */}
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
+      {/* Grid */}
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-4">
         <AnimatePresence mode="popLayout">
-          {filtered.map((work) => (
-            <motion.div
-              key={work.id}
-              layout
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-5 overflow-hidden relative group break-inside-avoid"
-              style={{ height: aspectHeights[work.aspect] }}
-              onMouseEnter={() => setCursorVariant('hover')}
-              onMouseLeave={() => setCursorVariant('default')}
-            >
-              {/* Warm gradient placeholder */}
-              <div
-                className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                style={{
-                  background: `linear-gradient(${parseInt(work.id) * 30 + 120}deg, hsl(var(--deep)), hsl(var(--surface)), hsl(var(--amber) / 0.03))`,
-                }}
-              />
+          {filtered.map((work, i) => {
+            const heights = [360, 280, 420, 300, 380, 260];
+            const h = heights[i % heights.length];
+            return (
+              <motion.div
+                key={work.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-4 overflow-hidden relative group break-inside-avoid"
+                style={{ height: h }}
+                onMouseEnter={() => setCursorVariant('hover')}
+                onMouseLeave={() => setCursorVariant('default')}
+              >
+                {/* Background with color accent */}
+                <div
+                  className="absolute inset-0 transition-transform duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+                  style={{
+                    background: `linear-gradient(${140 + i * 25}deg, hsl(var(--deep)), ${projectColors[i % projectColors.length]})`,
+                  }}
+                />
 
-              {/* Hover overlay */}
-              <div
-                className="absolute inset-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-0 group-hover:opacity-100"
-                style={{ background: 'linear-gradient(to top, hsl(0 0% 2% / 0.9) 0%, transparent 60%)' }}
-              />
-
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-mono-brand text-[10px] uppercase tracking-wider" style={{ color: 'hsl(var(--amber))' }}>
-                    {work.category}
-                  </span>
-                  <span className="w-1 h-1 rounded-full" style={{ background: 'hsl(var(--white-30))' }} />
-                  <span className="font-mono-brand text-[10px]" style={{ color: 'hsl(var(--white-30))' }}>
-                    {work.year}
-                  </span>
+                {/* Geometric decoration per card */}
+                <div className="absolute top-4 right-4 opacity-[0.06] group-hover:opacity-[0.15] transition-opacity duration-500">
+                  {i % 3 === 0 && (
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                      <circle cx="20" cy="20" r="18" stroke="hsl(var(--coral))" strokeWidth="0.5" />
+                    </svg>
+                  )}
+                  {i % 3 === 1 && (
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                      <rect x="4" y="4" width="32" height="32" stroke="hsl(var(--sage))" strokeWidth="0.5" />
+                    </svg>
+                  )}
+                  {i % 3 === 2 && (
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                      <polygon points="20,4 36,36 4,36" stroke="hsl(var(--lavender))" strokeWidth="0.5" fill="none" />
+                    </svg>
+                  )}
                 </div>
-                <h3 className="font-heading font-semibold text-lg" style={{ color: 'hsl(var(--foreground))' }}>
-                  {work.title}
-                </h3>
-                <p className="text-xs mt-1" style={{ color: 'hsl(var(--white-30))' }}>
-                  {work.client}
-                </p>
-              </div>
 
-              {/* Top-right arrow */}
-              <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 -translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M5 15L15 5M15 5H8M15 5v7" stroke="hsl(var(--amber))" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            </motion.div>
-          ))}
+                {/* Hover reveal */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(225_50%_3%/0.92)] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="font-mono-brand text-[9px] uppercase tracking-[0.2em]" style={{ color: 'hsl(var(--coral))' }}>
+                      {work.category}
+                    </span>
+                    <span className="font-mono-brand text-[9px]" style={{ color: 'hsl(var(--white-30))' }}>
+                      {work.year}
+                    </span>
+                  </div>
+                  <h3 className="font-display italic text-2xl" style={{ color: 'hsl(var(--foreground))' }}>
+                    {work.title}
+                  </h3>
+                  <p className="font-mono-brand text-[10px] mt-1 tracking-wider uppercase" style={{ color: 'hsl(var(--white-30))' }}>
+                    {work.client}
+                  </p>
+                </div>
+
+                {/* Top corner arrow */}
+                <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-400 scale-75 group-hover:scale-100">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M4 14L14 4M14 4H7M14 4v7" stroke="hsl(var(--coral))" strokeWidth="1" strokeLinecap="round" />
+                  </svg>
+                </div>
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </div>
     </section>

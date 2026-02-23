@@ -11,7 +11,7 @@ function CounterUp({ end, suffix = '' }: { end: number; suffix?: string }) {
   useEffect(() => {
     if (!isInView || hasAnimated.current) return;
     hasAnimated.current = true;
-    const duration = 1800;
+    const duration = 2000;
     const start = Date.now();
     const tick = () => {
       const elapsed = Date.now() - start;
@@ -24,11 +24,11 @@ function CounterUp({ end, suffix = '' }: { end: number; suffix?: string }) {
   }, [isInView, end]);
 
   return (
-    <span ref={ref}>
-      <span className="font-display italic tabular-nums" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', color: 'hsl(var(--foreground))' }}>
+    <span ref={ref} className="inline-flex items-baseline gap-1">
+      <span className="font-display italic tabular-nums" style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)', color: 'hsl(var(--foreground))' }}>
         {count}
       </span>
-      <span className="font-display italic text-2xl md:text-3xl" style={{ color: 'hsl(var(--amber))' }}>
+      <span className="font-display italic text-xl md:text-2xl" style={{ color: 'hsl(var(--coral))' }}>
         {suffix}
       </span>
     </span>
@@ -39,68 +39,91 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
   const { ref: inViewRef, isInView } = useInView(0.1);
 
   return (
-    <section ref={ref} id="studio" className="py-32 md:py-40 px-6 md:px-12 lg:px-16">
+    <section ref={ref} id="studio" className="relative py-32 md:py-48 px-6 md:px-16">
+      <span className="absolute top-16 right-6 md:right-16 section-num" style={{ fontSize: 'clamp(6rem, 15vw, 12rem)' }}>
+        07
+      </span>
+
       <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'}>
         <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-          <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+          <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
             Studio
           </span>
-          <div className="flex-1 h-px" style={{ background: 'hsl(var(--amber) / 0.15)' }} />
+          <div className="w-16 h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
         </motion.div>
-        <motion.h2 variants={fadeUp} className="font-display font-normal italic tracking-tight mb-20" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'hsl(var(--foreground))' }}>
-          Behind the curtain
+        <motion.h2 variants={fadeUp} className="mb-24">
+          <span className="font-display italic block tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+            Behind the
+          </span>
+          <span className="font-heading font-bold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2rem, 6vw, 5.5rem)', color: 'hsl(var(--sage))' }}>
+            Curtain
+          </span>
         </motion.h2>
       </motion.div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-8 mb-24 border-t border-b py-12" style={{ borderColor: 'hsl(var(--white-10))' }}>
+      {/* Stats — asymmetric layout */}
+      <div className="grid grid-cols-3 gap-6 md:gap-12 mb-32">
         {[
-          { end: 12, suffix: '+', label: 'Creatives' },
-          { end: 4, suffix: '', label: 'Countries' },
-          { end: 0, suffix: '', label: 'Templates' },
+          { end: 12, suffix: '+', label: 'Creatives', color: 'coral' },
+          { end: 4, suffix: '', label: 'Countries', color: 'sage' },
+          { end: 0, suffix: '', label: 'Templates', color: 'lavender' },
         ].map((stat) => (
-          <div key={stat.label} className="text-center">
+          <div key={stat.label}>
             <CounterUp end={stat.end} suffix={stat.suffix} />
-            <p className="font-mono-brand text-[10px] mt-3 uppercase tracking-[0.2em]" style={{ color: 'hsl(var(--white-30))' }}>
-              {stat.label}
-            </p>
+            <div className="flex items-center gap-2 mt-2">
+              <div className="w-3 h-px" style={{ background: `hsl(var(--${stat.color}) / 0.4)` }} />
+              <p className="font-mono-brand text-[9px] uppercase tracking-[0.25em]" style={{ color: 'hsl(var(--white-30))' }}>
+                {stat.label}
+              </p>
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Philosophy */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      {/* Split: philosophy + visual grid */}
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 items-start">
         <div>
-          <p className="font-display italic text-2xl md:text-3xl leading-[1.4] mb-8" style={{ color: 'hsl(var(--foreground))' }}>
+          <p className="font-display italic text-3xl md:text-4xl leading-[1.3] mb-8" style={{ color: 'hsl(var(--foreground))' }}>
             We are not an agency.
             <br />
-            We are a system.
+            <span style={{ color: 'hsl(var(--coral))' }}>We are a system.</span>
           </p>
-          <p className="text-sm leading-[1.8] mb-8 max-w-md" style={{ color: 'hsl(var(--white-30))' }}>
+          <p className="text-[13px] leading-[1.9] mb-10 max-w-md" style={{ color: 'hsl(var(--white-30))' }}>
             12 humans obsessed with the future of communication,
             operating at the intersection of technology and culture.
             No templates. No shortcuts. Only intentional work.
           </p>
           <button
-            className="font-heading text-xs uppercase tracking-[0.15em] flex items-center gap-3 transition-colors duration-300 group"
-            style={{ color: 'hsl(var(--amber))' }}
+            className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.2em] group transition-colors duration-300"
+            style={{ color: 'hsl(var(--coral))' }}
           >
+            <span className="w-8 h-px transition-all duration-500 group-hover:w-12" style={{ background: 'hsl(var(--coral) / 0.5)' }} />
             Join the studio
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
           </button>
         </div>
+
+        {/* Visual grid — asymmetric photo placeholders */}
         <div className="grid grid-cols-2 gap-3">
-          {[320, 240, 240, 320].map((h, i) => (
+          {[
+            { h: 300, accent: 'coral' },
+            { h: 220, accent: 'sage' },
+            { h: 220, accent: 'lavender' },
+            { h: 300, accent: 'coral' },
+          ].map((item, i) => (
             <div
               key={i}
-              className="overflow-hidden transition-all duration-700 grayscale hover:grayscale-0"
+              className="overflow-hidden transition-all duration-700 grayscale hover:grayscale-0 group relative"
               style={{
-                height: h,
-                background: `linear-gradient(${150 + i * 30}deg, hsl(var(--deep)), hsl(var(--surface)), hsl(var(--amber) / 0.03))`,
+                height: item.h,
+                background: `linear-gradient(${130 + i * 35}deg, hsl(var(--deep)), hsl(var(--${item.accent}) / 0.05))`,
               }}
-            />
+            >
+              {/* Corner decoration */}
+              <div className="absolute top-3 left-3 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="w-full h-px" style={{ background: `hsl(var(--${item.accent}) / 0.4)` }} />
+                <div className="w-px h-full" style={{ background: `hsl(var(--${item.accent}) / 0.4)` }} />
+              </div>
+            </div>
           ))}
         </div>
       </div>

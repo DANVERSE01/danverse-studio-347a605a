@@ -7,24 +7,27 @@ import { useDanverseStore } from '@/store/useDanverseStore';
 const articles = [
   {
     title: 'The Death of the 30-Second Spot',
-    excerpt: 'Why the future of advertising is non-linear, AI-driven, and built for feeds — not living rooms.',
+    excerpt: 'Why the future of advertising is non-linear, AI-driven, and built for feeds.',
     category: 'Strategy',
     readTime: '8 min',
     date: 'Dec 2024',
+    accent: 'coral',
   },
   {
-    title: 'Cairo Is the New Berlin for Creative Tech',
-    excerpt: 'How the Middle East is redefining the global creative landscape with AI-first studios.',
+    title: 'Cairo Is the New Berlin',
+    excerpt: 'How the Middle East is redefining the global creative landscape.',
     category: 'Culture',
     readTime: '6 min',
     date: 'Nov 2024',
+    accent: 'sage',
   },
   {
-    title: 'Building an AI Content OS in 90 Days',
-    excerpt: 'We replaced 3 agencies with one system. Here\'s the architecture, the failures, and the numbers.',
+    title: 'Building an AI Content OS',
+    excerpt: "We replaced 3 agencies with one system. Here's what happened.",
     category: 'Engineering',
     readTime: '12 min',
     date: 'Oct 2024',
+    accent: 'lavender',
   },
 ];
 
@@ -33,64 +36,87 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
 
   return (
-    <section ref={ref} id="journal" className="py-32 md:py-40 px-6 md:px-12 lg:px-16">
-      <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="mb-16">
+    <section ref={ref} id="journal" className="relative py-32 md:py-48 px-6 md:px-16">
+      <span className="absolute top-16 left-6 md:left-16 section-num" style={{ fontSize: 'clamp(6rem, 15vw, 12rem)' }}>
+        08
+      </span>
+
+      <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="mb-20">
         <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-          <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+          <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
             Journal
           </span>
-          <div className="flex-1 h-px" style={{ background: 'hsl(var(--amber) / 0.15)' }} />
+          <div className="w-16 h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
         </motion.div>
-        <motion.h2 variants={fadeUp} className="font-display font-normal italic tracking-tight" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'hsl(var(--foreground))' }}>
-          Thinking, visible
+        <motion.h2 variants={fadeUp}>
+          <span className="font-display italic block tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+            Thinking,
+          </span>
+          <span className="font-heading font-bold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2rem, 6vw, 5.5rem)', color: 'hsl(var(--coral))' }}>
+            Visible
+          </span>
         </motion.h2>
       </motion.div>
 
-      <div className="space-y-0">
+      {/* Articles — card-based with visual accents */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {articles.map((article, i) => (
           <motion.article
             key={article.title}
-            className="group border-t py-10 md:py-14 grid grid-cols-1 md:grid-cols-[1fr_2fr_auto] gap-4 md:gap-12 items-start"
-            style={{ borderColor: 'hsl(var(--white-10))' }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            className="group relative p-8 overflow-hidden transition-all duration-500"
+            style={{
+              background: 'hsl(var(--deep))',
+              border: '1px solid hsl(var(--white-10))',
+              minHeight: 380,
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
             onMouseEnter={() => setCursorVariant('hover')}
             onMouseLeave={() => setCursorVariant('default')}
           >
+            {/* Category color bar top */}
+            <div className="absolute top-0 left-0 w-0 group-hover:w-full h-px transition-all duration-700" style={{ background: `hsl(var(--${article.accent}))` }} />
+
+            {/* Number */}
+            <span className="font-display italic text-6xl block mb-8" style={{ color: `hsl(var(--${article.accent}) / 0.08)` }}>
+              {String(i + 1).padStart(2, '0')}
+            </span>
+
             {/* Meta */}
-            <div className="flex md:flex-col gap-3 md:gap-2">
-              <span className="font-mono-brand text-[10px] uppercase tracking-wider" style={{ color: 'hsl(var(--amber))' }}>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-mono-brand text-[9px] uppercase tracking-[0.2em]" style={{ color: `hsl(var(--${article.accent}))` }}>
                 {article.category}
               </span>
-              <span className="font-mono-brand text-[10px]" style={{ color: 'hsl(var(--white-30))' }}>
+              <span className="w-1 h-1 rounded-full" style={{ background: 'hsl(var(--white-30))' }} />
+              <span className="font-mono-brand text-[9px]" style={{ color: 'hsl(var(--white-30))' }}>
                 {article.readTime}
               </span>
-              <span className="font-mono-brand text-[10px]" style={{ color: 'hsl(var(--white-30))' }}>
+            </div>
+
+            {/* Title */}
+            <h3 className="font-display italic text-xl md:text-2xl mb-3 transition-colors duration-500 group-hover:text-foreground leading-[1.3]" style={{ color: 'hsl(var(--white-60))' }}>
+              {article.title}
+            </h3>
+
+            <p className="text-[12px] leading-[1.8]" style={{ color: 'hsl(var(--white-30))' }}>
+              {article.excerpt}
+            </p>
+
+            {/* Date + arrow at bottom */}
+            <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between">
+              <span className="font-mono-brand text-[9px]" style={{ color: 'hsl(var(--white-30))' }}>
                 {article.date}
               </span>
-            </div>
-
-            {/* Content */}
-            <div>
-              <h3 className="font-heading font-semibold text-xl md:text-2xl tracking-tight mb-2 transition-colors duration-500 group-hover:text-amber" style={{ color: 'hsl(var(--foreground))' }}>
-                {article.title}
-              </h3>
-              <p className="text-sm leading-relaxed max-w-lg" style={{ color: 'hsl(var(--white-30))' }}>
-                {article.excerpt}
-              </p>
-            </div>
-
-            {/* Arrow */}
-            <div className="hidden md:flex items-center self-center opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-2 group-hover:translate-x-0">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M5 15L15 5M15 5H8M15 5v7" stroke="hsl(var(--amber))" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke={`hsl(var(--${article.accent}))`} strokeWidth="1" strokeLinecap="round" />
+                </svg>
+              </div>
             </div>
           </motion.article>
         ))}
-        <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
       </div>
     </section>
   );

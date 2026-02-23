@@ -1,4 +1,3 @@
-import { useRef, useCallback } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import CustomCursor from '@/components/layout/CustomCursor';
@@ -13,6 +12,8 @@ import Clients from '@/components/sections/Clients';
 import Studio from '@/components/sections/Studio';
 import Journal from '@/components/sections/Journal';
 import FinalCTA from '@/components/sections/FinalCTA';
+import SectionReveal from '@/components/ui/SectionReveal';
+import SectionDivider from '@/components/ui/SectionDivider';
 
 const Index = () => {
   return (
@@ -32,14 +33,52 @@ const Index = () => {
 
       <main>
         <Hero />
+
+        <SectionDivider variant="expanding-line" accent="coral" />
+
         <Manifesto />
-        <Craft />
-        <Works />
-        <Process />
-        <Clients />
-        <Studio />
-        <Journal />
-        <FinalCTA />
+
+        <SectionDivider variant="morph-wave" accent="sage" />
+
+        <SectionReveal variant="clip-diagonal">
+          <Craft />
+        </SectionReveal>
+
+        <SectionDivider variant="diamond" accent="coral" />
+
+        <SectionReveal variant="scale-fade">
+          <Works />
+        </SectionReveal>
+
+        <SectionDivider variant="orbiting-dots" accent="sage" />
+
+        <SectionReveal variant="slide-rotate">
+          <Process />
+        </SectionReveal>
+
+        <SectionDivider variant="gradient-wipe" accent="lavender" />
+
+        <SectionReveal variant="clip-up">
+          <Clients />
+        </SectionReveal>
+
+        <SectionDivider variant="expanding-line" accent="sage" />
+
+        <SectionReveal variant="fade-up">
+          <Studio />
+        </SectionReveal>
+
+        <SectionDivider variant="morph-wave" accent="coral" />
+
+        <SectionReveal variant="clip-diagonal">
+          <Journal />
+        </SectionReveal>
+
+        <SectionDivider variant="diamond" accent="lavender" />
+
+        <SectionReveal variant="scale-fade">
+          <FinalCTA />
+        </SectionReveal>
       </main>
 
       <Footer />

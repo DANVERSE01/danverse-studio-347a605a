@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { fadeUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
 import { useDanverseStore } from '@/store/useDanverseStore';
-import { useSoundEffects } from '@/hooks/useSoundEffects';
 import { forwardRef } from 'react';
 
 const filters = ['all', 'ads', 'branding', 'web', '3d', 'ai'] as const;
@@ -27,8 +26,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
   const activeFilter = useDanverseStore((s) => s.activeFilter);
   const setActiveFilter = useDanverseStore((s) => s.setActiveFilter);
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
-  const setSelectedWork = useDanverseStore((s) => s.setSelectedWork);
-  const { playClick } = useSoundEffects();
 
   const filtered = activeFilter === 'all' ? works : works.filter((w) => w.category === activeFilter);
 
@@ -95,7 +92,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-              className="mb-4 rounded-xl overflow-hidden relative group break-inside-avoid cursor-pointer"
+              className="mb-4 rounded-xl overflow-hidden relative group break-inside-avoid"
               style={{
                 height: work.height,
                 backgroundColor: 'hsl(var(--surface))',
@@ -103,10 +100,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
               }}
               onMouseEnter={() => setCursorVariant('hover')}
               onMouseLeave={() => setCursorVariant('default')}
-              onClick={() => {
-                playClick();
-                setSelectedWork(work.id);
-              }}
             >
               {/* Gradient placeholder */}
               <div

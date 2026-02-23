@@ -1,13 +1,49 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useRef, useCallback } from 'react';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
+import LoadingScreen from '@/components/ui/LoadingScreen';
+import CustomCursor from '@/components/layout/CustomCursor';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import Hero from '@/components/sections/Hero';
+import Manifesto from '@/components/sections/Manifesto';
+import Craft from '@/components/sections/Craft';
+import Works from '@/components/sections/Works';
+import Process from '@/components/sections/Process';
+import Clients from '@/components/sections/Clients';
+import Studio from '@/components/sections/Studio';
+import Journal from '@/components/sections/Journal';
+import FinalCTA from '@/components/sections/FinalCTA';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <HelmetProvider>
+      <Helmet>
+        <title>DANVERSE — AI-Powered Creative Studio | Cairo</title>
+        <meta name="description" content="Premium creative studio engineering cinematic brands at the intersection of AI, design, and culture. Cairo × Global." />
+        <meta property="og:title" content="DANVERSE — AI-Powered Creative Studio" />
+        <meta property="og:description" content="We engineer cinematic universes. AI-powered creative studio based in Cairo." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://danverse.studio" />
+      </Helmet>
+
+      <LoadingScreen />
+      <CustomCursor />
+      <Navbar />
+
+      <main>
+        <Hero />
+        <Manifesto />
+        <Craft />
+        <Works />
+        <Process />
+        <Clients />
+        <Studio />
+        <Journal />
+        <FinalCTA />
+      </main>
+
+      <Footer />
+    </HelmetProvider>
   );
 };
 

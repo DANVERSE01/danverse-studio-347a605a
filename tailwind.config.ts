@@ -13,6 +13,13 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['var(--font-display)'],
+        heading: ['var(--font-heading)'],
+        body: ['var(--font-body)'],
+        arabic: ['var(--font-arabic)'],
+        'mono-brand': ['var(--font-mono)'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +64,29 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // DANVERSE palette
+        void: "hsl(var(--void))",
+        abyss: "hsl(var(--abyss))",
+        deep: "hsl(var(--deep))",
+        surface: "hsl(var(--surface))",
+        "surface-raised": "hsl(var(--surface-raised))",
+        cyan: {
+          DEFAULT: "hsl(var(--cyan))",
+          dim: "hsl(var(--cyan-dim))",
+          glow: "hsl(var(--cyan-glow))",
+        },
+        magenta: {
+          DEFAULT: "hsl(var(--magenta))",
+          dim: "hsl(var(--magenta-dim))",
+        },
+        purple: {
+          DEFAULT: "hsl(var(--purple))",
+          mid: "hsl(var(--purple-mid))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          dim: "hsl(var(--gold-dim))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,25 +95,25 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "marquee-left": "marquee-left 40s linear infinite",
+        "marquee-right": "marquee-right 35s linear infinite",
+        "scroll-indicator": "scroll-indicator 1.5s ease-in-out infinite",
+        "blob-1": "blob-move-1 8s ease-in-out infinite",
+        "blob-2": "blob-move-2 10s ease-in-out infinite",
+        "blob-3": "blob-move-3 12s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "radar-spin": "radar-spin 3s linear infinite",
       },
     },
   },

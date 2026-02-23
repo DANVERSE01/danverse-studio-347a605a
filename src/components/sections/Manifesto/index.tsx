@@ -1,6 +1,5 @@
 import { useRef, forwardRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import imgNeonPulse from '@/assets/works/neon-pulse.jpg';
 
 const LINES = [
   { text: "We don't make", style: 'script' as const },
@@ -18,9 +17,6 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
     offset: ['start start', 'end end'],
   });
 
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.15, 0.25, 0.15]);
-
   return (
     <section
       ref={ref}
@@ -30,29 +26,36 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
     >
       <div ref={containerRef} className="relative" style={{ height: '350vh' }}>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          {/* Background image with parallax */}
-          <motion.div className="absolute inset-0" style={{ scale: bgScale }}>
-            <motion.img
-              src={imgNeonPulse}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ opacity: bgOpacity }}
-            />
-            <div className="absolute inset-0" style={{
-              background: 'linear-gradient(180deg, hsl(var(--section-terracotta) / 0.8) 0%, hsl(var(--section-terracotta) / 0.6) 50%, hsl(var(--section-terracotta) / 0.9) 100%)',
-            }} />
-          </motion.div>
+          {/* Giant background text */}
+          <motion.span
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display-alt font-extrabold uppercase pointer-events-none select-none whitespace-nowrap"
+            style={{
+              fontSize: 'clamp(10rem, 30vw, 30rem)',
+              color: 'hsl(0 0% 0% / 0.08)',
+            }}
+          >
+            BOLD
+          </motion.span>
 
-          {/* Corner marks */}
+          {/* Decorative corner marks */}
           <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 hidden md:block" style={{ borderColor: 'hsl(35 30% 88% / 0.15)' }} />
           <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 hidden md:block" style={{ borderColor: 'hsl(35 30% 88% / 0.15)' }} />
 
-          <div className="relative z-10 px-6 md:px-20 lg:pl-[12%] max-w-[1200px]">
-            <motion.div className="flex items-center gap-4 mb-12" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(35 30% 88%)' }}>Manifesto</span>
+          <div className="px-6 md:px-20 lg:pl-[12%] max-w-[1200px]">
+            {/* Tag */}
+            <motion.div
+              className="flex items-center gap-4 mb-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(35 30% 88%)' }}>
+                Manifesto
+              </span>
               <div className="w-12 h-px" style={{ background: 'hsl(35 30% 88% / 0.4)' }} />
             </motion.div>
 
+            {/* Lines */}
             <div className="space-y-1 md:space-y-0">
               {LINES.map((line, i) => (
                 <ManifestoLine key={i} index={i} total={LINES.length} progress={scrollYProgress} lineStyle={line.style}>
@@ -68,8 +71,16 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
 });
 Manifesto.displayName = 'Manifesto';
 
-function ManifestoLine({ children, index, total, progress, lineStyle }: {
-  children: string; index: number; total: number;
+function ManifestoLine({
+  children,
+  index,
+  total,
+  progress,
+  lineStyle,
+}: {
+  children: string;
+  index: number;
+  total: number;
   progress: ReturnType<typeof useScroll>['scrollYProgress'];
   lineStyle: 'script' | 'bold' | 'stroke';
 }) {
@@ -92,18 +103,24 @@ function ManifestoLine({ children, index, total, progress, lineStyle }: {
 
   const styleMap = {
     script: { color: 'hsl(35 30% 88%)' },
-    bold: {
-      background: 'linear-gradient(90deg, hsl(35 30% 88%), hsl(35 50% 75%))',
-      WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-    } as React.CSSProperties,
+    bold: { color: 'hsl(35 30% 88%)' },
     stroke: {
       WebkitTextStroke: '1.5px hsl(35 30% 88% / 0.6)',
-      WebkitTextFillColor: 'transparent', color: 'transparent',
+      WebkitTextFillColor: 'transparent',
+      color: 'transparent',
     } as React.CSSProperties,
   };
 
   return (
-    <motion.p className={classMap[lineStyle]} style={{ opacity, x, fontSize: sizeMap[lineStyle], ...styleMap[lineStyle] }}>
+    <motion.p
+      className={classMap[lineStyle]}
+      style={{
+        opacity,
+        x,
+        fontSize: sizeMap[lineStyle],
+        ...styleMap[lineStyle],
+      }}
+    >
       {children}
     </motion.p>
   );

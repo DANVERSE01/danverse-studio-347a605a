@@ -18,6 +18,9 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
     >
       <WebGLFallback />
 
+      {/* Vignette */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--gradient-vignette)' }} />
+
       {/* Left vertical label */}
       <motion.div
         className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-10 hidden md:block"
@@ -25,7 +28,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
       >
-        <span className="text-vertical font-mono-brand text-[9px] tracking-[0.4em] uppercase" style={{ color: 'hsl(var(--cream) / 0.15)' }}>
+        <span className="text-vertical font-mono-brand text-[9px] tracking-[0.4em] uppercase" style={{ color: 'hsl(var(--white-10))' }}>
           Danverse Creative Studio © 2025
         </span>
       </motion.div>
@@ -41,24 +44,30 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
           <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--sage))' }}>
             30.0444° N
           </span>
-          <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--cream) / 0.15)' }}>
+          <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--white-10))' }}>
             31.2357° E
           </span>
         </div>
-        <div className="w-px h-12" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
+        <div className="w-px h-12" style={{ background: 'hsl(var(--coral) / 0.1)' }} />
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full animate-pulse-glow" style={{ background: 'hsl(var(--sage))' }} />
-          <span className="font-mono-brand text-[9px] tracking-[0.2em] uppercase" style={{ color: 'hsl(var(--cream) / 0.15)' }}>
+          <span className="font-mono-brand text-[9px] tracking-[0.2em] uppercase" style={{ color: 'hsl(var(--white-10))' }}>
             Available
           </span>
         </div>
       </motion.div>
 
+      {/* Top spacer */}
       <div className="pt-32" />
 
       {/* Center headline */}
       <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-20 lg:px-28">
-        <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
+          {/* Eyebrow */}
           <motion.div className="flex items-center gap-4 mb-6" variants={heroWord}>
             <motion.div
               className="h-px origin-left"
@@ -72,56 +81,64 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
             </span>
           </motion.div>
 
+          {/* Line 1: Script "We" + huge outlined "CRAFT" */}
           <div className="flex items-baseline gap-4 md:gap-6 flex-wrap">
-            <motion.span variants={heroWord} className="font-script italic font-light" style={{ fontSize: 'clamp(3.5rem, 9vw, 8rem)', color: 'hsl(var(--cream))' }}>
+            <motion.span
+              variants={heroWord}
+              className="font-script italic font-light"
+              style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', color: 'hsl(var(--cream))' }}
+            >
               We
             </motion.span>
             <motion.span
               variants={heroWord}
               className="font-display-alt font-extrabold uppercase tracking-[-0.05em]"
               style={{
-                fontSize: 'clamp(4.5rem, 14vw, 15rem)',
-                background: 'linear-gradient(135deg, hsl(var(--coral)), hsl(16 80% 60%), hsl(35 70% 65%))',
-                WebkitBackgroundClip: 'text',
+                fontSize: 'clamp(4rem, 13vw, 14rem)',
+                WebkitTextStroke: '2px hsl(var(--coral))',
                 WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
               }}
             >
               CRAFT
             </motion.span>
           </div>
 
-          <div className="flex items-baseline gap-3 md:gap-6 flex-wrap -mt-2 md:-mt-8">
-            <motion.span variants={heroWord} className="font-script italic font-light" style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)', color: 'hsl(var(--cream) / 0.4)' }}>
+          {/* Line 2: "cinematic" in script + filled "WORLDS" */}
+          <div className="flex items-baseline gap-3 md:gap-6 flex-wrap -mt-2 md:-mt-6">
+            <motion.span
+              variants={heroWord}
+              className="font-script italic font-light"
+              style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)', color: 'hsl(var(--cream) / 0.5)' }}
+            >
               cinematic
             </motion.span>
             <motion.span
               variants={heroWord}
               className="font-display-alt font-extrabold uppercase tracking-[-0.04em]"
-              style={{
-                fontSize: 'clamp(4.5rem, 14vw, 15rem)',
-                WebkitTextStroke: '2px hsl(var(--coral) / 0.6)',
-                WebkitTextFillColor: 'transparent',
-              }}
+              style={{ fontSize: 'clamp(4rem, 13vw, 14rem)', color: 'hsl(var(--coral))' }}
             >
               WORLDS
             </motion.span>
           </div>
 
+          {/* Line 3 */}
           <motion.div className="flex items-center gap-6 mt-4 md:mt-2" variants={heroWord}>
-            <span className="font-script italic text-lg md:text-2xl" style={{ color: 'hsl(var(--cream) / 0.2)' }}>
+            <span className="font-script italic text-lg md:text-xl" style={{ color: 'hsl(var(--cream) / 0.25)' }}>
               that feel inevitable.
             </span>
+            <svg className="w-6 h-6 animate-rotate-slow opacity-20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L22 12L12 22L2 12Z" stroke="hsl(var(--coral))" strokeWidth="0.5" />
+            </svg>
           </motion.div>
         </motion.div>
       </div>
 
       {/* Bottom bar */}
       <div className="relative z-10 w-full px-6 md:px-20 lg:px-28 pb-8 md:pb-12">
-        <div className="border-t pt-6 flex flex-col md:flex-row md:items-end md:justify-between gap-6" style={{ borderColor: 'hsl(var(--cream) / 0.06)' }}>
+        <div className="border-t pt-6 flex flex-col md:flex-row md:items-end md:justify-between gap-6" style={{ borderColor: 'hsl(var(--white-10))' }}>
           <motion.p
             className="font-body text-[12px] max-w-[280px] leading-[1.9]"
-            style={{ color: 'hsl(var(--cream) / 0.25)' }}
+            style={{ color: 'hsl(var(--cream) / 0.3)' }}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.7 }}
@@ -156,7 +173,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
 
             <button
               className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.15em] transition-colors duration-300 group"
-              style={{ color: 'hsl(var(--cream) / 0.25)' }}
+              style={{ color: 'hsl(var(--cream) / 0.3)' }}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <span className="relative w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500 group-hover:border-sage" style={{ borderColor: 'hsl(var(--sage) / 0.15)' }}>

@@ -3,117 +3,124 @@
 @tailwind utilities;
 
 /* ══════════════════════════════════════════════════
-   DANVERSE — Ultra-refined Design System
-   Coral × Sage × Deep Ink — Rare. Warm. Futuristic.
+   DANVERSE — Prismatic Crystal Design System
+   Platinum × Rose Gold × Arctic — Ultra-Premium
    ══════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Manrope:wght@200;300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap');
 
 @layer base {
   :root {
-    /* ── Crystal Dark palette ── */
-    --background: 220 25% 4%;
-    --foreground: 210 20% 92%;
+    /* ── Ultra-deep crystalline backgrounds ── */
+    --background: 228 28% 3%;
+    --foreground: 220 15% 93%;
 
-    --card: 215 30% 7%;
-    --card-foreground: 210 20% 92%;
+    --card: 225 32% 6%;
+    --card-foreground: 220 15% 93%;
 
-    --popover: 215 30% 6%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 225 32% 5%;
+    --popover-foreground: 220 15% 93%;
 
-    /* Ice blue — primary crystal accent */
-    --primary: 200 85% 58%;
-    --primary-foreground: 220 25% 4%;
+    /* Platinum Ice — primary crystal accent */
+    --primary: 210 100% 72%;
+    --primary-foreground: 228 28% 3%;
 
-    /* Silver — elegant secondary */
-    --secondary: 220 10% 60%;
-    --secondary-foreground: 210 20% 92%;
+    /* Silver frost — secondary */
+    --secondary: 225 12% 55%;
+    --secondary-foreground: 220 15% 93%;
 
-    --muted: 220 15% 10%;
-    --muted-foreground: 210 10% 45%;
+    --muted: 225 18% 9%;
+    --muted-foreground: 220 10% 42%;
 
-    --accent: 200 85% 58%;
-    --accent-foreground: 220 25% 4%;
+    --accent: 210 100% 72%;
+    --accent-foreground: 228 28% 3%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 90% / 0.06;
-    --input: 210 15% 90% / 0.06;
-    --ring: 200 85% 58%;
+    --border: 220 20% 92% / 0.05;
+    --input: 220 20% 92% / 0.05;
+    --ring: 210 100% 72%;
 
     --radius: 0.125rem;
 
-    --sidebar-background: 220 25% 5%;
-    --sidebar-foreground: 210 20% 88%;
-    --sidebar-primary: 200 85% 58%;
-    --sidebar-primary-foreground: 220 25% 4%;
-    --sidebar-accent: 220 15% 10%;
-    --sidebar-accent-foreground: 210 20% 88%;
-    --sidebar-border: 210 15% 90% / 0.06;
-    --sidebar-ring: 200 85% 58%;
+    --sidebar-background: 228 28% 4%;
+    --sidebar-foreground: 220 15% 88%;
+    --sidebar-primary: 210 100% 72%;
+    --sidebar-primary-foreground: 228 28% 3%;
+    --sidebar-accent: 225 18% 9%;
+    --sidebar-accent-foreground: 220 15% 88%;
+    --sidebar-border: 220 20% 92% / 0.05;
+    --sidebar-ring: 210 100% 72%;
 
     /* ── Extended Crystal Palette ── */
-    --void: 220 30% 3%;
-    --abyss: 220 25% 4%;
-    --deep: 215 30% 7%;
-    --surface: 215 25% 9%;
-    --surface-raised: 215 20% 12%;
+    --void: 230 32% 2%;
+    --abyss: 228 28% 3%;
+    --deep: 225 32% 6%;
+    --surface: 225 25% 8%;
+    --surface-raised: 225 22% 11%;
 
-    /* Crystal colors */
-    --coral: 200 85% 58%;
-    --coral-dim: 200 85% 58% / 0.10;
-    --coral-glow: 200 85% 58% / 0.25;
-    --sage: 170 40% 55%;
-    --sage-dim: 170 40% 55% / 0.10;
-    --cream: 210 20% 92%;
-    --cream-dim: 210 20% 92% / 0.08;
-    --lavender: 270 35% 65%;
-    --lavender-dim: 270 35% 65% / 0.08;
+    /* ── Prismatic Accent System ── */
+    /* Rose Gold — warm luxurious accent */
+    --coral: 15 65% 65%;
+    --coral-dim: 15 65% 65% / 0.08;
+    --coral-glow: 15 65% 65% / 0.20;
 
-    /* Section backgrounds — crystal tones */
-    --section-terracotta: 215 35% 8%;
-    --section-terracotta-light: 210 30% 12%;
-    --section-charcoal: 220 20% 6%;
-    --section-warm-black: 225 25% 5%;
-    --section-midnight: 225 40% 6%;
-    --section-olive: 200 20% 7%;
+    /* Arctic Teal — cool crystal accent */
+    --sage: 180 50% 60%;
+    --sage-dim: 180 50% 60% / 0.08;
 
-    /* Legacy aliases — mapped to crystal */
-    --cyan: 200 85% 58%;
-    --cyan-dim: 200 85% 58% / 0.10;
-    --cyan-glow: 200 85% 58% / 0.25;
-    --magenta: 170 40% 55%;
-    --magenta-dim: 170 40% 55% / 0.10;
-    --purple: 270 35% 65%;
-    --purple-mid: 270 45% 55%;
-    --gold: 45 60% 70%;
-    --gold-dim: 45 60% 70% / 0.08;
-    --amber: 45 60% 70%;
-    --amber-dim: 45 60% 70% / 0.10;
-    --amber-glow: 45 60% 70% / 0.25;
+    /* Platinum — text and highlights */
+    --cream: 220 15% 93%;
+    --cream-dim: 220 15% 93% / 0.06;
 
-    --white-60: 210 15% 92% / 0.50;
-    --white-30: 210 15% 92% / 0.22;
-    --white-10: 210 15% 92% / 0.07;
-    --border-bright: 210 15% 92% / 0.12;
+    /* Amethyst — prismatic purple */
+    --lavender: 265 50% 70%;
+    --lavender-dim: 265 50% 70% / 0.06;
 
-    /* ── Typography ── */
+    /* Section backgrounds — deep crystalline shifts */
+    --section-terracotta: 225 35% 5%;
+    --section-terracotta-light: 220 30% 9%;
+    --section-charcoal: 230 22% 5%;
+    --section-warm-black: 228 28% 4%;
+    --section-midnight: 235 40% 5%;
+    --section-olive: 215 25% 5%;
+
+    /* Legacy aliases */
+    --cyan: 210 100% 72%;
+    --cyan-dim: 210 100% 72% / 0.08;
+    --cyan-glow: 210 100% 72% / 0.20;
+    --magenta: 340 55% 65%;
+    --magenta-dim: 340 55% 65% / 0.08;
+    --purple: 265 50% 70%;
+    --purple-mid: 265 55% 60%;
+    --gold: 38 70% 65%;
+    --gold-dim: 38 70% 65% / 0.06;
+    --amber: 38 70% 65%;
+    --amber-dim: 38 70% 65% / 0.08;
+    --amber-glow: 38 70% 65% / 0.20;
+
+    --white-60: 220 15% 93% / 0.55;
+    --white-30: 220 15% 93% / 0.25;
+    --white-10: 220 15% 93% / 0.08;
+    --border-bright: 220 15% 93% / 0.12;
+
+    /* ── Premium Typography Scale ── */
     --text-hero: clamp(4.5rem, 14vw + 0.5rem, 16rem);
     --text-display: clamp(5rem, 18vw, 22rem);
     --text-section: clamp(3rem, 8vw, 8rem);
     --text-stroke: clamp(4rem, 10vw, 10rem);
 
-    --font-display: 'Instrument Serif', Georgia, serif;
-    --font-heading: 'Space Grotesk', system-ui, sans-serif;
-    --font-body: 'Inter', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-script: 'Cormorant Garamond', Georgia, serif;
-    --font-display-alt: 'Syne', system-ui, sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-heading: 'Manrope', system-ui, sans-serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --font-script: 'Cormorant', Georgia, serif;
+    --font-display-alt: 'Unbounded', system-ui, sans-serif;
 
-    /* ── Shadows — crystal glow ── */
-    --shadow-glow-coral: 0 0 80px hsl(200 85% 58% / 0.10), 0 0 200px hsl(200 85% 58% / 0.03);
-    --shadow-card: 0 4px 0 hsl(0 0% 0% / 0.15), 0 24px 60px hsl(0 0% 0% / 0.5);
+    /* ── Shadows — prismatic crystal glow ── */
+    --shadow-glow-coral: 0 0 60px hsl(15 65% 65% / 0.06), 0 0 160px hsl(210 100% 72% / 0.03);
+    --shadow-card: 0 2px 0 hsl(0 0% 0% / 0.2), 0 20px 50px hsl(0 0% 0% / 0.55);
 
     /* ── Transitions ── */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -131,11 +138,11 @@
     --z-modal: 400;
     --z-cursor: 9999;
 
-    /* ── Gradients — crystal prismatic ── */
-    --gradient-text: linear-gradient(135deg, hsl(210 20% 92%) 0%, hsl(200 85% 58%) 50%, hsl(170 40% 55%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.03) 0%, transparent 100%);
-    --gradient-card-border: linear-gradient(135deg, hsl(200 85% 58% / 0.15) 0%, hsl(270 35% 65% / 0.08) 100%);
-    --gradient-vignette: radial-gradient(ellipse at center, transparent 30%, hsl(220 30% 3% / 0.85) 100%);
+    /* ── Gradients — prismatic crystal ── */
+    --gradient-text: linear-gradient(135deg, hsl(220 15% 95%) 0%, hsl(15 65% 65%) 40%, hsl(265 50% 70%) 70%, hsl(180 50% 60%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.025) 0%, transparent 100%);
+    --gradient-card-border: linear-gradient(135deg, hsl(15 65% 65% / 0.12) 0%, hsl(265 50% 70% / 0.06) 50%, hsl(180 50% 60% / 0.08) 100%);
+    --gradient-vignette: radial-gradient(ellipse at center, transparent 25%, hsl(230 32% 2% / 0.90) 100%);
     --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   }
 }
@@ -153,9 +160,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: -0.01em;
+    font-weight: 400;
   }
 
-  /* Film grain — very subtle */
+  /* Film grain — ultra subtle */
   body::before {
     content: '';
     position: fixed;
@@ -163,14 +171,14 @@
     background-image: var(--noise);
     background-repeat: repeat;
     background-size: 180px 180px;
-    opacity: 0.018;
+    opacity: 0.014;
     pointer-events: none;
     z-index: var(--z-overlay);
     mix-blend-mode: soft-light;
   }
 
   ::selection {
-    background: hsl(200 85% 58% / 0.25);
+    background: hsl(15 65% 65% / 0.20);
     color: hsl(var(--cream));
   }
 }
@@ -184,9 +192,8 @@
     background-clip: text;
   }
 
-  /* Outlined / stroke text */
   .text-stroke {
-    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.2);
+    -webkit-text-stroke: 1px hsl(var(--foreground) / 0.15);
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
@@ -202,10 +209,10 @@
   }
 
   .glass {
-    background: hsl(215 30% 8% / 0.65);
-    backdrop-filter: blur(30px) saturate(160%);
-    -webkit-backdrop-filter: blur(30px) saturate(160%);
-    border: 1px solid hsl(200 85% 58% / 0.06);
+    background: hsl(225 32% 6% / 0.70);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid hsl(220 15% 93% / 0.04);
   }
 
   .gradient-border {
@@ -244,28 +251,26 @@
   .font-display-alt {
     font-family: var(--font-display-alt);
   }
+
   .deco-circle {
     border-radius: 50%;
-    border: 1px solid hsl(var(--coral) / 0.15);
+    border: 1px solid hsl(var(--coral) / 0.10);
   }
 
-  /* Section number — oversized */
   .section-num {
     font-family: var(--font-display);
     font-style: italic;
     line-height: 1;
-    color: hsl(var(--coral) / 0.06);
+    color: hsl(var(--coral) / 0.04);
     user-select: none;
     pointer-events: none;
   }
 
-  /* Vertical text */
   .text-vertical {
     writing-mode: vertical-rl;
     text-orientation: mixed;
   }
 
-  /* Clip reveal */
   .clip-reveal {
     clip-path: inset(0 0 100% 0);
     animation: clip-reveal-up 0.8s var(--ease-out-expo) forwards;
@@ -290,7 +295,7 @@
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(var(--coral) / 0.15); }
+::-webkit-scrollbar-thumb { background: hsl(var(--coral) / 0.12); }
 
 /* ── Keyframes ── */
 @keyframes marquee-left {

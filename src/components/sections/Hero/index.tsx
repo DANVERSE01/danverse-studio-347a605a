@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { staggerContainer, heroWord } from '@/lib/animations';
 import MagneticButton from '@/components/ui/MagneticButton';
 import NeonBorder from '@/components/ui/NeonBorder';
-import WebGLFallback from './WebGLFallback';
+import ParticleScene from './ParticleScene';
 import HeroScrollIndicator from './HeroScrollIndicator';
 import { useDanverseStore } from '@/store/useDanverseStore';
 import { forwardRef } from 'react';
@@ -23,8 +23,8 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
       id="hero"
       className="relative min-h-[100svh] flex items-center overflow-hidden"
     >
-      {/* Background */}
-      <WebGLFallback />
+      {/* 3D Particle Background */}
+      <ParticleScene />
 
       {/* Vignette */}
       <div

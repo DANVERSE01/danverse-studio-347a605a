@@ -38,7 +38,7 @@ const Process = forwardRef<HTMLElement>((_, ref) => {
       ref={ref}
       id="process"
       className="relative py-32 md:py-48 px-6 md:px-20 lg:px-28"
-      style={{ background: 'linear-gradient(180deg, hsl(222 30% 6%), hsl(218 22% 8%))' }}
+      style={{ background: 'linear-gradient(180deg, hsl(232 30% 5%), hsl(228 25% 7%))' }}
     >
       {/* Giant outlined number */}
       <div className="absolute top-1/2 right-8 md:right-16 -translate-y-1/2 pointer-events-none select-none">

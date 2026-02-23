@@ -1,46 +1,83 @@
 
-# Works Hover Effects + Cinematic Loading Screen
 
-## 1. Works Section -- Crimson Glow Hover Effects
+# Location Removal + Brand Info Update + Netlify Deployment Files
 
-**File: `src/components/sections/Works/index.tsx`**
+## What's Changing
 
-Currently the work rows have a subtle background tint and floating image on hover. Will intensify with:
+### 1. Remove ALL Location References
+Every mention of Cairo, Egypt, MENA, Middle East, GMT+2 gets removed or replaced with location-neutral text.
 
-### Row Hover Enhancements
-- **Crimson glow background**: Increase the hover overlay from `0.02` to `0.06` opacity with a radial gradient glow effect
-- **Crimson bottom line**: Already animates `scaleX` -- will add `box-shadow` glow to the accent line (`0 0 12px`)
-- **Floating image glow**: Add crimson `box-shadow` around the floating preview image (`0 0 25px hsl(0 85% 55% / 0.3)`)
-- **Title text glow**: Add `text-shadow` on the title when hovered (`0 0 20px hsl(0 85% 55% / 0.15)`)
-- **Number glow**: Add glow to the index number on hover
-- **Row border**: Top border brightens on hover from `white-10` to `white-20`
+**Files affected:**
 
-### Floating Image Enhancements
-- Add a crimson border glow around the floating preview image
-- Add a subtle crimson gradient overlay instead of just multiply blend
+- **`src/pages/Index.tsx`** -- Remove "Cairo" from title/meta, update canonical to `https://danverse.ai`, fix OG description
+- **`src/components/sections/Hero/index.tsx`** (line 80) -- Change `Creative Studio / Cairo` to just `Creative Studio`
+- **`src/components/layout/Footer.tsx`** -- Remove "Cairo, Egypt" line, remove "GMT+2" line, remove "Cairo" from bottom bar
+- **`src/components/sections/Journal/index.tsx`** (line 14) -- Replace article title "Cairo Is the New Berlin" with a non-location title (e.g. "The Rise of the Digital-First Studio") and update excerpt to remove Middle East reference
+- **`src/components/ui/WorkModal.tsx`** -- Replace "MENA" with "global" or "regional" in case study descriptions, remove "Middle East" reference
 
-## 2. Loading Screen -- Cinematic Chrome Flash
+### 2. Update Contact Info & Social Links
 
-**File: `src/components/ui/LoadingScreen.tsx`**
+**Footer (`src/components/layout/Footer.tsx`):**
+- Email: `hello@danverse.studio` becomes `danverseai@gmail.com`
+- Social links: Replace `['LI', 'IG', 'BE', 'GH']` with actual links:
+  - **IG** -> `https://instagram.com/muhammedd_adel`
+  - **WA** -> `https://wa.me/201207346648`
+- Remove the dummy LI, BE, GH links that go nowhere
 
-Currently it's a simple logo + thin progress bar. Will upgrade to a more cinematic experience:
+**Domain updates across all files:**
+- `danverse.studio` becomes `danverse.ai` everywhere
 
-### Visual Enhancements
-- **Crimson progress bar**: Already using `--rose-gold` (which is now crimson) -- will make it thicker (2px instead of 1px) and add a glow effect (`box-shadow: 0 0 15px`)
-- **Chrome flash sweep**: Add a bright white/crimson light sweep across the progress bar as it fills
-- **Logo glow**: Add a subtle crimson glow behind the logo that pulses during loading
-- **Counter styling**: Make the percentage counter larger (`text-xs` instead of `text-[9px]`) with crimson color at full opacity
-- **Exit animation**: Add a vertical clip/wipe exit instead of simple fade -- more cinematic
-- **Longer duration**: Extend total time slightly (2.5s total instead of 2.2s) for more drama
-- **Background particles**: Add 2-3 subtle floating crimson dots in the background for atmosphere
-- **Progress bar width**: Increase from `w-40` to `w-56` for more visual impact
+### 3. Update SEO & Meta
 
-### Technical Details
-- Progress bar gets `box-shadow: 0 0 15px hsl(0 85% 55% / 0.4), 0 0 30px hsl(0 85% 55% / 0.2)`
-- Logo gets animated `filter: drop-shadow(0 0 20px hsl(0 85% 55% / 0.3))` during count phase
-- Exit uses `clipPath` animation from `inset(0)` to `inset(50% 0)` for a cinematic horizontal wipe
-- Floating dots use simple CSS keyframe float animation
+**`index.html`:**
+- Remove `@Lovable` twitter site
+- Update OG image URL (remove lovable placeholder)
+- Update domain references to `danverse.ai`
 
-### Files to modify:
-1. `src/components/sections/Works/index.tsx` -- hover glow effects
-2. `src/components/ui/LoadingScreen.tsx` -- cinematic upgrade
+**`src/pages/Index.tsx`:**
+- Canonical URL: `https://danverse.ai`
+- Title: Remove "Cairo"
+- Meta descriptions: Remove all location references
+
+### 4. Netlify Deployment Files
+
+Create the standard Netlify config files for SPA deployment:
+
+**`public/_redirects`:**
+```text
+/*    /index.html   200
+```
+This ensures all routes are handled by the SPA router (no 404s on refresh).
+
+**`netlify.toml`:**
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+```
+
+**`public/robots.txt`** -- Update sitemap URL to `https://danverse.ai/sitemap.xml`
+
+## Files Modified (Total: ~9 files)
+
+1. `src/pages/Index.tsx` -- SEO meta, canonical URL, remove Cairo
+2. `src/components/sections/Hero/index.tsx` -- Remove "Cairo" from tagline
+3. `src/components/layout/Footer.tsx` -- Contact info, social links, remove location
+4. `src/components/sections/Journal/index.tsx` -- Replace Cairo article
+5. `src/components/ui/WorkModal.tsx` -- Replace MENA/Middle East references
+6. `index.html` -- Domain, OG tags, remove Lovable twitter
+7. `public/robots.txt` -- Add sitemap URL
+8. `public/_redirects` -- NEW: Netlify SPA redirect
+9. `netlify.toml` -- NEW: Netlify build config + headers

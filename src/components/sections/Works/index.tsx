@@ -3,6 +3,7 @@ import { fadeUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
 import { useDanverseStore } from '@/store/useDanverseStore';
 import { forwardRef, useState } from 'react';
+import WorkModal from '@/components/ui/WorkModal';
 
 import imgNeonPulse from '@/assets/works/neon-pulse.jpg';
 import imgMetamorphosis from '@/assets/works/metamorphosis.jpg';
@@ -35,6 +36,8 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [mouseY, setMouseY] = useState(0);
+  const [selectedWork, setSelectedWork] = useState<typeof works[0] | null>(null);
+  const [selectedAccent, setSelectedAccent] = useState('coral');
 
   const filtered = activeFilter === 'all' ? works : works.filter((w) => w.category === activeFilter);
 
@@ -128,6 +131,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: i * 0.05 }}
                 className="group relative border-t cursor-pointer"
                 style={{ borderColor: 'hsl(var(--white-10))' }}
+                onClick={() => { setSelectedWork(work); setSelectedAccent(accent); }}
                 onMouseEnter={() => { setHoveredId(work.id); setCursorVariant('hover'); }}
                 onMouseLeave={() => { setHoveredId(null); setCursorVariant('default'); }}
                 onMouseMove={(e) => {
@@ -244,6 +248,11 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
           <span className="w-10 h-px transition-all duration-500 group-hover:w-16" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
         </button>
       </motion.div>
+
+      <WorkModal
+        work={selectedWork ? { ...selectedWork, accent: selectedAccent } : null}
+        onClose={() => setSelectedWork(null)}
+      />
     </section>
   );
 });

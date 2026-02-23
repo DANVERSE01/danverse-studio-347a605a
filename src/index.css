@@ -3,114 +3,114 @@
 @tailwind utilities;
 
 /* ══════════════════════════════════════════════════
-   DANVERSE — Pearl Luxe Design System
-   Rose Gold × Platinum × Pearl — Ultra-Premium
+   DANVERSE — Obsidian Chrome Design System
+   Electric Crimson × Chrome Silver × Deep Indigo
    ══════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Manrope:wght@200;300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
 @layer base {
   :root {
-    /* ── Deep luxe backgrounds ── */
-    --background: 225 20% 4%;
-    --foreground: 40 15% 90%;
+    /* ── Deep obsidian backgrounds ── */
+    --background: 230 25% 4%;
+    --foreground: 220 15% 90%;
 
-    --card: 225 22% 6%;
-    --card-foreground: 40 15% 90%;
+    --card: 232 28% 6%;
+    --card-foreground: 220 15% 90%;
 
-    --popover: 225 22% 5%;
-    --popover-foreground: 40 15% 90%;
+    --popover: 232 28% 5%;
+    --popover-foreground: 220 15% 90%;
 
-    /* Rose Gold — primary luxe accent */
-    --primary: 12 45% 68%;
-    --primary-foreground: 225 20% 4%;
+    /* Electric Crimson — primary aggressive accent */
+    --primary: 0 85% 55%;
+    --primary-foreground: 230 25% 4%;
 
-    /* Platinum — secondary */
-    --secondary: 220 20% 55%;
-    --secondary-foreground: 40 15% 90%;
+    /* Chrome Silver — secondary */
+    --secondary: 220 15% 55%;
+    --secondary-foreground: 220 15% 90%;
 
-    --muted: 225 15% 10%;
+    --muted: 230 18% 10%;
     --muted-foreground: 220 10% 42%;
 
-    --accent: 12 45% 68%;
-    --accent-foreground: 225 20% 4%;
+    --accent: 0 85% 55%;
+    --accent-foreground: 230 25% 4%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 10% 90% / 0.06;
-    --input: 40 10% 90% / 0.06;
-    --ring: 12 45% 68%;
+    --border: 220 20% 92% / 0.06;
+    --input: 220 20% 92% / 0.06;
+    --ring: 0 85% 55%;
 
     --radius: 0.125rem;
 
-    --sidebar-background: 225 20% 4%;
-    --sidebar-foreground: 40 15% 88%;
-    --sidebar-primary: 12 45% 68%;
-    --sidebar-primary-foreground: 225 20% 4%;
-    --sidebar-accent: 225 15% 10%;
-    --sidebar-accent-foreground: 40 15% 88%;
-    --sidebar-border: 40 10% 90% / 0.06;
-    --sidebar-ring: 12 45% 68%;
+    --sidebar-background: 230 25% 4%;
+    --sidebar-foreground: 220 15% 88%;
+    --sidebar-primary: 0 85% 55%;
+    --sidebar-primary-foreground: 230 25% 4%;
+    --sidebar-accent: 230 18% 10%;
+    --sidebar-accent-foreground: 220 15% 88%;
+    --sidebar-border: 220 20% 92% / 0.06;
+    --sidebar-ring: 0 85% 55%;
 
-    /* ── Extended Luxe Palette ── */
-    --void: 228 25% 3%;
-    --abyss: 225 20% 4%;
-    --deep: 225 22% 6%;
-    --surface: 225 18% 9%;
-    --surface-raised: 225 16% 12%;
+    /* ── Extended Obsidian Palette ── */
+    --void: 235 30% 3%;
+    --abyss: 230 25% 4%;
+    --deep: 232 28% 6%;
+    --surface: 230 22% 9%;
+    --surface-raised: 230 20% 12%;
 
-    /* ── Pearl Luxe Accent System ── */
-    /* Pearl — warm champagne base */
-    --pearl: 40 20% 92%;
-    --pearl-dim: 40 20% 92% / 0.06;
+    /* ── Obsidian Chrome Accent System ── */
+    /* Pearl → Cool White */
+    --pearl: 220 20% 92%;
+    --pearl-dim: 220 20% 92% / 0.06;
 
-    /* Rose Gold — warm luxurious accent */
-    --rose-gold: 12 45% 68%;
-    --rose-gold-dim: 12 45% 68% / 0.08;
-    --rose-gold-glow: 12 45% 68% / 0.15;
+    /* Rose Gold → Electric Crimson */
+    --rose-gold: 0 85% 55%;
+    --rose-gold-dim: 0 85% 55% / 0.08;
+    --rose-gold-glow: 0 85% 55% / 0.15;
 
-    /* Platinum Blue — cool metallic accent */
-    --platinum: 220 25% 72%;
-    --platinum-dim: 220 25% 72% / 0.08;
+    /* Platinum → Chrome Silver */
+    --platinum: 220 15% 75%;
+    --platinum-dim: 220 15% 75% / 0.08;
 
     /* Aliases for backward compatibility */
-    --coral: 12 45% 68%;
-    --coral-dim: 12 45% 68% / 0.08;
-    --coral-glow: 12 45% 68% / 0.15;
-    --sage: 220 25% 72%;
-    --sage-dim: 220 25% 72% / 0.08;
-    --cream: 40 20% 92%;
-    --cream-dim: 40 20% 92% / 0.06;
-    --lavender: 280 20% 72%;
-    --lavender-dim: 280 20% 72% / 0.06;
+    --coral: 0 85% 55%;
+    --coral-dim: 0 85% 55% / 0.08;
+    --coral-glow: 0 85% 55% / 0.15;
+    --sage: 220 15% 75%;
+    --sage-dim: 220 15% 75% / 0.08;
+    --cream: 220 20% 92%;
+    --cream-dim: 220 20% 92% / 0.06;
+    --lavender: 250 70% 55%;
+    --lavender-dim: 250 70% 55% / 0.06;
 
-    /* Section backgrounds — luxe tonal shifts */
-    --section-terracotta: 220 28% 6%;
-    --section-terracotta-light: 215 22% 10%;
-    --section-charcoal: 228 18% 5%;
-    --section-warm-black: 225 22% 4%;
-    --section-midnight: 232 30% 5%;
-    --section-olive: 210 20% 6%;
+    /* Section backgrounds — deep obsidian tonal shifts */
+    --section-terracotta: 235 30% 6%;
+    --section-terracotta-light: 240 25% 10%;
+    --section-charcoal: 228 25% 5%;
+    --section-warm-black: 232 28% 4%;
+    --section-midnight: 240 35% 5%;
+    --section-olive: 225 22% 6%;
 
     /* Legacy aliases */
-    --cyan: 220 25% 72%;
-    --cyan-dim: 220 25% 72% / 0.08;
-    --cyan-glow: 220 25% 72% / 0.20;
-    --magenta: 12 45% 68%;
-    --magenta-dim: 12 45% 68% / 0.08;
-    --purple: 280 20% 72%;
-    --purple-mid: 280 25% 60%;
-    --gold: 38 55% 65%;
-    --gold-dim: 38 55% 65% / 0.06;
-    --amber: 38 55% 65%;
-    --amber-dim: 38 55% 65% / 0.08;
-    --amber-glow: 38 55% 65% / 0.20;
+    --cyan: 220 15% 75%;
+    --cyan-dim: 220 15% 75% / 0.08;
+    --cyan-glow: 220 15% 75% / 0.20;
+    --magenta: 0 85% 55%;
+    --magenta-dim: 0 85% 55% / 0.08;
+    --purple: 250 70% 55%;
+    --purple-mid: 250 75% 50%;
+    --gold: 0 85% 55%;
+    --gold-dim: 0 85% 55% / 0.06;
+    --amber: 0 85% 55%;
+    --amber-dim: 0 85% 55% / 0.08;
+    --amber-glow: 0 85% 55% / 0.20;
 
-    --white-60: 40 20% 92% / 0.55;
-    --white-30: 40 20% 92% / 0.25;
-    --white-10: 40 20% 92% / 0.08;
-    --border-bright: 40 20% 92% / 0.12;
+    --white-60: 220 20% 92% / 0.55;
+    --white-30: 220 20% 92% / 0.25;
+    --white-10: 220 20% 92% / 0.08;
+    --border-bright: 220 20% 92% / 0.12;
 
     /* ── Premium Typography Scale ── */
     --text-hero: clamp(4.5rem, 14vw + 0.5rem, 16rem);
@@ -123,9 +123,9 @@
     --font-body: 'DM Sans', system-ui, sans-serif;
     --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
 
-    /* ── Shadows — pearl luxe glow ── */
-    --shadow-glow-coral: 0 0 60px hsl(12 45% 68% / 0.06), 0 0 160px hsl(220 25% 72% / 0.03);
-    --shadow-card: 0 2px 0 hsl(0 0% 0% / 0.2), 0 20px 50px hsl(0 0% 0% / 0.55);
+    /* ── Shadows — obsidian chrome glow ── */
+    --shadow-glow-coral: 0 0 60px hsl(0 85% 55% / 0.08), 0 0 160px hsl(250 70% 55% / 0.04);
+    --shadow-card: 0 2px 0 hsl(0 0% 0% / 0.3), 0 20px 50px hsl(0 0% 0% / 0.6);
 
     /* ── Transitions ── */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -143,11 +143,11 @@
     --z-modal: 400;
     --z-cursor: 9999;
 
-    /* ── Gradients — pearlescent luxe ── */
-    --gradient-text: linear-gradient(135deg, hsl(40 20% 95%) 0%, hsl(12 45% 68%) 40%, hsl(280 20% 72%) 70%, hsl(220 25% 72%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.025) 0%, transparent 100%);
-    --gradient-card-border: linear-gradient(135deg, hsl(12 45% 68% / 0.12) 0%, hsl(280 20% 72% / 0.06) 50%, hsl(220 25% 72% / 0.08) 100%);
-    --gradient-vignette: radial-gradient(ellipse at center, transparent 25%, hsl(228 25% 3% / 0.90) 100%);
+    /* ── Gradients — obsidian chrome ── */
+    --gradient-text: linear-gradient(135deg, hsl(220 20% 95%) 0%, hsl(0 85% 55%) 40%, hsl(250 70% 55%) 70%, hsl(220 15% 75%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100% / 0.02) 0%, transparent 100%);
+    --gradient-card-border: linear-gradient(135deg, hsl(0 85% 55% / 0.15) 0%, hsl(250 70% 55% / 0.08) 50%, hsl(220 15% 75% / 0.10) 100%);
+    --gradient-vignette: radial-gradient(ellipse at center, transparent 20%, hsl(235 30% 3% / 0.95) 100%);
     --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
   }
 }
@@ -176,14 +176,14 @@
     background-image: var(--noise);
     background-repeat: repeat;
     background-size: 180px 180px;
-    opacity: 0.014;
+    opacity: 0.012;
     pointer-events: none;
     z-index: var(--z-overlay);
-    mix-blend-mode: soft-light;
+    mix-blend-mode: overlay;
   }
 
   ::selection {
-    background: hsl(12 45% 68% / 0.20);
+    background: hsl(0 85% 55% / 0.25);
     color: hsl(var(--pearl));
   }
 }
@@ -214,10 +214,10 @@
   }
 
   .glass {
-    background: hsl(225 22% 6% / 0.70);
+    background: hsl(232 28% 6% / 0.75);
     backdrop-filter: blur(40px) saturate(180%);
     -webkit-backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid hsl(40 20% 92% / 0.04);
+    border: 1px solid hsl(220 20% 92% / 0.04);
   }
 
   .gradient-border {
@@ -282,27 +282,28 @@
     animation: clip-reveal-up 0.8s var(--ease-out-expo) forwards;
   }
 
-  /* Pearl shimmer on text */
+  /* Chrome Flash shimmer on text */
   .shimmer-text {
     background: linear-gradient(
       120deg,
       hsl(var(--pearl)) 0%,
-      hsl(var(--pearl)) 30%,
-      hsl(var(--rose-gold)) 45%,
-      hsl(var(--platinum)) 55%,
-      hsl(var(--pearl)) 70%,
+      hsl(var(--pearl)) 25%,
+      hsl(var(--rose-gold)) 40%,
+      hsl(250 70% 55%) 50%,
+      hsl(var(--platinum)) 60%,
+      hsl(var(--pearl)) 75%,
       hsl(var(--pearl)) 100%
     );
     background-size: 400% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: pearl-sheen 8s ease-in-out infinite;
+    animation: chrome-flash 5s ease-in-out infinite;
   }
 
-  /* Pearl shimmer on stroke text */
+  /* Chrome shimmer on stroke text */
   .shimmer-stroke {
-    animation: shimmer-stroke-color 8s ease-in-out infinite;
+    animation: shimmer-stroke-color 5s ease-in-out infinite;
   }
 
   /* CTA shimmer glow */
@@ -317,19 +318,20 @@
     background: linear-gradient(
       105deg,
       transparent 30%,
-      hsl(var(--rose-gold) / 0.06) 45%,
-      hsl(var(--platinum) / 0.04) 55%,
+      hsl(var(--rose-gold) / 0.08) 42%,
+      hsl(250 70% 55% / 0.05) 50%,
+      hsl(var(--platinum) / 0.06) 58%,
       transparent 70%
     );
     background-size: 250% 100%;
-    animation: pearl-sheen 6s ease-in-out infinite;
+    animation: chrome-flash 4s ease-in-out infinite;
     pointer-events: none;
     border-radius: inherit;
   }
 
-  /* Pearl glow utility */
+  /* Chrome glow utility */
   .pearl-glow {
-    box-shadow: 0 0 40px hsl(var(--rose-gold) / 0.06), 0 0 80px hsl(var(--platinum) / 0.03);
+    box-shadow: 0 0 40px hsl(var(--rose-gold) / 0.08), 0 0 80px hsl(250 70% 55% / 0.04);
   }
 }
 
@@ -351,7 +353,7 @@
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: hsl(var(--rose-gold) / 0.12); }
+::-webkit-scrollbar-thumb { background: hsl(var(--rose-gold) / 0.15); }
 
 /* ── Keyframes ── */
 @keyframes marquee-left {
@@ -422,16 +424,17 @@
   100% { background-position: 200% center; }
 }
 
-/* Pearl Sheen — pearlescent iridescence */
-@keyframes pearl-sheen {
+/* Chrome Flash — aggressive metallic sweep */
+@keyframes chrome-flash {
   0%, 100% { background-position: 200% center; }
   50% { background-position: -200% center; }
 }
 
 @keyframes shimmer-stroke-color {
   0%, 100% { -webkit-text-stroke-color: hsl(var(--rose-gold)); }
-  33% { -webkit-text-stroke-color: hsl(var(--platinum)); }
-  66% { -webkit-text-stroke-color: hsl(var(--rose-gold) / 0.6); }
+  25% { -webkit-text-stroke-color: hsl(250 70% 55%); }
+  50% { -webkit-text-stroke-color: hsl(var(--platinum)); }
+  75% { -webkit-text-stroke-color: hsl(var(--rose-gold) / 0.6); }
 }
 
 /* ── Hero Grid — Multi-column Marquee ── */
@@ -479,9 +482,9 @@
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .glass-btn:hover {
-  background: hsl(var(--rose-gold) / 0.08);
-  border-color: hsl(var(--rose-gold) / 0.25);
-  box-shadow: 0 0 30px hsl(var(--rose-gold) / 0.08), 0 0 60px hsl(var(--platinum) / 0.04);
+  background: hsl(var(--rose-gold) / 0.10);
+  border-color: hsl(var(--rose-gold) / 0.30);
+  box-shadow: 0 0 30px hsl(var(--rose-gold) / 0.10), 0 0 60px hsl(250 70% 55% / 0.05);
 }
 
 .gradient-border-spin {
@@ -496,17 +499,18 @@
   padding: 1px;
   background: conic-gradient(
     from var(--border-angle),
-    hsl(var(--rose-gold) / 0.5),
+    hsl(var(--rose-gold) / 0.6),
+    hsl(250 70% 55% / 0.3),
     hsl(var(--platinum) / 0.3),
     hsl(var(--rose-gold) / 0.2),
-    hsl(var(--rose-gold) / 0.5)
+    hsl(var(--rose-gold) / 0.6)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: border-spin 4s linear infinite;
+  animation: border-spin 3s linear infinite;
   z-index: -1;
-  opacity: 0.6;
+  opacity: 0.7;
   transition: opacity 0.5s ease;
 }
 .gradient-border-spin:hover::before {
@@ -528,14 +532,14 @@
   background: linear-gradient(
     90deg,
     transparent,
-    hsl(var(--pearl) / 0.06),
+    hsl(var(--pearl) / 0.08),
     transparent
   );
   transform: translateX(-100%) skewX(-15deg);
   pointer-events: none;
 }
 .btn-shimmer:hover::after {
-  animation: shimmer-btn-sweep 0.8s ease forwards;
+  animation: shimmer-btn-sweep 0.6s ease forwards;
 }
 
 /* Showreel pulse rings */
@@ -552,7 +556,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid hsl(var(--platinum) / 0.2);
+  border: 1px solid hsl(var(--platinum) / 0.25);
   pointer-events: none;
 }
 .showreel-ring:hover::before {

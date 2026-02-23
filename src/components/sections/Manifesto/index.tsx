@@ -22,7 +22,7 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
       ref={ref}
       id="manifesto"
       className="relative"
-      style={{ background: 'linear-gradient(180deg, hsl(210 20% 7%), hsl(220 25% 6%))' }}
+      style={{ background: 'linear-gradient(180deg, hsl(235 30% 5%), hsl(240 35% 4%))' }}
     >
       <div ref={containerRef} className="relative" style={{ height: '350vh' }}>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">

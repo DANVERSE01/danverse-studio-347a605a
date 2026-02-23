@@ -434,9 +434,9 @@
 }
 
 .hero-grid-scroll {
-  animation: hero-grid-scroll 55s linear infinite;
+  animation: hero-grid-scroll 80s linear infinite;
 }
 
 .hero-grid-item {
-  animation: hero-grid-float 8s ease-in-out infinite;
+  animation: hero-grid-float 10s ease-in-out infinite;
 }

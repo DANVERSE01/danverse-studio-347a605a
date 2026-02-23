@@ -3,14 +3,17 @@ import { fadeUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
 import { useDanverseStore } from '@/store/useDanverseStore';
 import { forwardRef, useState } from 'react';
+import imgNeonPulse from '@/assets/works/neon-pulse.jpg';
+import imgSynthCulture from '@/assets/works/synth-culture.jpg';
+import imgGenesisEngine from '@/assets/works/genesis-engine.jpg';
 
 const services = [
-  { num: '01', name: 'Cinematic Ads', fill: 'ADVERTISING', tagline: 'Stories that outlive the scroll.', accent: 'coral' },
-  { num: '02', name: 'Brand Systems', fill: 'IDENTITY', tagline: 'Identities that scale with intelligence.', accent: 'sage' },
-  { num: '03', name: '3D & Immersive', fill: 'SPATIAL', tagline: 'Environments you experience.', accent: 'lavender' },
-  { num: '04', name: 'Digital Product', fill: 'PRODUCT', tagline: 'Interfaces that feel inevitable.', accent: 'coral' },
-  { num: '05', name: 'Motion Design', fill: 'KINETIC', tagline: 'Movement as communication.', accent: 'sage' },
-  { num: '06', name: 'AI Content OS', fill: 'INTELLIGENCE', tagline: 'Create once. Deploy everywhere.', accent: 'lavender' },
+  { num: '01', name: 'Cinematic Ads', tagline: 'Stories that outlive the scroll.', accent: 'coral', image: imgNeonPulse },
+  { num: '02', name: 'Brand Systems', tagline: 'Identities that scale with intelligence.', accent: 'sage', image: imgSynthCulture },
+  { num: '03', name: '3D & Immersive', tagline: 'Environments you experience.', accent: 'lavender', image: imgGenesisEngine },
+  { num: '04', name: 'Digital Product', tagline: 'Interfaces that feel inevitable.', accent: 'coral', image: imgNeonPulse },
+  { num: '05', name: 'Motion Design', tagline: 'Movement as communication.', accent: 'sage', image: imgSynthCulture },
+  { num: '06', name: 'AI Content OS', tagline: 'Create once. Deploy everywhere.', accent: 'lavender', image: imgGenesisEngine },
 ];
 
 const Craft = forwardRef<HTMLElement>((_, ref) => {
@@ -23,128 +26,106 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
       ref={ref}
       id="craft"
       className="relative py-32 md:py-48"
-      style={{ background: 'hsl(var(--section-midnight))' }}
+      style={{
+        background: 'linear-gradient(180deg, hsl(var(--section-midnight)) 0%, hsl(220 50% 8%) 50%, hsl(var(--section-midnight)) 100%)',
+      }}
     >
-      {/* Giant watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
-        <span
-          className="font-display-alt font-extrabold uppercase whitespace-nowrap"
-          style={{
-            fontSize: 'clamp(8rem, 25vw, 28rem)',
-            color: 'hsl(var(--coral) / 0.03)',
-          }}
-        >
-          BUILD
-        </span>
-      </div>
-
       {/* Header */}
       <div className="px-6 md:px-20 lg:px-28">
-        <motion.div
-          ref={inViewRef}
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="mb-20"
-        >
+        <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="mb-20">
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
-              Capabilities
-            </span>
+            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>Capabilities</span>
             <div className="flex-1 max-w-[200px] h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
-              What we
-            </span>
-            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', color: 'hsl(var(--coral))' }}>
-              BUILD
-            </span>
+            <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>What we</span>
+            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{
+              fontSize: 'clamp(3rem, 8vw, 8rem)',
+              background: 'linear-gradient(135deg, hsl(var(--coral)), hsl(260 30% 55%))',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+            }}>BUILD</span>
           </motion.h2>
         </motion.div>
       </div>
 
-      {/* Services */}
-      <div className="w-full">
-        {services.map((service, i) => {
-          const isHovered = hoveredIdx === i;
-          return (
-            <motion.div
-              key={service.num}
-              className="group relative border-t overflow-hidden cursor-pointer"
-              style={{ borderColor: 'hsl(var(--white-10))' }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              onMouseEnter={() => { setHoveredIdx(i); setCursorVariant('hover'); }}
-              onMouseLeave={() => { setHoveredIdx(null); setCursorVariant('default'); }}
-            >
-              {/* Background text */}
-              <motion.span
-                className="absolute right-6 md:right-20 top-1/2 -translate-y-1/2 font-display-alt font-extrabold uppercase tracking-[-0.05em] pointer-events-none select-none"
-                style={{
-                  fontSize: 'clamp(4rem, 12vw, 12rem)',
-                  WebkitTextStroke: `1px hsl(var(--${service.accent}) / 0.04)`,
-                  WebkitTextFillColor: 'transparent',
-                }}
-                initial={false}
-                animate={{ opacity: isHovered ? 1 : 0.3, x: isHovered ? -20 : 0 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {service.fill}
-              </motion.span>
-
-              <div className="relative px-6 md:px-20 lg:px-28 py-7 md:py-9 grid grid-cols-1 md:grid-cols-[60px_1fr_auto] gap-4 md:gap-10 items-center">
-                <span
-                  className="font-mono-brand text-[10px] tabular-nums transition-colors duration-500 hidden md:block"
-                  style={{ color: isHovered ? `hsl(var(--${service.accent}))` : 'hsl(var(--white-10))' }}
-                >
-                  {service.num}
-                </span>
-
-                <div>
-                  <motion.h3
-                    className="font-heading font-semibold text-xl md:text-3xl tracking-[-0.02em] transition-colors duration-500"
-                    style={{ color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))' }}
-                    animate={{ x: isHovered ? 6 : 0 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {service.name}
-                  </motion.h3>
-                  <motion.p
-                    className="font-script italic text-[14px] mt-1.5"
-                    style={{ color: 'hsl(var(--cream) / 0.5)' }}
-                    initial={false}
-                    animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 6 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {service.tagline}
-                  </motion.p>
-                </div>
-
-                <motion.div
-                  initial={false}
-                  animate={{ opacity: isHovered ? 1 : 0.1, rotate: isHovered ? 0 : -45, scale: isHovered ? 1 : 0.8 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 15L15 5M15 5H8M15 5v7" stroke={`hsl(var(--${service.accent}))`} strokeWidth="1" strokeLinecap="round" />
-                  </svg>
-                </motion.div>
-              </div>
-
+      {/* Services grid with images */}
+      <div className="px-6 md:px-20 lg:px-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {services.map((service, i) => {
+            const isHovered = hoveredIdx === i;
+            return (
               <motion.div
-                className="absolute bottom-0 left-0 h-px origin-left"
-                style={{ background: `hsl(var(--${service.accent}))` }}
-                initial={false}
-                animate={{ scaleX: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </motion.div>
-          );
-        })}
-        <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
+                key={service.num}
+                className="relative overflow-hidden cursor-pointer group h-[320px]"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                onMouseEnter={() => { setHoveredIdx(i); setCursorVariant('hover'); }}
+                onMouseLeave={() => { setHoveredIdx(null); setCursorVariant('default'); }}
+              >
+                {/* Background image */}
+                <motion.img
+                  src={service.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
+                  animate={{ scale: isHovered ? 1.1 : 1.02 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                />
+
+                {/* Dark overlay */}
+                <div
+                  className="absolute inset-0 transition-all duration-700"
+                  style={{
+                    background: isHovered
+                      ? `linear-gradient(180deg, hsl(var(--${service.accent}) / 0.15) 0%, hsl(var(--void) / 0.6) 100%)`
+                      : `linear-gradient(180deg, hsl(var(--void) / 0.7) 0%, hsl(var(--void) / 0.85) 100%)`,
+                  }}
+                />
+
+                {/* Glow line at bottom */}
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-[2px]"
+                  style={{ background: `linear-gradient(90deg, transparent, hsl(var(--${service.accent})), transparent)` }}
+                  animate={{ opacity: isHovered ? 1 : 0 }}
+                  transition={{ duration: 0.4 }}
+                />
+
+                {/* Content */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono-brand text-[10px] tabular-nums" style={{ color: `hsl(var(--${service.accent}) / 0.5)` }}>
+                      {service.num}
+                    </span>
+                    <motion.div animate={{ opacity: isHovered ? 1 : 0, rotate: isHovered ? 0 : -45 }} transition={{ duration: 0.3 }}>
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M5 13L13 5M13 5H7M13 5v6" stroke={`hsl(var(--${service.accent}))`} strokeWidth="1" strokeLinecap="round" />
+                      </svg>
+                    </motion.div>
+                  </div>
+
+                  <div>
+                    <motion.h3
+                      className="font-display-alt font-bold text-xl md:text-2xl uppercase tracking-[-0.02em] mb-2"
+                      style={{ color: 'hsl(var(--cream))' }}
+                      animate={{ y: isHovered ? 0 : 4 }}
+                    >
+                      {service.name}
+                    </motion.h3>
+                    <motion.p
+                      className="font-script italic text-sm"
+                      style={{ color: `hsl(var(--${service.accent}) / 0.7)` }}
+                      animate={{ opacity: isHovered ? 1 : 0.4, y: isHovered ? 0 : 8 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {service.tagline}
+                    </motion.p>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

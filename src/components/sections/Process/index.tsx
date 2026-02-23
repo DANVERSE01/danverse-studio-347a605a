@@ -11,34 +11,34 @@ const phases = [
     description: 'Deep immersion into your brand DNA. We challenge assumptions and uncover the real problem worth solving.',
     deliverables: ['Brand Audit', 'Audience Mapping', 'Competitive Landscape', 'Strategic Brief'],
     duration: '1–2 weeks',
-    visual: '◎',
+    accent: 'coral',
   },
   {
     num: '02',
     label: 'Architect',
     title: 'Systems before aesthetics.',
-    description: 'We design the invisible framework that makes the visible possible. Architecture, strategy, and specifications.',
+    description: 'We design the invisible framework that makes the visible possible.',
     deliverables: ['Brand Architecture', 'Design System', 'Content Framework', 'Tech Spec'],
     duration: '2–3 weeks',
-    visual: '◇',
+    accent: 'sage',
   },
   {
     num: '03',
     label: 'Engineer',
     title: 'Craft meets computation.',
-    description: 'Pixel-perfect execution powered by AI and human obsession. Every asset built with surgical precision.',
+    description: 'Pixel-perfect execution powered by AI and human obsession.',
     deliverables: ['Visual Design', 'Motion System', 'Development', 'Content Production'],
     duration: '4–8 weeks',
-    visual: '△',
+    accent: 'lavender',
   },
   {
     num: '04',
     label: 'Launch',
     title: 'Not delivered. Deployed.',
-    description: "We don't hand off and vanish. We deploy, monitor, optimize, and iterate until the numbers tell us to stop.",
+    description: "We deploy, monitor, optimize, and iterate until the numbers tell us to stop.",
     deliverables: ['Deployment', 'Analytics', 'A/B Testing', 'Optimization'],
     duration: '1–2 weeks',
-    visual: '□',
+    accent: 'coral',
   },
 ];
 
@@ -46,11 +46,7 @@ const Process = forwardRef<HTMLElement>((_, ref) => {
   const { ref: inViewRef, isInView } = useInView(0.05);
 
   return (
-    <section ref={ref} id="process" className="relative py-32 md:py-48 px-6 md:px-16">
-      <span className="absolute top-16 right-6 md:right-16 section-num" style={{ fontSize: 'clamp(6rem, 15vw, 12rem)' }}>
-        05
-      </span>
-
+    <section ref={ref} id="process" className="relative py-32 md:py-48 px-6 md:px-20 lg:px-28">
       <motion.div
         ref={inViewRef}
         variants={staggerContainer}
@@ -64,21 +60,22 @@ const Process = forwardRef<HTMLElement>((_, ref) => {
           </span>
           <div className="w-16 h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
         </motion.div>
-        <motion.h2 variants={fadeUp}>
-          <span className="font-display italic block tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+        <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
+          <span className="font-display italic tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
             How we
           </span>
-          <span className="font-heading font-bold uppercase block tracking-[-0.03em]" style={{ fontSize: 'clamp(2rem, 6vw, 5.5rem)', color: 'hsl(var(--sage))' }}>
-            Think
+          <span className="font-heading font-bold uppercase tracking-[-0.04em] text-stroke" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)' }}>
+            THINK
           </span>
         </motion.h2>
       </motion.div>
 
-      {/* Phases — asymmetric cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+      {/* Phases — stacked rows */}
+      <div>
         {phases.map((phase, i) => (
-          <PhaseCard key={phase.num} phase={phase} index={i} />
+          <PhaseRow key={phase.num} phase={phase} index={i} />
         ))}
+        <div className="border-t" style={{ borderColor: 'hsl(var(--white-10))' }} />
       </div>
     </section>
   );
@@ -86,70 +83,58 @@ const Process = forwardRef<HTMLElement>((_, ref) => {
 
 Process.displayName = 'Process';
 
-function PhaseCard({ phase, index }: { phase: typeof phases[0]; index: number }) {
+function PhaseRow({ phase, index }: { phase: typeof phases[0]; index: number }) {
   const { ref, isInView } = useInView(0.3);
-  const accentColors = ['coral', 'sage', 'lavender', 'coral'];
-  const accent = accentColors[index];
 
   return (
     <motion.div
       ref={ref}
-      className="relative p-8 md:p-10 group overflow-hidden"
-      style={{
-        background: 'hsl(var(--deep))',
-        border: '1px solid hsl(var(--white-10))',
-        minHeight: 340,
-      }}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      className="group relative border-t grid grid-cols-1 md:grid-cols-[120px_1fr_1.5fr] gap-6 md:gap-12 py-10 md:py-14 items-start"
+      style={{ borderColor: 'hsl(var(--white-10))' }}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Large decorative symbol */}
-      <span
-        className="absolute top-6 right-8 text-6xl md:text-7xl transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12"
-        style={{ color: `hsl(var(--${accent}) / 0.06)` }}
-      >
-        {phase.visual}
-      </span>
-
-      {/* Number + label */}
-      <div className="flex items-center gap-3 mb-8">
-        <span className="font-mono-brand text-[10px] tabular-nums" style={{ color: `hsl(var(--${accent}) / 0.5)` }}>
+      {/* Large number + label */}
+      <div className="flex md:flex-col items-baseline md:items-start gap-3">
+        <span
+          className="font-display italic text-5xl md:text-6xl transition-colors duration-500"
+          style={{ color: `hsl(var(--${phase.accent}) / 0.12)` }}
+        >
           {phase.num}
         </span>
-        <div className="w-4 h-px" style={{ background: `hsl(var(--${accent}) / 0.3)` }} />
-        <span className="font-mono-brand text-[10px] tracking-[0.2em] uppercase" style={{ color: `hsl(var(--${accent}))` }}>
+        <span
+          className="font-mono-brand text-[9px] uppercase tracking-[0.25em]"
+          style={{ color: `hsl(var(--${phase.accent}))` }}
+        >
           {phase.label}
         </span>
       </div>
 
       {/* Title */}
-      <h3 className="font-display italic text-2xl md:text-3xl mb-4" style={{ color: 'hsl(var(--foreground))' }}>
-        {phase.title}
-      </h3>
-
-      {/* Description */}
-      <p className="text-[13px] leading-[1.8] mb-6 max-w-sm" style={{ color: 'hsl(var(--white-30))' }}>
-        {phase.description}
-      </p>
-
-      {/* Deliverables */}
-      <div className="flex flex-wrap gap-x-5 gap-y-1.5 mb-4">
-        {phase.deliverables.map((d) => (
-          <span key={d} className="flex items-center gap-2 text-[11px]" style={{ color: 'hsl(var(--white-30))' }}>
-            <span className="w-1 h-1 rounded-full" style={{ background: `hsl(var(--${accent}) / 0.4)` }} />
-            {d}
-          </span>
-        ))}
+      <div>
+        <h3 className="font-display italic text-2xl md:text-3xl leading-[1.2] transition-colors duration-500 group-hover:text-foreground" style={{ color: 'hsl(var(--white-60))' }}>
+          {phase.title}
+        </h3>
+        <p className="text-[12px] leading-[1.9] mt-3 max-w-sm" style={{ color: 'hsl(var(--white-30))' }}>
+          {phase.description}
+        </p>
       </div>
 
-      {/* Duration */}
-      <span className="font-mono-brand text-[9px] tracking-[0.2em] uppercase" style={{ color: `hsl(var(--${accent}) / 0.3)` }}>
-        {phase.duration}
-      </span>
-
-      {/* Bottom line that grows on hover */}
-      <div className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-700" style={{ background: `hsl(var(--${accent}) / 0.3)` }} />
+      {/* Deliverables + duration */}
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          {phase.deliverables.map((d) => (
+            <span key={d} className="flex items-center gap-2 text-[11px]" style={{ color: 'hsl(var(--white-30))' }}>
+              <span className="w-1 h-1 rounded-full" style={{ background: `hsl(var(--${phase.accent}) / 0.4)` }} />
+              {d}
+            </span>
+          ))}
+        </div>
+        <span className="font-mono-brand text-[9px] tracking-[0.2em] uppercase" style={{ color: `hsl(var(--${phase.accent}) / 0.3)` }}>
+          {phase.duration}
+        </span>
+      </div>
     </motion.div>
   );
 }

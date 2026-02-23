@@ -36,7 +36,7 @@ const Clients = forwardRef<HTMLElement>((_, ref) => {
 
       <div className="space-y-8">
         <div className="overflow-hidden">
-          <div className="flex animate-marquee-left whitespace-nowrap">
+          <div className="flex animate-marquee-left whitespace-nowrap" style={{ willChange: 'transform' }}>
             {[...row1, ...row1].map((brand, i) => (
               <span
                 key={i}
@@ -50,7 +50,7 @@ const Clients = forwardRef<HTMLElement>((_, ref) => {
         </div>
 
         <div className="overflow-hidden">
-          <div className="flex animate-marquee-right whitespace-nowrap">
+          <div className="flex animate-marquee-right whitespace-nowrap" style={{ willChange: 'transform' }}>
             {[...row2, ...row2].map((brand, i) => (
               <span
                 key={i}

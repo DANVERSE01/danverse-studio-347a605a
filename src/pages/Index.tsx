@@ -14,8 +14,10 @@ import Journal from '@/components/sections/Journal';
 import FinalCTA from '@/components/sections/FinalCTA';
 import SectionReveal from '@/components/ui/SectionReveal';
 import SectionDivider from '@/components/ui/SectionDivider';
+import { useLenis } from '@/hooks/useLenis';
 
 const Index = () => {
+  useLenis();
   return (
     <HelmetProvider>
       <Helmet>

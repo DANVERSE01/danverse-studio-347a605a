@@ -17,8 +17,8 @@ export default function MagneticButton({ children, className, onClick }: Magneti
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 200, damping: 15, mass: 0.5 });
-  const springY = useSpring(y, { stiffness: 200, damping: 15, mass: 0.5 });
+  const springX = useSpring(x, { stiffness: 250, damping: 20, mass: 0.5 });
+  const springY = useSpring(y, { stiffness: 250, damping: 20, mass: 0.5 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const el = ref.current;
@@ -26,8 +26,8 @@ export default function MagneticButton({ children, className, onClick }: Magneti
     const rect = el.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    x.set((e.clientX - centerX) * 0.35);
-    y.set((e.clientY - centerY) * 0.35);
+    x.set((e.clientX - centerX) * 0.25);
+    y.set((e.clientY - centerY) * 0.25);
   };
 
   const handleMouseLeave = () => {

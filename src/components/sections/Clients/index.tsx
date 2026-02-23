@@ -10,50 +10,47 @@ const Clients = forwardRef<HTMLElement>((_, ref) => {
   const { ref: inViewRef, isInView } = useInView(0.1);
 
   return (
-    <section ref={ref} id="clients" className="py-24 md:py-32 overflow-hidden">
+    <section ref={ref} id="clients" className="py-32 md:py-40 overflow-hidden">
       <motion.div
         ref={inViewRef}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="px-6 md:px-12 lg:px-24 mb-12"
+        className="px-6 md:px-12 lg:px-16 mb-16"
       >
-        <motion.span
-          variants={fadeUp}
-          className="font-mono-brand text-xs tracking-[0.2em] uppercase block mb-4"
-          style={{ color: 'hsl(var(--cyan))' }}
-        >
-          / 06 CLIENTS
-        </motion.span>
+        <motion.div variants={fadeUp} className="flex items-center gap-4">
+          <span className="font-mono-brand text-[10px] tracking-[0.25em] uppercase" style={{ color: 'hsl(var(--amber))' }}>
+            Trusted by
+          </span>
+          <div className="flex-1 h-px" style={{ background: 'hsl(var(--amber) / 0.15)' }} />
+        </motion.div>
       </motion.div>
 
-      <div className="space-y-6">
-        {/* Row 1 — left */}
+      <div className="space-y-8">
+        {/* Row 1 */}
         <div className="overflow-hidden">
           <div className="flex animate-marquee-left whitespace-nowrap">
             {[...row1, ...row1].map((brand, i) => (
               <span
                 key={i}
-                className="font-display font-bold text-2xl md:text-3xl mx-4 transition-colors duration-300 hover:text-cyan shrink-0"
-                style={{ color: 'hsl(var(--white-30))', letterSpacing: '0.02em' }}
+                className="font-heading font-medium text-xl md:text-2xl mx-6 transition-colors duration-500 hover:text-amber shrink-0 tracking-tight"
+                style={{ color: 'hsl(var(--white-10))' }}
               >
                 {brand}
-                <span className="mx-4 text-lg" style={{ color: 'hsl(var(--white-10))' }}>·</span>
               </span>
             ))}
           </div>
         </div>
 
-        {/* Row 2 — right */}
+        {/* Row 2 */}
         <div className="overflow-hidden">
           <div className="flex animate-marquee-right whitespace-nowrap">
             {[...row2, ...row2].map((brand, i) => (
               <span
                 key={i}
-                className="font-display font-bold text-2xl md:text-3xl mx-4 transition-colors duration-300 hover:text-cyan shrink-0"
-                style={{ color: 'hsl(var(--white-30))', letterSpacing: '0.02em' }}
+                className="font-heading font-medium text-xl md:text-2xl mx-6 transition-colors duration-500 hover:text-amber shrink-0 tracking-tight"
+                style={{ color: 'hsl(var(--white-10))' }}
               >
                 {brand}
-                <span className="mx-4 text-lg" style={{ color: 'hsl(var(--white-10))' }}>·</span>
               </span>
             ))}
           </div>

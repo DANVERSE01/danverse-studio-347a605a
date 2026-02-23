@@ -9,7 +9,7 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { stiffness: 150, damping: 18, mass: 0.8 };
+  const springConfig = { stiffness: 200, damping: 25, mass: 0.5 };
   const ringX = useSpring(mouseX, springConfig);
   const ringY = useSpring(mouseY, springConfig);
 
@@ -23,14 +23,13 @@ export default function CustomCursor() {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
-    window.addEventListener('mousemove', handler);
+    window.addEventListener('mousemove', handler, { passive: true });
     return () => window.removeEventListener('mousemove', handler);
   }, [isTouch, mouseX, mouseY]);
 
   if (isTouch) return null;
 
-  const isHover = cursorVariant === 'hover';
-  const isCta = cursorVariant === 'cta';
+  const isHover = cursorVariant === 'hover' || cursorVariant === 'cta';
 
   return (
     <div className="pointer-events-none fixed inset-0" style={{ zIndex: 'var(--z-cursor)' as unknown as number }}>
@@ -40,18 +39,18 @@ export default function CustomCursor() {
         style={{
           x: mouseX,
           y: mouseY,
-          width: isHover || isCta ? 0 : 6,
-          height: isHover || isCta ? 0 : 6,
-          backgroundColor: 'hsl(var(--cyan))',
+          width: isHover ? 0 : 5,
+          height: isHover ? 0 : 5,
+          backgroundColor: 'hsl(var(--amber))',
           translateX: '-50%',
           translateY: '-50%',
           willChange: 'transform',
+          transition: 'width 0.2s, height 0.2s',
         }}
-        transition={{ duration: 0.15 }}
       />
       {/* Ring */}
       <motion.div
-        className="absolute rounded-full border flex items-center justify-center"
+        className="absolute rounded-full border"
         style={{
           x: ringX,
           y: ringY,
@@ -61,38 +60,13 @@ export default function CustomCursor() {
           mixBlendMode: 'difference',
         }}
         animate={{
-          width: isHover ? 80 : isCta ? 88 : 44,
-          height: isHover ? 80 : isCta ? 88 : 44,
-          borderColor: isHover ? 'hsl(var(--cyan))' : 'hsla(0,0%,100%,0.3)',
-          opacity: cursorVariant === 'disabled' ? 0.2 : 0.5,
+          width: isHover ? 64 : 36,
+          height: isHover ? 64 : 36,
+          borderColor: isHover ? 'hsl(var(--amber) / 0.5)' : 'hsla(40,20%,95%,0.15)',
+          opacity: 0.5,
         }}
-        transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
-      >
-        <AnimatePresence>
-          {isHover && (
-            <motion.span
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              className="text-[10px] font-heading uppercase tracking-widest"
-              style={{ color: 'hsl(var(--cyan))' }}
-            >
-              VIEW
-            </motion.span>
-          )}
-          {isCta && (
-            <motion.span
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.5 }}
-              className="text-[9px] font-heading uppercase tracking-widest"
-              style={{ color: 'hsl(var(--cyan))' }}
-            >
-              ENTER
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      />
     </div>
   );
 }

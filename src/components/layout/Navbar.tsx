@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { useDanverseStore } from '@/store/useDanverseStore';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
-import MagneticButton from '@/components/ui/MagneticButton';
 import { staggerContainerFast, fadeUp } from '@/lib/animations';
 
 const navLinks = [
   { label: 'Work', href: '#works' },
-  { label: 'Craft', href: '#craft' },
+  { label: 'Services', href: '#craft' },
   { label: 'Process', href: '#process' },
   { label: 'Studio', href: '#studio' },
   { label: 'Journal', href: '#journal' },
@@ -18,8 +17,6 @@ export default function Navbar() {
   const activeSection = useDanverseStore((s) => s.activeSection);
   const isMobileMenuOpen = useDanverseStore((s) => s.isMobileMenuOpen);
   const setMobileMenuOpen = useDanverseStore((s) => s.setMobileMenuOpen);
-  const isSoundEnabled = useDanverseStore((s) => s.isSoundEnabled);
-  const toggleSound = useDanverseStore((s) => s.toggleSound);
   const { playClick } = useSoundEffects();
 
   const [isVisible, setIsVisible] = useState(true);
@@ -29,7 +26,7 @@ export default function Navbar() {
   useEffect(() => {
     return scrollY.on('change', (y) => {
       const diff = y - lastScrollY;
-      setIsScrolled(y > 80);
+      setIsScrolled(y > 60);
       if (diff > 10 && y > 200) setIsVisible(false);
       else if (diff < -5) setIsVisible(true);
       setLastScrollY(y);
@@ -46,34 +43,24 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-[var(--z-sticky)] px-6 md:px-12 py-4"
-        animate={{
-          y: isVisible ? 0 : -100,
-        }}
-        transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
-        style={{
-          backgroundColor: isScrolled ? 'hsl(var(--abyss)/0.8)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(20px) saturate(180%)' : 'none',
-          borderBottom: isScrolled ? '1px solid hsl(var(--border))' : '1px solid transparent',
-        }}
+        className="fixed top-0 left-0 right-0 z-[200] px-6 md:px-12 lg:px-16"
+        animate={{ y: isVisible ? 0 : -100 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between">
+        <div
+          className="max-w-[1400px] mx-auto flex items-center justify-between py-5 transition-all duration-500"
+          style={{
+            borderBottom: isScrolled ? '1px solid hsl(var(--white-10))' : '1px solid transparent',
+          }}
+        >
           {/* Logo */}
           <a
             href="#hero"
             onClick={(e) => { e.preventDefault(); scrollTo('#hero'); }}
-            className="font-display font-black text-lg tracking-tight group"
+            className="font-heading font-semibold text-sm tracking-[0.1em] uppercase"
             style={{ color: 'hsl(var(--foreground))' }}
           >
-            {'DANVERSE'.split('').map((l, i) => (
-              <span
-                key={i}
-                className="inline-block transition-transform duration-300 group-hover:rotate-[var(--r)]"
-                style={{ '--r': `${(Math.random() - 0.5) * 10}deg` } as React.CSSProperties}
-              >
-                {l}
-              </span>
-            ))}
+            Danverse
           </a>
 
           {/* Desktop links */}
@@ -83,57 +70,39 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                className="relative font-heading text-sm transition-colors duration-300 hover:text-foreground"
+                className="relative font-body text-[13px] tracking-wide transition-colors duration-300"
                 style={{
                   color: activeSection === link.href.replace('#', '')
                     ? 'hsl(var(--foreground))'
-                    : 'hsl(var(--white-60))',
+                    : 'hsl(var(--white-30))',
                 }}
               >
                 {link.label}
                 {activeSection === link.href.replace('#', '') && (
                   <motion.div
-                    className="absolute -bottom-1 left-1/2 w-1 h-1 rounded-full"
-                    style={{ backgroundColor: 'hsl(var(--cyan))' }}
-                    layoutId="nav-dot"
+                    className="absolute -bottom-1 left-0 right-0 h-px"
+                    style={{ background: 'hsl(var(--amber))' }}
+                    layoutId="nav-indicator"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
               </a>
             ))}
           </div>
 
-          {/* Right side */}
-          <div className="flex items-center gap-4">
-            {/* Sound toggle */}
-            <button
-              onClick={toggleSound}
-              className="w-8 h-8 flex items-center justify-center transition-colors duration-300"
-              style={{ color: isSoundEnabled ? 'hsl(var(--cyan))' : 'hsl(var(--white-30))' }}
-              aria-label={isSoundEnabled ? 'Mute sounds' : 'Enable sounds'}
+          {/* Right */}
+          <div className="flex items-center gap-6">
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
+              className="hidden md:flex items-center gap-2 font-mono-brand text-[10px] uppercase tracking-[0.2em] transition-colors duration-300"
+              style={{ color: 'hsl(var(--amber))' }}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M2 5.5h2.5L8 2v12l-3.5-3.5H2V5.5z" />
-                {isSoundEnabled && (
-                  <>
-                    <path d="M11 5.5a3 3 0 010 5" />
-                    <path d="M13 3.5a6 6 0 010 9" />
-                  </>
-                )}
-                {!isSoundEnabled && <path d="M11 5l4 6M15 5l-4 6" />}
-              </svg>
-            </button>
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse-glow" style={{ background: 'hsl(var(--amber))' }} />
+              Get in touch
+            </a>
 
-            {/* CTA */}
-            <div className="hidden md:block">
-              <MagneticButton
-                className="glass rounded-full px-5 py-2 text-xs font-heading font-semibold uppercase tracking-wider"
-                onClick={() => scrollTo('#contact')}
-              >
-                <span style={{ color: 'hsl(var(--cyan))' }}>Start a Project</span>
-              </MagneticButton>
-            </div>
-
-            {/* Mobile menu toggle */}
+            {/* Mobile toggle */}
             <button
               className="md:hidden w-8 h-8 flex flex-col items-center justify-center gap-1.5"
               onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
@@ -158,8 +127,8 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 z-[calc(var(--z-sticky)-1)] flex items-center justify-center"
-            style={{ backgroundColor: 'hsl(var(--void)/0.98)', backdropFilter: 'blur(20px)' }}
+            className="fixed inset-0 z-[199] flex items-center justify-center"
+            style={{ backgroundColor: 'hsl(var(--void) / 0.98)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -177,7 +146,7 @@ export default function Navbar() {
                   href={link.href}
                   variants={fadeUp}
                   onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
-                  className="font-display font-bold text-3xl"
+                  className="font-display italic text-3xl"
                   style={{ color: 'hsl(var(--foreground))' }}
                 >
                   {link.label}
@@ -187,10 +156,10 @@ export default function Navbar() {
                 href="#contact"
                 variants={fadeUp}
                 onClick={(e) => { e.preventDefault(); scrollTo('#contact'); }}
-                className="font-display font-bold text-3xl"
-                style={{ color: 'hsl(var(--cyan))' }}
+                className="font-mono-brand text-xs uppercase tracking-[0.2em] mt-4"
+                style={{ color: 'hsl(var(--amber))' }}
               >
-                Contact
+                Get in touch
               </motion.a>
             </motion.div>
           </motion.div>

@@ -39,7 +39,26 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
   const filtered = activeFilter === 'all' ? works : works.filter((w) => w.category === activeFilter);
 
   return (
-    <section ref={ref} id="works" className="relative py-32 md:py-48">
+    <section
+      ref={ref}
+      id="works"
+      className="relative py-32 md:py-48"
+      style={{ background: 'hsl(var(--section-warm-black))' }}
+    >
+      {/* Giant background text */}
+      <div className="absolute top-24 left-8 pointer-events-none select-none">
+        <span
+          className="font-display-alt font-extrabold uppercase"
+          style={{
+            fontSize: 'clamp(8rem, 22vw, 22rem)',
+            color: 'hsl(var(--coral) / 0.025)',
+            lineHeight: 0.85,
+          }}
+        >
+          WORK
+        </span>
+      </div>
+
       {/* Section header */}
       <div className="px-6 md:px-20 lg:px-28">
         <motion.div
@@ -61,10 +80,14 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
 
           <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <h2 className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-              <span className="font-display italic tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+              <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
                 Selected
               </span>
-              <span className="font-heading font-bold uppercase tracking-[-0.04em] text-stroke-coral" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)' }}>
+              <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{
+                fontSize: 'clamp(3rem, 8vw, 8rem)',
+                WebkitTextStroke: '1.5px hsl(var(--coral) / 0.5)',
+                WebkitTextFillColor: 'transparent',
+              }}>
                 WORKS
               </span>
             </h2>
@@ -89,7 +112,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
         </motion.div>
       </div>
 
-      {/* Projects — full-width editorial list with image reveal on hover */}
+      {/* Projects list */}
       <div className="w-full">
         <AnimatePresence mode="popLayout">
           {filtered.map((work, i) => {
@@ -112,7 +135,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   setMouseY(e.clientY - rect.top);
                 }}
               >
-                {/* Background reveal on hover */}
                 <motion.div
                   className="absolute inset-0 pointer-events-none"
                   style={{ background: `hsl(var(--${accent}) / 0.02)` }}
@@ -121,14 +143,10 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   transition={{ duration: 0.4 }}
                 />
 
-                {/* Floating image thumbnail — appears on hover */}
+                {/* Floating image */}
                 <motion.div
                   className="absolute right-[5%] md:right-[15%] pointer-events-none z-10 overflow-hidden hidden md:block"
-                  style={{
-                    width: 280,
-                    height: 180,
-                    top: mouseY - 90,
-                  }}
+                  style={{ width: 280, height: 180, top: mouseY - 90 }}
                   initial={false}
                   animate={{
                     opacity: isHovered ? 1 : 0,
@@ -137,35 +155,24 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <img
-                    src={work.image}
-                    alt={work.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  {/* Overlay tint */}
+                  <img src={work.image} alt={work.title} className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0" style={{ background: `hsl(var(--${accent}) / 0.1)`, mixBlendMode: 'multiply' }} />
                 </motion.div>
 
                 <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[auto_1fr_1fr_auto] gap-4 md:gap-12 items-center">
-                  {/* Large number */}
                   <span
-                    className="font-display italic text-5xl md:text-7xl transition-all duration-500 tabular-nums"
-                    style={{ 
-                      color: isHovered ? `hsl(var(--${accent}))` : 'hsl(var(--white-10))',
-                      minWidth: '90px',
-                    }}
+                    className="font-script italic text-5xl md:text-7xl transition-all duration-500 tabular-nums"
+                    style={{ color: isHovered ? `hsl(var(--${accent}))` : 'hsl(var(--white-10))', minWidth: '90px' }}
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
 
-                  {/* Title */}
                   <div className="overflow-hidden">
                     <motion.h3
-                      className="font-heading font-bold uppercase tracking-[-0.03em] transition-colors duration-500"
+                      className="font-display-alt font-bold uppercase tracking-[-0.03em] transition-colors duration-500"
                       style={{
                         fontSize: 'clamp(1.5rem, 3.5vw, 3.5rem)',
-                        color: isHovered ? 'hsl(var(--foreground))' : 'hsl(var(--white-30))',
+                        color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))',
                       }}
                       animate={{ x: isHovered ? 8 : 0 }}
                       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -173,8 +180,8 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                       {work.title}
                     </motion.h3>
                     <motion.p
-                      className="font-body text-[11px] mt-1"
-                      style={{ color: 'hsl(var(--white-30))' }}
+                      className="font-script italic text-[13px] mt-1"
+                      style={{ color: 'hsl(var(--cream) / 0.4)' }}
                       initial={false}
                       animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
                       transition={{ duration: 0.3 }}
@@ -183,7 +190,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                     </motion.p>
                   </div>
 
-                  {/* Meta */}
                   <div className="flex items-center gap-6">
                     <span className="font-mono-brand text-[9px] uppercase tracking-[0.2em]" style={{ color: `hsl(var(--${accent}))` }}>
                       {work.category}
@@ -196,7 +202,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                     </span>
                   </div>
 
-                  {/* Arrow */}
                   <motion.div
                     className="flex items-center justify-end"
                     initial={false}
@@ -209,7 +214,6 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   </motion.div>
                 </div>
 
-                {/* Bottom growing line */}
                 <motion.div
                   className="absolute bottom-0 left-0 h-px origin-left"
                   style={{ background: `hsl(var(--${accent}))` }}

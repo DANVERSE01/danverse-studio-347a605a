@@ -19,7 +19,25 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <section ref={ref} id="craft" className="relative py-32 md:py-48">
+    <section
+      ref={ref}
+      id="craft"
+      className="relative py-32 md:py-48"
+      style={{ background: 'hsl(var(--section-midnight))' }}
+    >
+      {/* Giant watermark */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
+        <span
+          className="font-display-alt font-extrabold uppercase whitespace-nowrap"
+          style={{
+            fontSize: 'clamp(8rem, 25vw, 28rem)',
+            color: 'hsl(var(--coral) / 0.03)',
+          }}
+        >
+          BUILD
+        </span>
+      </div>
+
       {/* Header */}
       <div className="px-6 md:px-20 lg:px-28">
         <motion.div
@@ -36,17 +54,17 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
             <div className="flex-1 max-w-[200px] h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-display italic tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+            <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
               What we
             </span>
-            <span className="font-heading font-bold uppercase tracking-[-0.04em] text-stroke-coral" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)' }}>
+            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', color: 'hsl(var(--coral))' }}>
               BUILD
             </span>
           </motion.h2>
         </motion.div>
       </div>
 
-      {/* Services — massive typographic items */}
+      {/* Services */}
       <div className="w-full">
         {services.map((service, i) => {
           const isHovered = hoveredIdx === i;
@@ -62,26 +80,22 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
               onMouseEnter={() => { setHoveredIdx(i); setCursorVariant('hover'); }}
               onMouseLeave={() => { setHoveredIdx(null); setCursorVariant('default'); }}
             >
-              {/* Background text — giant outlined */}
+              {/* Background text */}
               <motion.span
-                className="absolute right-6 md:right-20 top-1/2 -translate-y-1/2 font-heading font-bold uppercase tracking-[-0.05em] pointer-events-none select-none"
+                className="absolute right-6 md:right-20 top-1/2 -translate-y-1/2 font-display-alt font-extrabold uppercase tracking-[-0.05em] pointer-events-none select-none"
                 style={{
                   fontSize: 'clamp(4rem, 12vw, 12rem)',
                   WebkitTextStroke: `1px hsl(var(--${service.accent}) / 0.04)`,
                   WebkitTextFillColor: 'transparent',
                 }}
                 initial={false}
-                animate={{
-                  opacity: isHovered ? 1 : 0.3,
-                  x: isHovered ? -20 : 0,
-                }}
+                animate={{ opacity: isHovered ? 1 : 0.3, x: isHovered ? -20 : 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
                 {service.fill}
               </motion.span>
 
               <div className="relative px-6 md:px-20 lg:px-28 py-7 md:py-9 grid grid-cols-1 md:grid-cols-[60px_1fr_auto] gap-4 md:gap-10 items-center">
-                {/* Number */}
                 <span
                   className="font-mono-brand text-[10px] tabular-nums transition-colors duration-500 hidden md:block"
                   style={{ color: isHovered ? `hsl(var(--${service.accent}))` : 'hsl(var(--white-10))' }}
@@ -89,19 +103,18 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
                   {service.num}
                 </span>
 
-                {/* Name + tagline */}
                 <div>
                   <motion.h3
                     className="font-heading font-semibold text-xl md:text-3xl tracking-[-0.02em] transition-colors duration-500"
-                    style={{ color: isHovered ? 'hsl(var(--foreground))' : 'hsl(var(--white-30))' }}
+                    style={{ color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))' }}
                     animate={{ x: isHovered ? 6 : 0 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {service.name}
                   </motion.h3>
                   <motion.p
-                    className="text-[12px] mt-1.5"
-                    style={{ color: 'hsl(var(--white-30))' }}
+                    className="font-script italic text-[14px] mt-1.5"
+                    style={{ color: 'hsl(var(--cream) / 0.5)' }}
                     initial={false}
                     animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 6 }}
                     transition={{ duration: 0.3 }}
@@ -110,7 +123,6 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
                   </motion.p>
                 </div>
 
-                {/* Arrow */}
                 <motion.div
                   initial={false}
                   animate={{ opacity: isHovered ? 1 : 0.1, rotate: isHovered ? 0 : -45, scale: isHovered ? 1 : 0.8 }}
@@ -122,7 +134,6 @@ const Craft = forwardRef<HTMLElement>((_, ref) => {
                 </motion.div>
               </div>
 
-              {/* Bottom accent line */}
               <motion.div
                 className="absolute bottom-0 left-0 h-px origin-left"
                 style={{ background: `hsl(var(--${service.accent}))` }}

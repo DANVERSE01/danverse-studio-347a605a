@@ -8,26 +8,17 @@ const articles = [
   {
     title: 'The Death of the 30-Second Spot',
     excerpt: 'Why the future of advertising is non-linear, AI-driven, and built for feeds not screens.',
-    category: 'Strategy',
-    readTime: '8 min',
-    date: 'Dec 2024',
-    accent: 'coral',
+    category: 'Strategy', readTime: '8 min', date: 'Dec 2024', accent: 'coral',
   },
   {
     title: 'Cairo Is the New Berlin',
     excerpt: 'How the Middle East is redefining the global creative landscape — from the inside out.',
-    category: 'Culture',
-    readTime: '6 min',
-    date: 'Nov 2024',
-    accent: 'sage',
+    category: 'Culture', readTime: '6 min', date: 'Nov 2024', accent: 'sage',
   },
   {
     title: 'Building an AI Content OS',
     excerpt: "We replaced 3 agencies with one system. Here's what happened next.",
-    category: 'Engineering',
-    readTime: '12 min',
-    date: 'Oct 2024',
-    accent: 'lavender',
+    category: 'Engineering', readTime: '12 min', date: 'Oct 2024', accent: 'lavender',
   },
 ];
 
@@ -37,27 +28,45 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   return (
-    <section ref={ref} id="journal" className="relative py-32 md:py-48">
+    <section
+      ref={ref}
+      id="journal"
+      className="relative py-32 md:py-48"
+      style={{ background: 'hsl(var(--section-charcoal))' }}
+    >
+      {/* Giant background text */}
+      <div className="absolute top-16 right-8 pointer-events-none select-none">
+        <span
+          className="font-script italic"
+          style={{
+            fontSize: 'clamp(8rem, 20vw, 20rem)',
+            color: 'hsl(var(--lavender) / 0.03)',
+          }}
+        >
+          Read
+        </span>
+      </div>
+
       <div className="px-6 md:px-20 lg:px-28">
         <motion.div ref={inViewRef} variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="mb-20">
           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-6">
-            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
+            <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--lavender))' }}>
               Journal
             </span>
-            <div className="w-16 h-px" style={{ background: 'hsl(var(--coral) / 0.15)' }} />
+            <div className="w-16 h-px" style={{ background: 'hsl(var(--lavender) / 0.15)' }} />
           </motion.div>
           <motion.h2 variants={fadeUp} className="flex items-baseline gap-3 md:gap-5 flex-wrap">
-            <span className="font-display italic tracking-[-0.02em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--foreground))' }}>
+            <span className="font-script italic font-light tracking-[0.01em]" style={{ fontSize: 'var(--text-section)', color: 'hsl(var(--cream))' }}>
               Thinking,
             </span>
-            <span className="font-heading font-bold uppercase tracking-[-0.04em] text-stroke-coral" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)' }}>
+            <span className="font-display-alt font-extrabold uppercase tracking-[-0.04em]" style={{ fontSize: 'clamp(3rem, 8vw, 8rem)', color: 'hsl(var(--lavender))' }}>
               VISIBLE
             </span>
           </motion.h2>
         </motion.div>
       </div>
 
-      {/* Articles — full-width editorial list */}
+      {/* Articles */}
       <div className="w-full">
         {articles.map((article, i) => {
           const isHovered = hoveredIdx === i;
@@ -75,34 +84,32 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
             >
               <motion.div
                 className="absolute inset-0 pointer-events-none"
-                style={{ background: `hsl(var(--${article.accent}) / 0.015)` }}
+                style={{ background: `hsl(var(--${article.accent}) / 0.02)` }}
                 initial={false}
                 animate={{ opacity: isHovered ? 1 : 0 }}
                 transition={{ duration: 0.4 }}
               />
 
               <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[80px_1fr_1fr_auto] gap-4 md:gap-12 items-center">
-                {/* Number */}
                 <span
-                  className="font-display italic text-4xl md:text-5xl tabular-nums transition-colors duration-500"
+                  className="font-script italic text-4xl md:text-5xl tabular-nums transition-colors duration-500"
                   style={{ color: isHovered ? `hsl(var(--${article.accent}))` : 'hsl(var(--white-10))' }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
 
-                {/* Title */}
                 <div>
                   <motion.h3
                     className="font-heading font-semibold text-lg md:text-2xl tracking-[-0.02em] transition-colors duration-500"
-                    style={{ color: isHovered ? 'hsl(var(--foreground))' : 'hsl(var(--white-30))' }}
+                    style={{ color: isHovered ? 'hsl(var(--cream))' : 'hsl(var(--white-30))' }}
                     animate={{ x: isHovered ? 6 : 0 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {article.title}
                   </motion.h3>
                   <motion.p
-                    className="text-[11px] mt-1.5 max-w-xs"
-                    style={{ color: 'hsl(var(--white-30))' }}
+                    className="font-script italic text-[13px] mt-1.5 max-w-xs"
+                    style={{ color: 'hsl(var(--cream) / 0.4)' }}
                     initial={false}
                     animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 6 }}
                     transition={{ duration: 0.3 }}
@@ -111,7 +118,6 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
                   </motion.p>
                 </div>
 
-                {/* Meta */}
                 <div className="flex items-center gap-4">
                   <span className="font-mono-brand text-[9px] uppercase tracking-[0.2em]" style={{ color: `hsl(var(--${article.accent}))` }}>
                     {article.category}
@@ -124,7 +130,6 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
                   </span>
                 </div>
 
-                {/* Arrow */}
                 <motion.div
                   initial={false}
                   animate={{ opacity: isHovered ? 1 : 0.1, x: isHovered ? 0 : -8 }}

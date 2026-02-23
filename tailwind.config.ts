@@ -16,6 +16,8 @@ export default {
         heading: ['var(--font-heading)'],
         body: ['var(--font-body)'],
         'mono-brand': ['var(--font-mono)'],
+        script: ['var(--font-script)'],
+        'display-alt': ['var(--font-display-alt)'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -49,6 +51,12 @@ export default {
         sage: { DEFAULT: "hsl(var(--sage))", dim: "hsl(var(--sage-dim))" },
         cream: { DEFAULT: "hsl(var(--cream))", dim: "hsl(var(--cream-dim))" },
         lavender: { DEFAULT: "hsl(var(--lavender))", dim: "hsl(var(--lavender-dim))" },
+        "section-terracotta": "hsl(var(--section-terracotta))",
+        "section-terracotta-light": "hsl(var(--section-terracotta-light))",
+        "section-charcoal": "hsl(var(--section-charcoal))",
+        "section-warm-black": "hsl(var(--section-warm-black))",
+        "section-midnight": "hsl(var(--section-midnight))",
+        "section-olive": "hsl(var(--section-olive))",
         // Legacy
         cyan: { DEFAULT: "hsl(var(--cyan))", dim: "hsl(var(--cyan-dim))", glow: "hsl(var(--cyan-glow))" },
         amber: { DEFAULT: "hsl(var(--amber))", dim: "hsl(var(--amber-dim))", glow: "hsl(var(--amber-glow))" },

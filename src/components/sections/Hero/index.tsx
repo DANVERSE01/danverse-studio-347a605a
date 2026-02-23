@@ -33,7 +33,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
         </span>
       </motion.div>
 
-      {/* Right side — coordinates + status */}
+      {/* Right side */}
       <motion.div
         className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-10 hidden md:flex flex-col items-end gap-6"
         initial={{ opacity: 0 }}
@@ -57,21 +57,18 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
         </div>
       </motion.div>
 
-      {/* Top area — spacer */}
+      {/* Top spacer */}
       <div className="pt-32" />
 
-      {/* Center — massive headline with mixed typography */}
+      {/* Center headline */}
       <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-20 lg:px-28">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
         >
-          {/* Eyebrow with animated line */}
-          <motion.div
-            className="flex items-center gap-4 mb-6"
-            variants={heroWord}
-          >
+          {/* Eyebrow */}
+          <motion.div className="flex items-center gap-4 mb-6" variants={heroWord}>
             <motion.div
               className="h-px origin-left"
               style={{ background: 'hsl(var(--coral))' }}
@@ -84,51 +81,51 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
             </span>
           </motion.div>
 
-          {/* Line 1: Serif italic "We" + huge outlined "CRAFT" */}
+          {/* Line 1: Script "We" + huge outlined "CRAFT" */}
           <div className="flex items-baseline gap-4 md:gap-6 flex-wrap">
             <motion.span
               variants={heroWord}
-              className="font-display italic font-normal tracking-[-0.02em]"
-              style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', color: 'hsl(var(--foreground))' }}
+              className="font-script italic font-light"
+              style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', color: 'hsl(var(--cream))' }}
             >
               We
             </motion.span>
             <motion.span
               variants={heroWord}
-              className="font-heading font-bold uppercase tracking-[-0.05em] text-stroke-coral"
-              style={{ fontSize: 'clamp(4rem, 13vw, 14rem)' }}
+              className="font-display-alt font-extrabold uppercase tracking-[-0.05em]"
+              style={{
+                fontSize: 'clamp(4rem, 13vw, 14rem)',
+                WebkitTextStroke: '2px hsl(var(--coral))',
+                WebkitTextFillColor: 'transparent',
+              }}
             >
               CRAFT
             </motion.span>
           </div>
 
-          {/* Line 2: "cinematic" in italic + filled "WORLDS" */}
+          {/* Line 2: "cinematic" in script + filled "WORLDS" */}
           <div className="flex items-baseline gap-3 md:gap-6 flex-wrap -mt-2 md:-mt-6">
             <motion.span
               variants={heroWord}
-              className="font-display italic font-normal tracking-[-0.01em]"
-              style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)', color: 'hsl(var(--white-60))' }}
+              className="font-script italic font-light"
+              style={{ fontSize: 'clamp(2.5rem, 7vw, 6rem)', color: 'hsl(var(--cream) / 0.5)' }}
             >
               cinematic
             </motion.span>
             <motion.span
               variants={heroWord}
-              className="font-heading font-bold uppercase tracking-[-0.04em]"
+              className="font-display-alt font-extrabold uppercase tracking-[-0.04em]"
               style={{ fontSize: 'clamp(4rem, 13vw, 14rem)', color: 'hsl(var(--coral))' }}
             >
               WORLDS
             </motion.span>
           </div>
 
-          {/* Line 3: Small text + decorative */}
-          <motion.div
-            className="flex items-center gap-6 mt-4 md:mt-2"
-            variants={heroWord}
-          >
-            <span className="font-display italic text-lg md:text-xl" style={{ color: 'hsl(var(--white-30))' }}>
+          {/* Line 3 */}
+          <motion.div className="flex items-center gap-6 mt-4 md:mt-2" variants={heroWord}>
+            <span className="font-script italic text-lg md:text-xl" style={{ color: 'hsl(var(--cream) / 0.25)' }}>
               that feel inevitable.
             </span>
-            {/* Decorative rotating element */}
             <svg className="w-6 h-6 animate-rotate-slow opacity-20" viewBox="0 0 24 24" fill="none">
               <path d="M12 2L22 12L12 22L2 12Z" stroke="hsl(var(--coral))" strokeWidth="0.5" />
             </svg>
@@ -141,7 +138,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
         <div className="border-t pt-6 flex flex-col md:flex-row md:items-end md:justify-between gap-6" style={{ borderColor: 'hsl(var(--white-10))' }}>
           <motion.p
             className="font-body text-[12px] max-w-[280px] leading-[1.9]"
-            style={{ color: 'hsl(var(--white-30))' }}
+            style={{ color: 'hsl(var(--cream) / 0.3)' }}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.7 }}
@@ -176,7 +173,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
 
             <button
               className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.15em] transition-colors duration-300 group"
-              style={{ color: 'hsl(var(--white-30))' }}
+              style={{ color: 'hsl(var(--cream) / 0.3)' }}
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <span className="relative w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-500 group-hover:border-sage" style={{ borderColor: 'hsl(var(--sage) / 0.15)' }}>

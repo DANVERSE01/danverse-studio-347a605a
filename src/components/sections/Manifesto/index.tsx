@@ -2,11 +2,11 @@ import { useRef, forwardRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const LINES = [
-  { text: "We don't make", style: 'serif' as const },
+  { text: "We don't make", style: 'script' as const },
   { text: 'ADS.', style: 'stroke' as const },
-  { text: 'We build', style: 'serif' as const },
+  { text: 'We build', style: 'script' as const },
   { text: 'WORLDS', style: 'bold' as const },
-  { text: 'that make the impossible', style: 'serif' as const },
+  { text: 'that make the impossible', style: 'script' as const },
   { text: 'INEVITABLE.', style: 'stroke' as const },
 ];
 
@@ -18,24 +18,28 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
   });
 
   return (
-    <section ref={ref} id="manifesto">
+    <section
+      ref={ref}
+      id="manifesto"
+      className="relative"
+      style={{ background: 'hsl(var(--section-terracotta))' }}
+    >
       <div ref={containerRef} className="relative" style={{ height: '350vh' }}>
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          {/* Decorative section number */}
+          {/* Giant background text */}
           <motion.span
-            className="absolute right-6 md:right-16 section-num"
-            style={{ fontSize: 'clamp(6rem, 15vw, 12rem)', top: '10%' }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display-alt font-extrabold uppercase pointer-events-none select-none whitespace-nowrap"
+            style={{
+              fontSize: 'clamp(10rem, 30vw, 30rem)',
+              color: 'hsl(0 0% 0% / 0.08)',
+            }}
           >
-            02
+            BOLD
           </motion.span>
 
-          {/* Decorative vertical line */}
-          <div className="absolute left-[8%] top-[20%] bottom-[20%] w-px hidden md:block" style={{ background: 'hsl(var(--coral) / 0.04)' }} />
-
-          {/* Decorative rotating ring */}
-          <svg className="absolute bottom-[15%] right-[15%] w-24 h-24 animate-rotate-slow opacity-[0.03] hidden md:block" viewBox="0 0 100 100" fill="none">
-            <circle cx="50" cy="50" r="45" stroke="hsl(var(--coral))" strokeWidth="0.5" strokeDasharray="3 6" />
-          </svg>
+          {/* Decorative corner marks */}
+          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 hidden md:block" style={{ borderColor: 'hsl(35 30% 88% / 0.15)' }} />
+          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 hidden md:block" style={{ borderColor: 'hsl(35 30% 88% / 0.15)' }} />
 
           <div className="px-6 md:px-20 lg:pl-[12%] max-w-[1200px]">
             {/* Tag */}
@@ -45,10 +49,10 @@ const Manifesto = forwardRef<HTMLElement>((_, ref) => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--coral))' }}>
+              <span className="font-mono-brand text-[10px] tracking-[0.3em] uppercase" style={{ color: 'hsl(35 30% 88%)' }}>
                 Manifesto
               </span>
-              <div className="w-12 h-px" style={{ background: 'hsl(var(--coral) / 0.3)' }} />
+              <div className="w-12 h-px" style={{ background: 'hsl(35 30% 88% / 0.4)' }} />
             </motion.div>
 
             {/* Lines */}
@@ -78,29 +82,33 @@ function ManifestoLine({
   index: number;
   total: number;
   progress: ReturnType<typeof useScroll>['scrollYProgress'];
-  lineStyle: 'serif' | 'bold' | 'stroke';
+  lineStyle: 'script' | 'bold' | 'stroke';
 }) {
   const start = index * (0.6 / total);
   const end = start + 0.35;
-  const opacity = useTransform(progress, [start, end], [0.03, 1]);
+  const opacity = useTransform(progress, [start, end], [0.08, 1]);
   const x = useTransform(progress, [start, end], [30, 0]);
 
   const classMap = {
-    serif: 'font-display italic font-normal tracking-[-0.02em]',
-    bold: 'font-heading font-bold uppercase tracking-[-0.04em]',
-    stroke: 'font-heading font-bold uppercase tracking-[-0.04em] text-stroke-coral',
+    script: 'font-script italic font-light tracking-[0.01em]',
+    bold: 'font-display-alt font-extrabold uppercase tracking-[-0.04em]',
+    stroke: 'font-display-alt font-extrabold uppercase tracking-[-0.04em]',
   };
 
   const sizeMap = {
-    serif: 'clamp(2.2rem, 5.5vw, 5.5rem)',
-    bold: 'clamp(2.5rem, 6.5vw, 7rem)',
-    stroke: 'clamp(2.5rem, 6.5vw, 7rem)',
+    script: 'clamp(2.5rem, 6vw, 6rem)',
+    bold: 'clamp(2.8rem, 7vw, 7.5rem)',
+    stroke: 'clamp(2.8rem, 7vw, 7.5rem)',
   };
 
-  const colorMap = {
-    serif: 'hsl(var(--foreground))',
-    bold: 'hsl(var(--coral))',
-    stroke: undefined,
+  const styleMap = {
+    script: { color: 'hsl(35 30% 88%)' },
+    bold: { color: 'hsl(35 30% 88%)' },
+    stroke: {
+      WebkitTextStroke: '1.5px hsl(35 30% 88% / 0.6)',
+      WebkitTextFillColor: 'transparent',
+      color: 'transparent',
+    } as React.CSSProperties,
   };
 
   return (
@@ -110,7 +118,7 @@ function ManifestoLine({
         opacity,
         x,
         fontSize: sizeMap[lineStyle],
-        color: colorMap[lineStyle],
+        ...styleMap[lineStyle],
       }}
     >
       {children}

@@ -7,7 +7,7 @@
    Coral × Sage × Deep Ink — Rare. Warm. Futuristic.
    ══════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
@@ -71,6 +71,14 @@
     --lavender: 260 20% 60%;
     --lavender-dim: 260 20% 60% / 0.08;
 
+    /* Section backgrounds */
+    --section-terracotta: 12 60% 28%;
+    --section-terracotta-light: 12 55% 35%;
+    --section-charcoal: 225 25% 10%;
+    --section-warm-black: 30 15% 6%;
+    --section-midnight: 230 45% 7%;
+    --section-olive: 80 20% 12%;
+
     /* Legacy aliases */
     --cyan: 16 65% 52%;
     --cyan-dim: 16 65% 52% / 0.10;
@@ -100,6 +108,8 @@
     --font-heading: 'Space Grotesk', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-script: 'Cormorant Garamond', Georgia, serif;
+    --font-display-alt: 'Syne', system-ui, sans-serif;
 
     /* ── Shadows ── */
     --shadow-glow-coral: 0 0 80px hsl(16 65% 52% / 0.12), 0 0 160px hsl(16 65% 52% / 0.04);
@@ -227,7 +237,13 @@
     font-family: var(--font-mono);
   }
 
-  /* Decorative circle */
+  .font-script {
+    font-family: var(--font-script);
+  }
+
+  .font-display-alt {
+    font-family: var(--font-display-alt);
+  }
   .deco-circle {
     border-radius: 50%;
     border: 1px solid hsl(var(--coral) / 0.15);

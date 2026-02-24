@@ -1,13 +1,37 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/hooks/useMousePosition';
 import { useInView } from '@/hooks/useInView';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name must be under 100 characters'),
+  email: z.string().trim().email('Please enter a valid email').max(255, 'Email must be under 255 characters'),
+  type: z.enum(['branding', 'advertising', 'web / digital', '3d / immersive', 'ai systems']),
+  budget: z.string().max(100, 'Budget must be under 100 characters').optional().default(''),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
   const mouse = useMousePosition();
   const { ref: inViewRef, isInView } = useInView(0.2);
-  const [formData, setFormData] = useState({ name: '', email: '', type: 'branding', budget: '' });
-  const [submitted, setSubmitted] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: '', email: '', type: 'branding', budget: '' },
+  });
+
+  const onSubmit = (_data: ContactFormData) => {
+    // Data is validated by zod at this point
+    // Future: send to backend
+  };
 
   return (
     <section
@@ -87,7 +111,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        {submitted ? (
+        {isSubmitSuccessful ? (
           <div className="text-center py-16 border" style={{ borderColor: 'hsl(var(--rose-gold) / 0.15)' }}>
             <span className="font-display italic text-4xl block mb-3" style={{ color: 'hsl(var(--rose-gold))' }}>✓</span>
             <h3 className="font-display italic text-2xl mb-2" style={{ color: 'hsl(var(--pearl))' }}>
@@ -96,10 +120,10 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
             <p className="text-[13px]" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>We'll be in touch shortly.</p>
           </div>
         ) : (
-          <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+          <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
             {[
-              { name: 'name', label: 'Name', type: 'text', placeholder: 'Your name' },
-              { name: 'email', label: 'Email', type: 'email', placeholder: 'your@email.com' },
+              { name: 'name' as const, label: 'Name', type: 'text', placeholder: 'Your name' },
+              { name: 'email' as const, label: 'Email', type: 'email', placeholder: 'your@email.com' },
             ].map((field) => (
               <div key={field.name} className="group">
                 <label className="block font-mono-brand text-[9px] uppercase tracking-[0.3em] mb-3" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>
@@ -107,13 +131,15 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
                 </label>
                 <input
                   type={field.type}
-                  required
                   placeholder={field.placeholder}
+                  maxLength={field.name === 'email' ? 255 : 100}
                   className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold placeholder:opacity-20"
                   style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
-                  value={formData[field.name as keyof typeof formData]}
-                  onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
+                  {...register(field.name)}
                 />
+                {errors[field.name] && (
+                  <p className="mt-1 text-[11px]" style={{ color: 'hsl(var(--rose-gold))' }}>{errors[field.name]?.message}</p>
+                )}
               </div>
             ))}
             <div>
@@ -123,8 +149,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
               <select
                 className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold"
                 style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
-                value={formData.type}
-                onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                {...register('type')}
               >
                 {['Branding', 'Advertising', 'Web / Digital', '3D / Immersive', 'AI Systems'].map((opt) => (
                   <option key={opt} value={opt.toLowerCase()} style={{ background: 'hsl(var(--void))' }}>{opt}</option>
@@ -138,11 +163,14 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
               <input
                 type="text"
                 placeholder="$10k — $50k"
+                maxLength={100}
                 className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold placeholder:opacity-20"
                 style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
-                value={formData.budget}
-                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                {...register('budget')}
               />
+              {errors.budget && (
+                <p className="mt-1 text-[11px]" style={{ color: 'hsl(var(--rose-gold))' }}>{errors.budget.message}</p>
+              )}
             </div>
             <motion.button
               type="submit"

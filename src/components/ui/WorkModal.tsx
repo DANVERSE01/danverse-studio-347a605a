@@ -72,7 +72,7 @@ const galleryImages: Record<string, { src: string; caption: string; span: 'full'
 
 const caseStudyDetails: Record<string, { challenge: string; approach: string; results: string[]; tools: string[] }> = {
   '1': {
-    challenge: 'Vodafone needed a campaign that cut through digital noise and resonated with Gen-Z audiences across MENA.',
+    challenge: 'Vodafone needed a campaign that cut through digital noise and resonated with Gen-Z audiences globally.',
     approach: 'We built a multi-sensory campaign blending AI-generated visuals with real cinematography, creating a neon-drenched visual language that felt native to social feeds.',
     results: ['320% increase in engagement', '45M+ impressions in 2 weeks', '2x brand recall vs. benchmark'],
     tools: ['After Effects', 'Midjourney', 'Cinema 4D', 'DaVinci Resolve'],
@@ -96,19 +96,19 @@ const caseStudyDetails: Record<string, { challenge: string; approach: string; re
     tools: ['Cinema 4D', 'TouchDesigner', 'Unreal Engine', 'Arduino'],
   },
   '5': {
-    challenge: 'Netflix wanted a launch campaign for a MENA original series that felt culturally authentic yet globally cinematic.',
+    challenge: 'Netflix wanted a launch campaign for an original series that felt culturally authentic yet globally cinematic.',
     approach: 'We crafted a motion-first campaign system with Arabic-forward typography, blending calligraphic traditions with synth-wave aesthetics.',
     results: ['#1 trending in 6 countries', '12M views in first week', 'Campaign extended to season 2'],
     tools: ['After Effects', 'Houdini', 'Premiere Pro', 'Illustrator'],
   },
   '6': {
-    challenge: 'Mastercard needed to reposition as a technology company, not just a payment network, in the Middle East market.',
+    challenge: 'Mastercard needed to reposition as a technology company, not just a payment network, across key markets.',
     approach: 'We developed a "Priceless Technology" narrative with a design system that visualized data flows, security, and human connection simultaneously.',
     results: ['Brand perception shift: +34%', 'B2B lead generation 2.5x', 'Cannes Lions shortlist'],
     tools: ['Figma', 'Three.js', 'After Effects', 'Lottie'],
   },
   '7': {
-    challenge: 'Toyota wanted an AI-powered content system that could generate dealer-level marketing across 14 MENA markets.',
+    challenge: 'Toyota wanted an AI-powered content system that could generate dealer-level marketing across 14 regional markets.',
     approach: 'We engineered a content OS that combines brand guidelines with generative AI, producing on-brand assets in seconds while maintaining creative quality.',
     results: ['Content production cost -70%', '14 markets automated', '10,000+ assets generated monthly'],
     tools: ['GPT-4', 'Stable Diffusion', 'Next.js', 'Supabase'],

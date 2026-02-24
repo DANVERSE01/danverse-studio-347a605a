@@ -28,9 +28,8 @@ export default function Footer() {
             <img src={danverseLogo} alt="Danverse" className="h-10 w-auto mb-4" />
             <p className="text-[12px] leading-relaxed max-w-xs mb-6" style={{ color: 'hsl(var(--white-30))' }}>AI-powered creative studio at the intersection of technology and culture.</p>
             <div className="flex gap-4">
-              {['LI', 'IG', 'BE', 'GH'].map((s) => (
-                <a key={s} href="#" className="font-mono-brand text-[9px] uppercase tracking-wider transition-colors duration-300 hover:text-rose-gold" style={{ color: 'hsl(var(--white-30))' }}>{s}</a>
-              ))}
+              <a href="https://instagram.com/muhammedd_adel" target="_blank" rel="noopener noreferrer" className="font-mono-brand text-[9px] uppercase tracking-wider transition-colors duration-300 hover:text-rose-gold" style={{ color: 'hsl(var(--white-30))' }}>IG</a>
+              <a href="https://wa.me/201207346648" target="_blank" rel="noopener noreferrer" className="font-mono-brand text-[9px] uppercase tracking-wider transition-colors duration-300 hover:text-rose-gold" style={{ color: 'hsl(var(--white-30))' }}>WA</a>
             </div>
           </div>
           <div>
@@ -60,15 +59,15 @@ export default function Footer() {
           <div>
             <h4 className="font-mono-brand text-[9px] uppercase tracking-[0.25em] mb-5" style={{ color: 'hsl(var(--white-30))' }}>Contact</h4>
             <ul className="space-y-3 text-[12px]" style={{ color: 'hsl(var(--white-30))' }}>
-              <li>hello@danverse.studio</li>
-              <li>Cairo, Egypt</li>
-              <li className="font-mono-brand text-[9px]" style={{ color: 'hsl(var(--white-10))' }}>GMT+2</li>
+              <li><a href="mailto:danverseai@gmail.com" className="transition-colors duration-300 hover:text-foreground">danverseai@gmail.com</a></li>
+              <li><a href="https://instagram.com/muhammedd_adel" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-foreground">@muhammedd_adel</a></li>
+              <li><a href="https://wa.me/201207346648" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-foreground">WhatsApp</a></li>
             </ul>
           </div>
         </div>
         <div className="border-t pt-6 flex items-center justify-between" style={{ borderColor: 'hsl(var(--white-10))' }}>
           <p className="font-mono-brand text-[9px] tracking-wider" style={{ color: 'hsl(var(--white-10))' }}>© 2025 DANVERSE</p>
-          <p className="font-mono-brand text-[9px] tracking-wider" style={{ color: 'hsl(var(--white-10))' }}>Cairo</p>
+          <p className="font-mono-brand text-[9px] tracking-wider" style={{ color: 'hsl(var(--white-10))' }}>DANVERSE.AI</p>
         </div>
       </div>
     </footer>

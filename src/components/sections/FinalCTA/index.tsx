@@ -22,7 +22,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitSuccessful, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: '', email: '', type: 'branding', budget: '' },
@@ -53,13 +53,14 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
         </span>
       </div>
 
-      {/* Mouse glow */}
-      <div
-        className="absolute pointer-events-none transition-all duration-200"
+      {/* Mouse glow — uses MotionValue, no re-renders */}
+      <motion.div
+        className="absolute pointer-events-none"
         style={{
           width: 500, height: 500, borderRadius: '50%',
           background: 'radial-gradient(circle, hsl(var(--rose-gold) / 0.025), transparent 60%)',
-          left: mouse.x - 250, top: mouse.y - 250,
+          x: mouse.x, y: mouse.y,
+          translateX: '-50%', translateY: '-50%',
         }}
         aria-hidden="true"
       />
@@ -133,7 +134,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
                   type={field.type}
                   placeholder={field.placeholder}
                   maxLength={field.name === 'email' ? 255 : 100}
-                  className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold placeholder:opacity-20"
+                  className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus-visible:border-rose-gold placeholder:opacity-20"
                   style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
                   {...register(field.name)}
                 />
@@ -147,7 +148,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
                 Project Type
               </label>
               <select
-                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold"
+                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus-visible:border-rose-gold"
                 style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
                 {...register('type')}
               >
@@ -164,7 +165,7 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
                 type="text"
                 placeholder="$10k — $50k"
                 maxLength={100}
-                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus:border-rose-gold placeholder:opacity-20"
+                className="w-full bg-transparent border-b border-t-0 border-l-0 border-r-0 px-0 py-3 text-sm outline-none transition-colors duration-400 focus-visible:border-rose-gold placeholder:opacity-20"
                 style={{ borderColor: 'hsl(var(--white-10))', color: 'hsl(var(--pearl))' }}
                 {...register('budget')}
               />
@@ -174,8 +175,9 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
             </div>
             <motion.button
               type="submit"
-              className="w-full py-5 text-[10px] font-mono-brand uppercase tracking-[0.25em] glass-btn gradient-border-spin btn-shimmer group flex items-center justify-center gap-3 rounded-sm"
-              style={{ color: 'hsl(var(--rose-gold))' }}
+              disabled={isSubmitting}
+              className="w-full py-5 text-[10px] font-mono-brand uppercase tracking-[0.25em] glass-btn gradient-border-spin btn-shimmer group flex items-center justify-center gap-3 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none"
+              style={{ color: 'hsl(var(--rose-gold))', outlineColor: 'hsl(var(--rose-gold))' }}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}

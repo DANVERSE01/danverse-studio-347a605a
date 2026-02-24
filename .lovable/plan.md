@@ -1,83 +1,148 @@
 
 
-# Location Removal + Brand Info Update + Netlify Deployment Files
+# Phase 2: Branding Cleanup, Performance, UI Refinement, Contact Icons, Verification
 
-## What's Changing
+---
 
-### 1. Remove ALL Location References
-Every mention of Cairo, Egypt, MENA, Middle East, GMT+2 gets removed or replaced with location-neutral text.
+## Phase 0 -- Lovable Branding Removal
 
-**Files affected:**
+### Findings from repo-wide search
 
-- **`src/pages/Index.tsx`** -- Remove "Cairo" from title/meta, update canonical to `https://danverse.ai`, fix OG description
-- **`src/components/sections/Hero/index.tsx`** (line 80) -- Change `Creative Studio / Cairo` to just `Creative Studio`
-- **`src/components/layout/Footer.tsx`** -- Remove "Cairo, Egypt" line, remove "GMT+2" line, remove "Cairo" from bottom bar
-- **`src/components/sections/Journal/index.tsx`** (line 14) -- Replace article title "Cairo Is the New Berlin" with a non-location title (e.g. "The Rise of the Digital-First Studio") and update excerpt to remove Middle East reference
-- **`src/components/ui/WorkModal.tsx`** -- Replace "MENA" with "global" or "regional" in case study descriptions, remove "Middle East" reference
+Lovable references exist in these files only:
 
-### 2. Update Contact Info & Social Links
+| File | Reference | Action |
+|------|-----------|--------|
+| `README.md` | Multiple mentions of "Lovable" (project links, instructions) | Replace entire content with DANVERSE-branded README |
+| `vite.config.ts` (line 4) | `import { componentTagger } from "lovable-tagger"` | Remove import and plugin usage (dev-only tagger, no visual impact) |
+| `package.json` (line 85) | `"lovable-tagger": "^1.1.13"` in devDependencies | Remove the dependency |
 
-**Footer (`src/components/layout/Footer.tsx`):**
-- Email: `hello@danverse.studio` becomes `danverseai@gmail.com`
-- Social links: Replace `['LI', 'IG', 'BE', 'GH']` with actual links:
-  - **IG** -> `https://instagram.com/muhammedd_adel`
-  - **WA** -> `https://wa.me/201207346648`
-- Remove the dummy LI, BE, GH links that go nowhere
+**NOT in code (platform-injected):** The "Edit in Lovable" badge visible on the live site is injected by the Lovable platform at runtime, not from repository source code. This cannot be removed from the codebase. It can only be toggled off in the Lovable project settings.
 
-**Domain updates across all files:**
-- `danverse.studio` becomes `danverse.ai` everywhere
+### Changes
 
-### 3. Update SEO & Meta
+1. **`README.md`** -- Rewrite with DANVERSE branding (project name, domain `danverse.ai`, no Lovable mentions)
+2. **`vite.config.ts`** -- Remove `lovable-tagger` import and `componentTagger()` from plugins array
+3. **`package.json`** -- Remove `lovable-tagger` from `devDependencies`
 
-**`index.html`:**
-- Remove `@Lovable` twitter site
-- Update OG image URL (remove lovable placeholder)
-- Update domain references to `danverse.ai`
+---
 
-**`src/pages/Index.tsx`:**
-- Canonical URL: `https://danverse.ai`
-- Title: Remove "Cairo"
-- Meta descriptions: Remove all location references
+## Phase A -- Performance Upgrades (Zero Visual Change)
 
-### 4. Netlify Deployment Files
+### 1. Fix `useMousePosition` hook (causes re-renders on every mouse move)
 
-Create the standard Netlify config files for SPA deployment:
+**File: `src/hooks/useMousePosition.ts`**
 
-**`public/_redirects`:**
-```text
-/*    /index.html   200
-```
-This ensures all routes are handled by the SPA router (no 404s on refresh).
+Current implementation calls `setState` on every `mousemove` event, causing full component re-renders. This is used in `FinalCTA/index.tsx` for a subtle glow effect.
 
-**`netlify.toml`:**
-```toml
-[build]
-  command = "npm run build"
-  publish = "dist"
+Fix: Replace with `useRef` + `useEffect` that writes directly to a DOM element, OR throttle via `requestAnimationFrame`. Since the consumer (`FinalCTA`) renders a positioned div based on `mouse.x/y`, the cleanest fix is to use `useMotionValue` from framer-motion (already in the project) to avoid React re-renders entirely.
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+**New approach:**
+- Return `{ x: MotionValue, y: MotionValue }` instead of `{ x: number, y: number }`
+- Update `FinalCTA/index.tsx` to use `motion.div` with `style={{ left: mouse.x, top: mouse.y }}` (framer-motion handles this without re-renders)
 
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-```
+### 2. CustomCursor -- already performant
 
-**`public/robots.txt`** -- Update sitemap URL to `https://danverse.ai/sitemap.xml`
+The cursor already uses `useMotionValue` + `useSpring` (no React state for position). It also checks for touch devices. It already respects `prefers-reduced-motion` via CSS. No changes needed except adding an explicit reduced-motion check to skip rendering.
 
-## Files Modified (Total: ~9 files)
+### 3. Add `loading="lazy"` to below-the-fold images
 
-1. `src/pages/Index.tsx` -- SEO meta, canonical URL, remove Cairo
-2. `src/components/sections/Hero/index.tsx` -- Remove "Cairo" from tagline
-3. `src/components/layout/Footer.tsx` -- Contact info, social links, remove location
-4. `src/components/sections/Journal/index.tsx` -- Replace Cairo article
-5. `src/components/ui/WorkModal.tsx` -- Replace MENA/Middle East references
-6. `index.html` -- Domain, OG tags, remove Lovable twitter
-7. `public/robots.txt` -- Add sitemap URL
-8. `public/_redirects` -- NEW: Netlify SPA redirect
-9. `netlify.toml` -- NEW: Netlify build config + headers
+**File: `src/components/layout/Footer.tsx`** -- Add `loading="lazy"` to footer logo image
+
+### 4. Navbar scroll listener cleanup
+
+**File: `src/components/layout/Navbar.tsx`** -- The `lastScrollY` in state causes re-renders. Convert to `useRef` for the tracking value.
+
+---
+
+## Phase B -- Apple-Like UI Refinement (Controlled)
+
+### 1. Button states (premium feel)
+
+**File: `src/components/ui/MagneticButton.tsx`**
+- Add `focus-visible` ring styling (crimson outline for keyboard navigation)
+- Already has `whileTap={{ scale: 0.97 }}` which is good
+
+**File: `src/components/sections/FinalCTA/index.tsx`**
+- Add `focus-visible` styling to the submit button
+- Add a subtle `disabled` state style (opacity + pointer-events) while form is submitting
+
+### 2. Navbar link transitions
+
+**File: `src/components/layout/Navbar.tsx`**
+- Add `focus-visible` outline to nav links for keyboard accessibility
+- Smooth the hover transition with a slight scale or opacity shift (very subtle, 0.02 opacity change)
+
+### 3. Mobile motion parity
+
+**File: `src/components/layout/CustomCursor.tsx`**
+- Add explicit `prefers-reduced-motion` check: if reduced motion is preferred, return `null`
+
+**File: `src/index.css`**
+- Already has `@media (prefers-reduced-motion: reduce)` -- verified sufficient
+
+### 4. Form select styling
+
+**File: `src/components/sections/FinalCTA/index.tsx`**
+- Add `focus-visible` border change on the select element (consistent with inputs)
+
+---
+
+## Phase C -- Contact Action Icons + Direct Linking
+
+### Footer contact section upgrade
+
+**File: `src/components/layout/Footer.tsx`**
+
+Current contact section uses plain text links. Will add inline SVG icons (no new dependencies, using lightweight custom SVGs matching the project's minimal icon style):
+
+- **Email icon** (envelope) + `mailto:danverseai@gmail.com`
+- **Instagram icon** (camera/square) + `https://instagram.com/muhammedd_adel`
+- **WhatsApp icon** (phone/chat) + `https://wa.me/201207346648`
+
+Each link will:
+- Have an inline SVG icon (12x12, matching existing text size)
+- Be wrapped in an `<a>` with correct `href`, `target="_blank"`, `rel="noopener noreferrer"`
+- Have `focus-visible` outline for keyboard accessibility
+- Keep the existing text labels and layout spacing
+
+Also upgrade the social links in the logo column (currently just "IG" / "WA" text) to include matching icons.
+
+### FinalCTA contact references
+
+No contact links exist in FinalCTA beyond the form itself -- no changes needed there.
+
+---
+
+## Phase D -- Full Functionality Verification
+
+After implementing all changes, verify:
+
+1. **Nav links**: All 5 nav items (`#works`, `#craft`, `#process`, `#studio`, `#journal`) scroll to correct sections
+2. **Hero CTAs**: "Explore Work" scrolls to `#works`, "Showreel" scrolls to `#contact`
+3. **Footer links**: All navigate links, contact links (email, IG, WA) open correct targets
+4. **"Get in touch" CTA** in navbar scrolls to `#contact`
+5. **Mobile menu**: Opens/closes, all links work
+6. **Contact form**: Validates correctly, shows success state on valid submit
+7. **Works section**: Filter buttons work, work items are clickable, modal opens/closes
+8. **Loading screen**: Shows on first visit, skips on session reload
+9. **404 page**: `/nonexistent` route shows NotFound page
+10. **All external links** open in new tab with `rel="noopener noreferrer"`
+
+Any broken items found will be fixed with minimal scoped changes.
+
+---
+
+## Summary of Files to Modify
+
+| File | Phase | Change |
+|------|-------|--------|
+| `README.md` | 0 | Replace with DANVERSE-branded content |
+| `vite.config.ts` | 0 | Remove lovable-tagger |
+| `package.json` | 0 | Remove lovable-tagger devDep |
+| `src/hooks/useMousePosition.ts` | A | Use MotionValue instead of setState |
+| `src/components/sections/FinalCTA/index.tsx` | A+B | MotionValue mouse, focus-visible states |
+| `src/components/layout/Navbar.tsx` | A+B | useRef for lastScrollY, focus-visible |
+| `src/components/layout/Footer.tsx` | A+C | lazy loading, contact icons |
+| `src/components/layout/CustomCursor.tsx` | B | reduced-motion check |
+| `src/components/ui/MagneticButton.tsx` | B | focus-visible ring |
+

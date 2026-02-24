@@ -42,10 +42,10 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
       >
         <div className="flex flex-col items-end gap-1">
           <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--platinum))' }}>
-            30.0444° N
+            EST. 2025
           </span>
           <span className="font-mono-brand text-[9px] tracking-[0.3em] uppercase" style={{ color: 'hsl(var(--white-10))' }}>
-            31.2357° E
+            DANVERSE.AI
           </span>
         </div>
         <div className="w-px h-12" style={{ background: 'hsl(var(--rose-gold) / 0.1)' }} />
@@ -77,7 +77,7 @@ const Hero = forwardRef<HTMLElement>((_, ref) => {
               transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             />
             <span className="font-mono-brand text-[10px] tracking-[0.4em] uppercase" style={{ color: 'hsl(var(--rose-gold))' }}>
-              Creative Studio / Cairo
+              Creative Studio
             </span>
           </motion.div>
 

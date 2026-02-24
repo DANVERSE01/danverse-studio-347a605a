@@ -11,8 +11,8 @@ const articles = [
     category: 'Strategy', readTime: '8 min', date: 'Dec 2024', accent: 'rose-gold',
   },
   {
-    title: 'Cairo Is the New Berlin',
-    excerpt: 'How the Middle East is redefining the global creative landscape — from the inside out.',
+    title: 'The Rise of the Digital-First Studio',
+    excerpt: 'How independent studios are redefining the global creative landscape — from the inside out.',
     category: 'Culture', readTime: '6 min', date: 'Nov 2024', accent: 'platinum',
   },
   {

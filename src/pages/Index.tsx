@@ -21,12 +21,12 @@ const Index = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>DANVERSE — AI-Powered Creative Studio | Cairo</title>
-        <meta name="description" content="Premium creative studio engineering cinematic brands at the intersection of AI, design, and culture. Cairo × Global." />
+        <title>DANVERSE — AI-Powered Creative Studio</title>
+        <meta name="description" content="Premium creative studio engineering cinematic brands at the intersection of AI, design, and culture." />
         <meta property="og:title" content="DANVERSE — AI-Powered Creative Studio" />
-        <meta property="og:description" content="We engineer cinematic universes. AI-powered creative studio based in Cairo." />
+        <meta property="og:description" content="We engineer cinematic universes. AI-powered creative studio at the intersection of technology, culture & obsessive craft." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://danverse.studio" />
+        <link rel="canonical" href="https://danverse.ai" />
       </Helmet>
 
       <LoadingScreen />

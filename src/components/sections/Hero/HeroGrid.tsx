@@ -114,7 +114,8 @@ function MarqueeColumn({
             <img
               src={src}
               alt=""
-              loading={i < 5 ? 'eager' : 'lazy'}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-[1.15]"
             />
             {/* Gradient overlay for depth — dims on hover */}

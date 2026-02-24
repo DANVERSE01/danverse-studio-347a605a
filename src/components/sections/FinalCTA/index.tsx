@@ -1,7 +1,9 @@
-import { forwardRef } from 'react';
+import { forwardRef, type BaseSyntheticEvent } from 'react';
 import { motion } from 'framer-motion';
 import { useMousePosition } from '@/hooks/useMousePosition';
 import { useInView } from '@/hooks/useInView';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -16,21 +18,23 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
-  const mouse = useMousePosition();
+  const prefersReduced = usePrefersReducedMotion();
+  const isMobile = useIsMobile();
+  const mouse = useMousePosition(!prefersReduced && !isMobile);
   const { ref: inViewRef, isInView } = useInView(0.2);
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: '', email: '', type: 'branding', budget: '' },
   });
 
-  const onSubmit = (_data: ContactFormData) => {
-    // Data is validated by zod at this point
-    // Future: send to backend
+  const onSubmit = (_data: ContactFormData, event?: BaseSyntheticEvent) => {
+    const form = event?.target as HTMLFormElement | undefined;
+    form?.submit();
   };
 
   return (
@@ -54,16 +58,18 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
       </div>
 
       {/* Mouse glow — uses MotionValue, no re-renders */}
-      <motion.div
-        className="absolute pointer-events-none"
-        style={{
-          width: 500, height: 500, borderRadius: '50%',
-          background: 'radial-gradient(circle, hsl(var(--rose-gold) / 0.025), transparent 60%)',
-          x: mouse.x, y: mouse.y,
-          translateX: '-50%', translateY: '-50%',
-        }}
-        aria-hidden="true"
-      />
+      {!prefersReduced && !isMobile && (
+        <motion.div
+          className="absolute pointer-events-none"
+          style={{
+            width: 500, height: 500, borderRadius: '50%',
+            background: 'radial-gradient(circle, hsl(var(--rose-gold) / 0.025), transparent 60%)',
+            x: mouse.x, y: mouse.y,
+            translateX: '-50%', translateY: '-50%',
+          }}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Heading */}
       <div className="relative z-10 text-center mb-16" ref={inViewRef}>
@@ -112,16 +118,17 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        {isSubmitSuccessful ? (
-          <div className="text-center py-16 border" style={{ borderColor: 'hsl(var(--rose-gold) / 0.15)' }}>
-            <span className="font-display italic text-4xl block mb-3" style={{ color: 'hsl(var(--rose-gold))' }}>✓</span>
-            <h3 className="font-display italic text-2xl mb-2" style={{ color: 'hsl(var(--pearl))' }}>
-              Received.
-            </h3>
-            <p className="text-[13px]" style={{ color: 'hsl(var(--pearl) / 0.4)' }}>We'll be in touch shortly.</p>
-          </div>
-        ) : (
-          <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="space-y-8"
+          name="contact"
+          method="POST"
+          action="/#contact"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
             {[
               { name: 'name' as const, label: 'Name', type: 'text', placeholder: 'Your name' },
               { name: 'email' as const, label: 'Email', type: 'email', placeholder: 'your@email.com' },
@@ -176,19 +183,18 @@ const FinalCTA = forwardRef<HTMLElement>((_, ref) => {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-5 text-[10px] font-mono-brand uppercase tracking-[0.25em] glass-btn gradient-border-spin btn-shimmer group flex items-center justify-center gap-3 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none"
+              className="premium-btn w-full py-5 text-[10px] font-mono-brand uppercase tracking-[0.25em] glass-btn gradient-border-spin btn-shimmer group flex items-center justify-center gap-3 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none"
               style={{ color: 'hsl(var(--rose-gold))', outlineColor: 'hsl(var(--rose-gold))' }}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             >
-              Send Brief
+              {isSubmitting ? 'Sending Brief...' : 'Send Brief'}
               <svg width="12" height="12" viewBox="0 0 16 16" fill="none" className="transition-transform duration-500 group-hover:translate-x-1.5">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
               </svg>
             </motion.button>
           </form>
-        )}
       </motion.div>
     </section>
   );

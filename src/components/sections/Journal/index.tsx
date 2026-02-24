@@ -8,17 +8,17 @@ const articles = [
   {
     title: 'The Death of the 30-Second Spot',
     excerpt: 'Why the future of advertising is non-linear, AI-driven, and built for feeds not screens.',
-    category: 'Strategy', readTime: '8 min', date: 'Dec 2024', accent: 'rose-gold',
+    category: 'Strategy', readTime: '8 min', date: 'Dec 2024', accent: 'rose-gold', href: '#contact',
   },
   {
     title: 'The Rise of the Digital-First Studio',
-    excerpt: 'How independent studios are redefining the global creative landscape — from the inside out.',
-    category: 'Culture', readTime: '6 min', date: 'Nov 2024', accent: 'platinum',
+    excerpt: 'How independent studios are redefining modern creative execution — from the inside out.',
+    category: 'Culture', readTime: '6 min', date: 'Nov 2024', accent: 'platinum', href: '#contact',
   },
   {
     title: 'Building an AI Content OS',
     excerpt: "We replaced 3 agencies with one system. Here's what happened next.",
-    category: 'Engineering', readTime: '12 min', date: 'Oct 2024', accent: 'rose-gold',
+    category: 'Engineering', readTime: '12 min', date: 'Oct 2024', accent: 'rose-gold', href: '#contact',
   },
 ];
 
@@ -90,7 +90,7 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
                 transition={{ duration: 0.4 }}
               />
 
-              <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[80px_1fr_1fr_auto] gap-4 md:gap-12 items-center">
+                <div className="relative px-6 md:px-20 lg:px-28 py-8 md:py-10 grid grid-cols-1 md:grid-cols-[80px_1fr_1fr_auto] gap-4 md:gap-12 items-center">
                 <span
                   className="font-display italic text-4xl md:text-5xl tabular-nums transition-colors duration-500"
                   style={{ color: isHovered ? `hsl(var(--${article.accent}))` : 'hsl(var(--white-10))' }}
@@ -117,6 +117,8 @@ const Journal = forwardRef<HTMLElement>((_, ref) => {
                     {article.excerpt}
                   </motion.p>
                 </div>
+
+                <a href={article.href} className="absolute inset-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px]" style={{ outlineColor: `hsl(var(--${article.accent}))` }} aria-label={`${article.title} — contact DANVERSE.AI`} />
 
                 <div className="flex items-center gap-4">
                   <span className="font-mono-brand text-[9px] uppercase tracking-[0.2em]" style={{ color: `hsl(var(--${article.accent}))` }}>

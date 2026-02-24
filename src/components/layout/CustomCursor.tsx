@@ -1,9 +1,11 @@
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useDanverseStore } from '@/store/useDanverseStore';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 export default function CustomCursor() {
   const cursorVariant = useDanverseStore((s) => s.cursorVariant);
+  const prefersReduced = usePrefersReducedMotion();
   const [isTouch, setIsTouch] = useState(false);
 
   const mouseX = useMotionValue(0);
@@ -18,16 +20,16 @@ export default function CustomCursor() {
   }, []);
 
   useEffect(() => {
-    if (isTouch) return;
+    if (isTouch || prefersReduced) return;
     const handler = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
     window.addEventListener('mousemove', handler, { passive: true });
     return () => window.removeEventListener('mousemove', handler);
-  }, [isTouch, mouseX, mouseY]);
+  }, [isTouch, prefersReduced, mouseX, mouseY]);
 
-  if (isTouch) return null;
+  if (isTouch || prefersReduced) return null;
 
   const isHover = cursorVariant === 'hover' || cursorVariant === 'cta';
 

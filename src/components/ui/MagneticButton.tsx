@@ -49,8 +49,8 @@ export default function MagneticButton({ children, className, onClick }: Magneti
   return (
     <motion.button
       ref={ref}
-      className={cn('relative inline-flex items-center justify-center', className)}
-      style={{ x: springX, y: springY }}
+      className={cn('relative inline-flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-sm', className)}
+      style={{ x: springX, y: springY, outlineColor: 'hsl(var(--rose-gold))' }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}

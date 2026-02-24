@@ -1,6 +1,5 @@
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import LoadingScreen from '@/components/ui/LoadingScreen';
-import CustomCursor from '@/components/layout/CustomCursor';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
@@ -26,11 +25,12 @@ const Index = () => {
         <meta property="og:title" content="DANVERSE — AI-Powered Creative Studio" />
         <meta property="og:description" content="We engineer cinematic universes. AI-powered creative studio at the intersection of technology, culture & obsessive craft." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://danverse.ai" />
+        <meta property="og:image" content="https://danverse.ai/og-image.svg" />
+        <meta name="twitter:image" content="https://danverse.ai/og-image.svg" />
+        <link rel="canonical" href="https://danverse.ai/" />
       </Helmet>
 
       <LoadingScreen />
-      <CustomCursor />
       <Navbar />
 
       <main>

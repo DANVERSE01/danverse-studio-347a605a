@@ -344,10 +344,27 @@
   }
 }
 
-/* ── Custom Cursor ── */
-@media (pointer: fine) {
-  body { cursor: none; }
-  a, button, [role="button"] { cursor: none; }
+/* ── Premium Interactive Controls ── */
+.premium-btn {
+  position: relative;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              color 220ms ease,
+              background-color 220ms ease;
+}
+
+.premium-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px hsl(var(--rose-gold) / 0.18);
+}
+
+.premium-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.premium-btn:focus-visible {
+  outline: 2px solid hsl(var(--rose-gold));
+  outline-offset: 3px;
 }
 
 /* ── Scrollbar ── */

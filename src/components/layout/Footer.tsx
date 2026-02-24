@@ -46,7 +46,7 @@ export default function Footer() {
       <div ref={ref} className="relative z-10 max-w-[1400px] mx-auto">
         <div className="border-t py-16 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12" style={{ borderColor: 'hsl(var(--white-10))' }}>
           <div>
-            <img src={danverseLogo} alt="Danverse" className="h-10 w-auto mb-4" loading="lazy" />
+            <img src={danverseLogo} alt="Danverse" className="h-10 w-auto mb-4" loading="lazy" decoding="async" />
             <p className="text-[12px] leading-relaxed max-w-xs mb-6" style={{ color: 'hsl(var(--white-30))' }}>AI-powered creative studio at the intersection of technology and culture.</p>
             <div className="flex gap-4">
               <a href="https://instagram.com/muhammedd_adel" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 font-mono-brand text-[9px] uppercase tracking-wider transition-colors duration-300 hover:text-rose-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-sm" style={{ color: 'hsl(var(--white-30))', outlineColor: 'hsl(var(--rose-gold))' }}>
@@ -91,12 +91,12 @@ export default function Footer() {
               </li>
               <li>
                 <a href="https://instagram.com/muhammedd_adel" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-sm" style={{ outlineColor: 'hsl(var(--rose-gold))' }}>
-                  <InstagramIcon /> @muhammedd_adel
+                  <InstagramIcon /> muhammedd_adel
                 </a>
               </li>
               <li>
                 <a href="https://wa.me/201207346648" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 rounded-sm" style={{ outlineColor: 'hsl(var(--rose-gold))' }}>
-                  <WhatsAppIcon /> WhatsApp
+                  <WhatsAppIcon /> 0201207346648
                 </a>
               </li>
             </ul>

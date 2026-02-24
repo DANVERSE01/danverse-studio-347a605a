@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { fadeUp, staggerContainer } from '@/lib/animations';
 import { useInView } from '@/hooks/useInView';
 import { useDanverseStore } from '@/store/useDanverseStore';
@@ -35,7 +35,8 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
   const setActiveFilter = useDanverseStore((s) => s.setActiveFilter);
   const setCursorVariant = useDanverseStore((s) => s.setCursorVariant);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [mouseY, setMouseY] = useState(0);
+  const mouseY = useMotionValue(90);
+  const previewY = useSpring(mouseY, { stiffness: 260, damping: 24, mass: 0.45 });
   const [selectedWork, setSelectedWork] = useState<typeof works[0] | null>(null);
   const [selectedAccent, setSelectedAccent] = useState('rose-gold');
 
@@ -140,7 +141,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                 onMouseLeave={() => { setHoveredId(null); setCursorVariant('default'); }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
-                  setMouseY(e.clientY - rect.top);
+                  mouseY.set(e.clientY - rect.top);
                 }}
               >
                 {/* Crimson radial glow background */}
@@ -160,7 +161,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   style={{
                     width: 280,
                     height: 180,
-                    top: mouseY - 90,
+                    top: previewY,
                     borderRadius: 4,
                   }}
                   initial={false}
@@ -174,7 +175,7 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
                   }}
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <img src={work.image} alt={work.title} className="w-full h-full object-cover" loading="lazy" />
+                  <img src={work.image} alt={work.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                   <div
                     className="absolute inset-0"
                     style={{
@@ -268,15 +269,16 @@ const Works = forwardRef<HTMLElement>((_, ref) => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        <button
-          className="group glass-btn gradient-border-spin btn-shimmer rounded-full px-8 py-4 font-mono-brand text-[10px] uppercase tracking-[0.25em] transition-all duration-500 flex items-center gap-3"
+        <a
+          href="#contact"
+          className="premium-btn group glass-btn gradient-border-spin btn-shimmer rounded-full px-8 py-4 font-mono-brand text-[10px] uppercase tracking-[0.25em] transition-all duration-500 flex items-center gap-3"
           style={{ color: 'hsl(var(--rose-gold))' }}
         >
           View all projects
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-500 group-hover:translate-x-1">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
           </svg>
-        </button>
+        </a>
       </motion.div>
 
       <WorkModal

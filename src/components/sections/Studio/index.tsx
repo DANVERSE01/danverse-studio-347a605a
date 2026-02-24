@@ -84,7 +84,7 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
       <div className="grid grid-cols-3 gap-6 md:gap-12 mb-32 border-t border-b py-16" style={{ borderColor: 'hsl(var(--platinum) / 0.1)' }}>
         {[
           { end: 12, suffix: '+', label: 'Creatives' },
-          { end: 4, suffix: '', label: 'Countries' },
+          { end: 4, suffix: '', label: 'Studios' },
           { end: 0, suffix: '', label: 'Templates' },
         ].map((stat) => (
           <div key={stat.label}>
@@ -115,13 +115,14 @@ const Studio = forwardRef<HTMLElement>((_, ref) => {
             operating at the intersection of technology and culture.
             No templates. No shortcuts. Only intentional work.
           </p>
-          <button
-            className="flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.2em] group transition-colors duration-300"
+          <a
+            href="#contact"
+            className="premium-btn inline-flex items-center gap-3 font-mono-brand text-[10px] uppercase tracking-[0.2em] group transition-colors duration-300 rounded-sm"
             style={{ color: 'hsl(var(--platinum))' }}
           >
             <span className="w-8 h-px transition-all duration-500 group-hover:w-12" style={{ background: 'hsl(var(--platinum) / 0.5)' }} />
             Join the studio
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
